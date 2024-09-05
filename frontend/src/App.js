@@ -7,8 +7,9 @@ function App() {
     <div className="App">
       {/* navbar */}
       <nav className="navbar bg-dark">
-        <a class="navbar-brand" href="#">
-          <img src={logo} alt="Bridging Hope Logo" width="64" height="64"/>
+        {/* logo */}
+        <a className="navbar-brand" href="#">
+          <img src={logo} alt="Bridging Hope Logo" width="64" height="64" className="bg-light ms-3 rounded"/>
         </a>
 
         <div>
