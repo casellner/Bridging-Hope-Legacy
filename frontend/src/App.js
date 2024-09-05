@@ -5,11 +5,13 @@ import logo from './BridgingHopeLogo.png';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        
-        <img src={logo}/>
-        
-      </header>
+      {/* navbar */}
+      <nav className="navbar">
+        <a class="navbar-brand" href="#">
+          <img src={logo} alt="Bridging Hope Logo" width="64" height="64"/>
+        </a>
+      </nav>
+
       <body>
         <h1 className='text-center'>Bridging Hope</h1>
         <p>Our application is a powerful tool for nonprofits. It simplifies the process of tracking clients, ensuring that those who need assistance are reached with precision and care.</p>
