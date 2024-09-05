@@ -1,5 +1,6 @@
 //import logo from './logo.svg';
 import logo from './BridgingHopeLogo.png';
+import background from './fooddrive2.jpg';
 //import './App.css';
 
 function App() {
@@ -18,8 +19,8 @@ function App() {
         </div>
       </nav>
 
-      <body>
-        <div className="card">
+      <body style={{backgroundImage: `url(${background})`, backgroundSize: "cover"}}>
+        <div className="card col-6 offset-3">
           <div className="card-header">
             <h1 className='text-center'>Bridging Hope</h1>
             <p>Our application is a powerful tool for nonprofits. It simplifies the process of tracking clients, ensuring that those who need assistance are reached with precision and care.</p>
