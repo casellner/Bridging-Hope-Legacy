@@ -6,10 +6,15 @@ function App() {
   return (
     <div className="App">
       {/* navbar */}
-      <nav className="navbar">
+      <nav className="navbar bg-dark">
         <a class="navbar-brand" href="#">
           <img src={logo} alt="Bridging Hope Logo" width="64" height="64"/>
         </a>
+
+        <div>
+          <button className="btn btn-primary me-3">Sign In</button>
+          <button className="btn btn-secondary me-3">Register</button>
+        </div>
       </nav>
 
       <body>
