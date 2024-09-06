@@ -20,7 +20,7 @@ function App() {
       </nav>
 
       <body style={{backgroundImage: `url(${background})`, backgroundSize: "cover"}}>
-        <div className="card col-6 offset-3">
+        <div className="card col-lg-6 col-md-10 col-sm-12 offset-lg-3 offset-md-1 offset-sm-0"> {/* this card will have different widths depending on the resolution of the device */}
           <div className="card-header">
             <h1 className='text-center'>Bridging Hope</h1>
             <p>Our application is a powerful tool for nonprofits. It simplifies the process of tracking clients, ensuring that those who need assistance are reached with precision and care.</p>
