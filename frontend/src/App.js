@@ -19,11 +19,11 @@ function App() {
         </div>
       </nav>
 
-      <body style={{backgroundImage: `url(${background})`, backgroundSize: "cover"}}>
+      <body className="py-3" style={{backgroundImage: `url(${background})`, backgroundSize: "cover"}}>
         <div className="card col-lg-6 col-md-10 col-sm-12 offset-lg-3 offset-md-1 offset-sm-0"> {/* this card will have different widths depending on the resolution of the device */}
           <div className="card-header">
-            <h1 className='text-center fw-bold'>Bridging Hope</h1>
-            <p>Our application is a powerful tool for nonprofits. It simplifies the process of tracking clients, ensuring that those who need assistance are reached with precision and care.</p>
+            <h1 className="text-center fw-bold">Bridging Hope</h1>
+            <p className="text-center">Our application is a powerful tool for nonprofits. It simplifies the process of tracking clients, ensuring that those who need assistance are reached with precision and care.</p>
           </div>
 
           <div className="card-body">
