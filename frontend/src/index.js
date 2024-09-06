@@ -1,13 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Landing from './pages/Landing';
+
 import reportWebVitals from './reportWebVitals';
 
 // Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
 // Bootstrap Bundle JS
 import "bootstrap/dist/js/bootstrap.bundle.min";
+
+const App = () => {
+  return (
+    <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          {/* <Route path="/blogs">
+            <Blogs />
+          </Route>
+          <Route path="/contact">
+            <Contact />
+          </Route> */}
+        </Routes>
+    </BrowserRouter>
+  );
+}
+//import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
