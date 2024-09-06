@@ -51,14 +51,22 @@ function App() {
             <h2>Contact an Administrator to connect your organization to Bridging Hope</h2>
             <ul className="list-group list-group-flush">
               <li className="list-group-item">
-                <h3>Ms. X</h3>
-                <p>phone: </p>
-                <p>email: </p>
+                <div className="row">
+                  <h3 className="col-auto">Ms. X</h3>
+                  <p className="col-auto">phone: </p>
+                  <a className="col-auto" href="tel:+15555555555">(555) 555-5555</a>
+                  <p className="col-auto">email: </p>
+                  <a className="col-auto" href="mailto:msx@email.com">msx@email.com</a>
+                </div>
               </li>
               <li className="list-group-item">
-                <h3>Mr. Y</h3>
-                <p>phone: </p>
-                <p>email: </p>
+                <div className="row">
+                  <h3 className="col-auto">Mr. Y</h3>
+                  <p className="col-auto">phone: </p>
+                  <a className="col-auto" href="tel:+15555555556">(555) 555-5556</a>
+                  <p className="col-auto">email: </p>
+                  <a className="col-auto" href="mailto:mry@email.com">mry@email.com</a>
+                </div>
               </li>
             </ul>
           </div>
