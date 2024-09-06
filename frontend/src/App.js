@@ -26,7 +26,7 @@ function App() {
             <p className="text-center">Our application is a powerful tool for nonprofits. It simplifies the process of tracking clients, ensuring that those who need assistance are reached with precision and care.</p>
           </div>
 
-          <div className="card-body">
+          <div className="card-body p-0">
             {/* key features */}
             <div className="bg-info mb-3">
               <h2 className="text-center pt-3 fs-1">Key Features</h2>
@@ -48,27 +48,29 @@ function App() {
             </div>
 
             {/* contact an admin section */}
-            <h2>Contact an Administrator to connect your organization to Bridging Hope</h2>
-            <ul className="list-group list-group-flush">
-              <li className="list-group-item">
-                <div className="row">
-                  <h3 className="col-auto">Ms. X</h3>
-                  <p className="col-auto">phone: </p>
-                  <a className="col-auto" href="tel:+15555555555">(555) 555-5555</a>
-                  <p className="col-auto">email: </p>
-                  <a className="col-auto" href="mailto:msx@email.com">msx@email.com</a>
-                </div>
-              </li>
-              <li className="list-group-item">
-                <div className="row">
-                  <h3 className="col-auto">Mr. Y</h3>
-                  <p className="col-auto">phone: </p>
-                  <a className="col-auto" href="tel:+15555555556">(555) 555-5556</a>
-                  <p className="col-auto">email: </p>
-                  <a className="col-auto" href="mailto:mry@email.com">mry@email.com</a>
-                </div>
-              </li>
-            </ul>
+            <div className="px-3">
+              <h2 className="mb-3">Contact an Administrator to connect your organization to Bridging Hope</h2>
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item">
+                  <div className="row">
+                    <h3 className="col-auto">Ms. X</h3>
+                    <p className="col-auto">phone: </p>
+                    <a className="col-auto" href="tel:+15555555555">(555) 555-5555</a>
+                    <p className="col-auto">email: </p>
+                    <a className="col-auto" href="mailto:msx@email.com">msx@email.com</a>
+                  </div>
+                </li>
+                <li className="list-group-item">
+                  <div className="row">
+                    <h3 className="col-auto">Mr. Y</h3>
+                    <p className="col-auto">phone: </p>
+                    <a className="col-auto" href="tel:+15555555556">(555) 555-5556</a>
+                    <p className="col-auto">email: </p>
+                    <a className="col-auto" href="mailto:mry@email.com">mry@email.com</a>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </body>
