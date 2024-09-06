@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+
+// router imports
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Landing from './pages/Landing';
+import NoPage from './pages/NoPage';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -17,10 +20,8 @@ const App = () => {
           <Route path="/" element={<Landing />} />
           {/* <Route path="/blogs">
             <Blogs />
-          </Route>
-          <Route path="/contact">
-            <Contact />
-          </Route> */}
+          </Route> */ }
+          <Route path="*" element={<NoPage />} /> {/* 404 page */}
         </Routes>
     </BrowserRouter>
   );
