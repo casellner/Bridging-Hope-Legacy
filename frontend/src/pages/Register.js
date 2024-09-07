@@ -23,7 +23,7 @@ const Register = () => {
                     
                     <div className="card-body p-0">
                         {/* Sign in form */}
-                        <div className="bg-info rounded-bottom-1">
+                        <div className="bg-info rounded-bottom-1 pb-3">
                             <form className="col-8 offset-2"> { /* these columns could be adjusted for different screen sizes */ }
                                 <label for="txtUsername" className="form-label mt-2">Username</label>
                                 <input id="txtUsername" type="text" placeholder="johndoe" className="form-control" />
@@ -35,10 +35,10 @@ const Register = () => {
                                 <label for="txtLastName" className="form-label mt-2">Last Name</label>
                                 <input id="txtLastName" type="text" placeholder="Doe" className="form-control" />
 
-                                <button id="btnContinue" type="button" class="btn btn-primary my-4 col-12">Continue</button>
+                                <button id="btnContinue" type="button" class="btn btn-primary mt-5 col-12">Continue</button>
                                 { /* TODO use flex to center this link */ }
                                 <Link to="/signin">
-                                    <a>Sign in instead</a>
+                                    <a className="d-flex justify-content-center mt-3">Sign in instead</a>
                                 </Link>
                             </form>
                         </div>
