@@ -19,8 +19,9 @@ const Landing = () => {
           <Link to="/signin">
             <button type="button" className="btn btn-primary me-3">Sign In</button>
           </Link>
-          
-          <button className="btn btn-secondary me-3">Register</button>
+          <Link to="/register">
+            <button type="button" className="btn btn-secondary me-3">Register</button>
+          </Link>
         </div>
       </nav>
 

@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Landing from './pages/Landing';
 import NoPage from './pages/NoPage';
+import Register from './pages/Register';
 import SignIn from './pages/SignIn';
 
 import reportWebVitals from './reportWebVitals';
@@ -19,6 +20,7 @@ const App = () => {
     <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="*" element={<NoPage />} /> {/* 404 page */}
         </Routes>
