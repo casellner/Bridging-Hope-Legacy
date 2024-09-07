@@ -9,9 +9,35 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: check secret 1
-        run: echo "${{ secrets.AWS_ACCESS_SECRET_KEY }}"
-      - name: check secret 2
-        run: echo "${{ secrets.AWS_ACCESS_KEY_ID }}"
-      - name: check secret 3
-        run: echo "${{ secrets.REPO_NAME }}"
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-secret-access-key: ${{ secrets.AWS_ACCESS_SECRET_KEY }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-region: us-east-1
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+      - name: Get commit hash
+        id: get-commit
+        run: echo "::set-output name=commit-hash::$(git rev-parse --short HEAD)"
+      - name: Get timestamp
+        id: get-timestamp
+        run: echo "::set-output name=timestamp::$(date +'%Y-%m-%d-%H-%M')"
+
+      - name: Build, tag, and push the image to Amazon ECR
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}            
+          ECR_REPOSITORY: ${{ secrets.REPO_NAME }}
+          IMAGE_TAG: ${{ steps.get-commit-hash.outputs.commit-hash }}-${{ steps.get-timestamp.outputs.timestamp }}
+        run: |
+          cd frontend/
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          cd ../
+          cd backend/
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG  
