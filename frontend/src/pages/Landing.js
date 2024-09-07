@@ -11,7 +11,7 @@ const Landing = () => {
       {/* navbar */}
       <nav className="navbar bg-dark">
         {/* logo */}
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="/">
           <img src={logo} alt="Bridging Hope Logo" width="64" height="64" className="bg-light ms-3 rounded" />
         </a>
 
