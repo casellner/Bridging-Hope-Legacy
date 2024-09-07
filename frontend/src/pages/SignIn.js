@@ -2,6 +2,7 @@
 import logo from './../BridgingHopeLogo.png';
 
 import React from "react";
+import { Link } from 'react-router-dom';
 
 const SignIn = () => {
     return (
@@ -30,7 +31,10 @@ const SignIn = () => {
                                 <input id="txtPassword" type="password" className="form-control" />
 
                                 <button id="btnSignIn" type="button" class="btn btn-primary my-4 col-10 offset-1">Sign In</button>
-                                
+                                { /* TODO use flex to center this link */ }
+                                <Link to="/register">
+                                    <a>Register instead</a>
+                                </Link>
                             </form>
                         </div>
                     </div>
