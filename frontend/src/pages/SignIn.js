@@ -15,7 +15,7 @@ const SignIn = () => {
                 </a>
             </nav>
 
-            <body className="py-lg-3 py-md-2">
+            <body className="py-lg-3 py-md-2 bg-secondary">
                 <div className="card col-lg-6 col-md-10 col-sm-12 offset-lg-3 offset-md-1 offset-sm-0"> {/* this card will have different widths depending on the resolution of the device */}
                     <div className="card-header">
                         <h1 className="text-center my-1">Sign In</h1>
