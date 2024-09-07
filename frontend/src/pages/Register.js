@@ -46,7 +46,7 @@ const Register = () => {
                                     <option value="2">Organization ABC</option>
                                 </select>
 
-                                <button id="btnRegister" type="button" className="btn btn-primary mt-5 col-12">Register</button>
+                                <button id="btnRegister" type="button" className="btn btn-success mt-5 col-12">Register</button>
                                 
                                 <Link to="/signin">
                                     <a className="d-flex justify-content-center mt-3">Sign in instead</a>
