@@ -55,7 +55,7 @@ const Landing = () => {
 
             {/* contact an admin section */}
             <div className="px-3">
-              <h2 className="mb-3">Contact an Administrator to connect your organization to Bridging Hope</h2>
+              <h2 className="mb-3 text-center">Contact an Administrator to connect your organization to Bridging Hope</h2>
               <ul className="list-group list-group-flush">
                 <li className="list-group-item">
                   <div className="row">
