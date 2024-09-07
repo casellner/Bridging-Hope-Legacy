@@ -24,13 +24,13 @@ const SignIn = () => {
                     <div className="card-body p-0">
                         {/* Sign in form */}
                         <div className="bg-info rounded-bottom-1">
-                            <form className='mx-1'>
+                            <form className="col-8 offset-2"> { /* these columns could be adjusted for different screen sizes */ }
                                 <label for="txtUsername" className="form-label mt-2">Username</label>
                                 <input id="txtUsername" type="text" placeholder="johndoe" className="form-control" />
                                 <label for="txtPassword" className="form-label mt-2">Password</label>
                                 <input id="txtPassword" type="password" className="form-control" />
 
-                                <button id="btnSignIn" type="button" class="btn btn-primary my-4 col-10 offset-1">Sign In</button>
+                                <button id="btnSignIn" type="button" class="btn btn-primary my-4 col-12">Sign In</button>
                                 { /* TODO use flex to center this link */ }
                                 <Link to="/register">
                                     <a>Register instead</a>
