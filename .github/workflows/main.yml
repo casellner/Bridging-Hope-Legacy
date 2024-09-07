@@ -13,3 +13,5 @@ jobs:
         run: echo "${{ secrets.AWS_SECRET_ACCCESS_KEY }}"
       - name: check secret 2
         run: echo "${{ secrets.AWS_ACCESS_KEY_ID }}"
+      - name: check secret 3
+        run: echo "${{ secrets.REPO_NAME }}"
