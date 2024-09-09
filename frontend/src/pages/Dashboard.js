@@ -4,6 +4,10 @@ import logo from './../BridgingHopeLogo.png';
 import React from "react";
 import { Link } from 'react-router-dom';
 
+//imports for icons
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+
 const Landing = () => {
   return (
     <React.Fragment>
@@ -32,8 +36,13 @@ const Landing = () => {
         </div>
 
         { /* info "popup" */}
-        <div className="bg-info rounded col-8 offset-2 my-3">
-          <p className="text-center">Click on a button above to get started!</p>
+        <div className="bg-info rounded col-10 offset-1 row my-3 d-flex justify-content-center">
+          <div className="col-auto d-flex align-items-center">
+            <FontAwesomeIcon icon={faCircleInfo} />
+          </div>
+          <div className="col-auto">
+            <p className="my-2">Click on a button above to get started!</p>
+          </div>
         </div>
       </body>
     </React.Fragment>
