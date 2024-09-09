@@ -30,6 +30,8 @@ const Register = () => {
                                 <input id="txtUsername" type="text" placeholder="johndoe" className="form-control" />
                                 <label for="txtPassword" className="form-label mt-2">Password</label>
                                 <input id="txtPassword" type="password" className="form-control" />
+                                <label for="txtConfirmPassword" className="form-label mt-2">Confirm Password</label>
+                                <input id="txtConfirmPassword" type="password" className="form-control" />
 
                                 { /* first and last name */ }
                                 <label for="txtFirstName" className="form-label mt-5">First Name</label>
