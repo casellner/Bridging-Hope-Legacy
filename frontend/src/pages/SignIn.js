@@ -30,9 +30,11 @@ const SignIn = () => {
                                 <label for="txtPassword" className="form-label mt-2">Password</label>
                                 <input id="txtPassword" type="password" className="form-control" />
 
+                                { /* Note: this is temporary */ }
                                 <Link to="/dashboard">
                                     <button id="btnSignIn" type="button" class="btn btn-success mt-5 col-12">Sign In</button>
                                 </Link>
+
                                 <Link to="/register">
                                     <a className="d-flex justify-content-center mt-3">Register instead</a>
                                 </Link>
