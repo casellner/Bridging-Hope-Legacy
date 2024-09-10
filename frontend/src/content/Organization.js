@@ -1,12 +1,12 @@
 import React from "react";
 
-function SearchClient() {
+function Organization() {
     return (
       <React.Fragment>
-        <h1>TODO: make client search</h1>
+        <h1>TODO: make organization</h1>
       </React.Fragment>
     );
 }
 
-export default SearchClient;
+export default Organization;
   

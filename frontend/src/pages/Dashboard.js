@@ -7,16 +7,34 @@ import { Link } from 'react-router-dom';
 //imports for content (search client, register client, etc.)
 import InfoPopup from '../content/InfoPopup';
 import SearchClient from '../content/SearchClient';
+import RegisterClient from '../content/RegisterClient';
+import Organization from '../content/Organization';
 
 const Landing = () => {
   //constants that determine which content is displayed
   const [infoIsOpen, setInfoIsOpen] = React.useState(true);
   const [searchIsOpen, setSearchIsOpen] = React.useState(false);
+  const [registerIsOpen, setRegisterIsOpen] = React.useState(false);
+  const [organizationIsOpen, setOrganizationIsOpen] = React.useState(false);
 
   //functions for search client, register client, and organization buttons
   function handleSearchClick() {
     setInfoIsOpen(false);
     setSearchIsOpen(true);
+    setRegisterIsOpen(false);
+    setOrganizationIsOpen(false);
+  }
+  function handleRegisterClick() {
+    setInfoIsOpen(false);
+    setSearchIsOpen(false);
+    setRegisterIsOpen(true);
+    setOrganizationIsOpen(false);
+  }
+  function handleOrganizationClick() {
+    setInfoIsOpen(false);
+    setSearchIsOpen(false);
+    setRegisterIsOpen(false);
+    setOrganizationIsOpen(true);
   }
 
   //content to be displayed (client search, register client, organization, etc.)
@@ -25,6 +43,10 @@ const Landing = () => {
     content = <InfoPopup />;
   } else if (searchIsOpen) {
     content = <SearchClient />;
+  } else if (registerIsOpen) {
+    content = <RegisterClient />;
+  } else if (organizationIsOpen) {
+    content = <Organization />;
   }
 
   return (
@@ -48,8 +70,8 @@ const Landing = () => {
         <div className="card col-lg-6 col-md-10 col-sm-12 offset-lg-3 offset-md-1 offset-sm-0"> {/* this card will have different widths depending on the resolution of the device */}
           <div className="card-body d-flex justify-content-evenly">
             <button className="btn btn-primary" onClick={handleSearchClick}>Client Search</button>
-            <button className="btn btn-primary">Register Client</button>
-            <button className="btn btn-primary">Organization</button>
+            <button className="btn btn-primary" onClick={handleRegisterClick}>Register Client</button>
+            <button className="btn btn-primary" onClick={handleOrganizationClick}>Organization</button>
           </div>
         </div>
 
