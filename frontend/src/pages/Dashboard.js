@@ -25,7 +25,7 @@ const Landing = () => {
         </div>
       </nav>
 
-      <body className="py-3 bg-secondary">
+      <body className="py-3 bg-secondary vh-100">
         {/* Client Search, Register Client, and Organization buttons */}
         <div className="card col-lg-6 col-md-10 col-sm-12 offset-lg-3 offset-md-1 offset-sm-0"> {/* this card will have different widths depending on the resolution of the device */}
           <div className="card-body d-flex justify-content-evenly">
@@ -36,7 +36,7 @@ const Landing = () => {
         </div>
 
         { /* info "popup" */}
-        <div className="bg-info rounded col-10 offset-1 row my-3 d-flex justify-content-center">
+        <div className="bg-info rounded row my-3 d-flex justify-content-center col-8 col-md-6 col-lg-4 offset-2 offset-md-3 offset-lg-4">
           <div className="col-auto d-flex align-items-center">
             <FontAwesomeIcon icon={faCircleInfo} />
           </div>
