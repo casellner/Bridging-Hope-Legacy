@@ -36,7 +36,7 @@ const Landing = () => {
         </div>
 
         { /* info "popup" */}
-        <div className="bg-info rounded row my-3 d-flex justify-content-center col-8 col-md-6 col-lg-4 offset-2 offset-md-3 offset-lg-4">
+        <div className="bg-info rounded row my-3 d-flex justify-content-center col-10 col-md-6 col-lg-4 offset-1 offset-md-3 offset-lg-4">
           <div className="col-auto d-flex align-items-center">
             <FontAwesomeIcon icon={faCircleInfo} />
           </div>
