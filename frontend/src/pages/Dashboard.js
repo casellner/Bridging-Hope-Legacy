@@ -67,7 +67,7 @@ const Landing = () => {
 
       <body className="py-3 bg-secondary vh-100">
         {/* Client Search, Register Client, and Organization buttons */}
-        <div className="card col-lg-6 col-md-10 col-sm-12 offset-lg-3 offset-md-1 offset-sm-0"> {/* this card will have different widths depending on the resolution of the device */}
+        <div className="card mb-3 col-lg-6 col-md-10 col-sm-12 offset-lg-3 offset-md-1 offset-sm-0"> {/* this card will have different widths depending on the resolution of the device */}
           <div className="card-body d-flex justify-content-evenly">
             <button className="btn btn-primary" onClick={handleSearchClick}>Client Search</button>
             <button className="btn btn-primary" onClick={handleRegisterClick}>Register Client</button>
