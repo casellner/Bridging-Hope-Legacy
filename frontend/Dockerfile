@@ -1,12 +1,9 @@
 FROM node:22
 
-WORKDIR /react-docker/
+WORKDIR /react-docker
 
-COPY ./package*.json ./
-RUN cat /react-docker/package.json
+COPY package*.json ./
 RUN npm install
-
-COPY ./public*/ ./public
-COPY ./src*/ ./src
+COPY . .
 
 CMD ["npm", "start"]
