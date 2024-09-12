@@ -5,7 +5,7 @@ WORKDIR /usr/src/app
 #Install dependencies
 RUN pwd
 RUN ls
-COPY package.json ./package.json
+COPY --from=builder package.json ./
 RUN pwd
 RUN ls
 RUN npm install
