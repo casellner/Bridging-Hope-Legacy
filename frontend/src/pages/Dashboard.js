@@ -5,10 +5,10 @@ import React from "react";
 import { Link } from 'react-router-dom';
 
 //imports for content (search client, register client, etc.)
-import InfoPopup from '../content/InfoPopup';
-import SearchClient from '../content/SearchClient';
-import RegisterClient from '../content/RegisterClient';
-import Organization from '../content/Organization';
+import InfoPopup from '../dashboardContent/InfoPopup';
+import SearchClient from '../dashboardContent/SearchClient';
+import RegisterClient from '../dashboardContent/RegisterClient';
+import Organization from '../dashboardContent/Organization';
 
 const Landing = () => {
   //constants that determine which content is displayed
