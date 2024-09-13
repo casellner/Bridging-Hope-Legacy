@@ -13,7 +13,7 @@ function BasicInfo() {
             { /* ID section. This may need to be changed drastically */}
             <label for="txtIDType" className="form-label mt-2">ID type</label>
             <select id="txtIDType" className="form-select">
-            <option selected className="text-secondary" aria-label="select ID Type">select</option>
+                <option selected className="text-secondary" aria-label="select ID Type">select</option>
                 <option value="1">Driver's license</option>
                 <option value="2">Other</option>
             </select>
