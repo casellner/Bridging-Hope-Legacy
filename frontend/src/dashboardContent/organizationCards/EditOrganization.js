@@ -21,10 +21,12 @@ const EditOrganization = ({ onSelectBack }) => {
             <input id="txtOrgEmail" type="email" placeholder="orgxyz@email.com" className="form-control" />
 
             {/* TODO: change these buttons to match wireframes */}
-            <div className="mt-4">
+            <div className="d-flex justify-content-between mt-4">
               <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editAddressBackdrop">Edit address</button>
               <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editLogoBackdrop">Edit logo</button>
               <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editServicesBackdrop">Edit services</button>
+            </div>
+            <div className="d-flex justify-content-between mt-3">
               <button type="button" className="btn btn-warning" onClick={onSelectBack}>Go back</button>
               <button type="button" className="btn btn-success">Save</button>
             </div>
