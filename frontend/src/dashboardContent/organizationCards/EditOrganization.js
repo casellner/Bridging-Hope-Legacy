@@ -160,7 +160,15 @@ const EditOrganization = ({ onSelectBack }) => {
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              TODO
+              <h2>Services</h2>
+              <select id="txtServiceType" className="form-select">
+                  <option selected className="text-secondary" aria-label="select ID Type">select</option>
+                  <option value="1">Food</option>
+                  <option value="2">Debt payment</option>
+                  <option value="3">Medical</option>
+                  <option value="4">Clothing</option>
+                  <option value="5">Other</option>
+              </select>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancel</button>
