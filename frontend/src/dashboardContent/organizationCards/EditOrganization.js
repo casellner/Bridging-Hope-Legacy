@@ -1,5 +1,7 @@
 import React from "react";
 
+import exampleLogo from './../../ExampleLogo.png';
+
 const EditOrganization = ({ onSelectBack }) => {
   return (
     <React.Fragment>
@@ -134,7 +136,12 @@ const EditOrganization = ({ onSelectBack }) => {
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              TODO
+              <h2 className="text-center">Current logo</h2>
+              <div className="d-flex justify-content-center">
+                <img src={exampleLogo} alt="Example Logo" width="128" height="128" className="rounded" />
+              </div>
+              <label for="imgOrgLogo" className="form-label mt-2">Upload logo</label>
+              <input id="imgOrgLogo" class="form-control" type="file" />
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancel</button>
