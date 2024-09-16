@@ -37,14 +37,14 @@ const EditOrganization = ({ onSelectBack }) => {
       </div>
 
       { /* Edit address modal */ }
-      <div class="modal fade" id="editAddressBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit address</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div className="modal fade" id="editAddressBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="staticBackdropLabel">Edit address</h1>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div className="modal-body">
               <form>
                 <label for="txtOrgStreetAddress1" className="form-label mt-2">Street address 1</label>
                 <input id="txtOrgStreetAddress1" type="text" placeholder="123 Cherry Lane" className="form-control" />
@@ -119,68 +119,68 @@ const EditOrganization = ({ onSelectBack }) => {
                 </div>
               </form>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancel</button>
-              <button type="button" class="btn btn-success">Save</button>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-warning" data-bs-dismiss="modal">Cancel</button>
+              <button type="button" className="btn btn-success">Save</button>
             </div>
           </div>
         </div>
       </div>
 
       { /* Edit logo modal */ }
-      <div class="modal fade" id="editLogoBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit logo</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div className="modal fade" id="editLogoBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="staticBackdropLabel">Edit logo</h1>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div className="modal-body">
               <h2 className="text-center">Current logo</h2>
               <div className="d-flex justify-content-center">
                 <img src={exampleLogo} alt="Example Logo" width="128" height="128" className="rounded" />
               </div>
               <label for="imgOrgLogo" className="form-label mt-2">Upload logo</label>
-              <input id="imgOrgLogo" class="form-control" type="file" />
+              <input id="imgOrgLogo" className="form-control" type="file" />
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancel</button>
-              <button type="button" class="btn btn-success">Save</button>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-warning" data-bs-dismiss="modal">Cancel</button>
+              <button type="button" className="btn btn-success">Save</button>
             </div>
           </div>
         </div>
       </div>
 
       { /* Edit services modal */ }
-      <div class="modal fade" id="editServicesBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
+      <div className="modal fade" id="editServicesBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div className="modal-dialog">
+          <div className="modal-content">
             <div className="modal-header bg-info border-dark">
-              <h3 class="modal-title fs-5" id="staticBackdropLabel">Edit services</h3>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <h3 className="modal-title fs-5" id="staticBackdropLabel">Edit services</h3>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body bg-info">
               <h2>Services</h2>
-              <div class="form-check">
+              <div className="form-check">
                 <input className="form-check-input" type="checkbox" value="" id="flexCheckFood" />
                 <label className="form-check-label" for="flexCheckFood">Food</label>
               </div>
-              <div class="form-check">
+              <div className="form-check">
                 <input className="form-check-input" type="checkbox" value="" id="flexCheckDebtPayment" />
                 <label className="form-check-label" for="flexCheckDebtPayment">Debt payment</label>
               </div>
-              <div class="form-check">
+              <div className="form-check">
                 <input className="form-check-input" type="checkbox" value="" id="flexCheckMedical" />
                 <label className="form-check-label" for="flexCheckMedical">Medical</label>
               </div>
-              <div class="form-check">
+              <div className="form-check">
                 <input className="form-check-input" type="checkbox" value="" id="flexCheckClothing" />
                 <label className="form-check-label" for="flexCheckClothing">Clothing</label>
               </div>
             </div>
             <div className="modal-footer bg-info border-dark">
-              <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancel</button>
-              <button type="button" class="btn btn-success">Save</button>
+              <button type="button" className="btn btn-warning" data-bs-dismiss="modal">Cancel</button>
+              <button type="button" className="btn btn-success">Save</button>
             </div>
           </div>
         </div>
