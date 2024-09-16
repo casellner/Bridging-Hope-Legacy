@@ -155,22 +155,30 @@ const EditOrganization = ({ onSelectBack }) => {
       <div class="modal fade" id="editServicesBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit services</h1>
+            <div className="modal-header bg-info border-dark">
+              <h3 class="modal-title fs-5" id="staticBackdropLabel">Edit services</h3>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div className="modal-body bg-info">
               <h2>Services</h2>
-              <select id="txtServiceType" className="form-select">
-                  <option selected className="text-secondary" aria-label="select ID Type">select</option>
-                  <option value="1">Food</option>
-                  <option value="2">Debt payment</option>
-                  <option value="3">Medical</option>
-                  <option value="4">Clothing</option>
-                  <option value="5">Other</option>
-              </select>
+              <div class="form-check">
+                <input className="form-check-input" type="checkbox" value="" id="flexCheckFood" />
+                <label className="form-check-label" for="flexCheckFood">Food</label>
+              </div>
+              <div class="form-check">
+                <input className="form-check-input" type="checkbox" value="" id="flexCheckDebtPayment" />
+                <label className="form-check-label" for="flexCheckDebtPayment">Debt payment</label>
+              </div>
+              <div class="form-check">
+                <input className="form-check-input" type="checkbox" value="" id="flexCheckMedical" />
+                <label className="form-check-label" for="flexCheckMedical">Medical</label>
+              </div>
+              <div class="form-check">
+                <input className="form-check-input" type="checkbox" value="" id="flexCheckClothing" />
+                <label className="form-check-label" for="flexCheckClothing">Clothing</label>
+              </div>
             </div>
-            <div class="modal-footer">
+            <div className="modal-footer bg-info border-dark">
               <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancel</button>
               <button type="button" class="btn btn-success">Save</button>
             </div>
