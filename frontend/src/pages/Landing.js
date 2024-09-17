@@ -32,7 +32,7 @@ const Landing = () => {
             <p className="text-center">Our application is a powerful tool for nonprofits. It simplifies the process of tracking clients, ensuring that those who need assistance are reached with precision and care.</p>
           </div>
 
-          <div className="card-body p-0">
+          <div className="card-body p-0"> { /* card body which displays key features and contacts */}
             {/* key features */}
             <div className="bg-info mb-3">
               <h2 className="text-center pt-3 fs-1">Key Features</h2>
