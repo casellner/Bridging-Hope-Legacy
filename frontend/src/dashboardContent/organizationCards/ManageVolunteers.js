@@ -1,4 +1,6 @@
 import React from "react";
+import profilePic1 from "../../ExampleProfile1.jpg";
+import profilePic2 from "../../ExampleProfile2.jpg";
 
 const ManageVolunteers = ({ onSelectBack }) => {
   return (
@@ -9,7 +11,9 @@ const ManageVolunteers = ({ onSelectBack }) => {
           <ul className="list-group">
             <li className="list-group-item">
               <div className="row">
-                <img src="https://via.placeholder.com/150" alt="profile" className="col-2" />
+                <div className="col-2">
+                  <img src={profilePic1} alt="profile picture" width="64" height="64" className="rounded-circle" />
+                </div>
                 <p className="col-4">John</p>
                 <p className="col-4">Doe</p>
                 <button type="button" className="col-2 btn btn-secondary">Edit</button>
@@ -17,7 +21,9 @@ const ManageVolunteers = ({ onSelectBack }) => {
             </li>
             <li className="list-group-item">
               <div className="row">
-                <img src="https://via.placeholder.com/150" alt="profile" className="col-2" />
+                <div className="col-2">
+                  <img src={profilePic2} alt="profile picture" width="64" height="64" className="rounded-circle" />
+                </div>
                 <p className="col-4">Jane</p>
                 <p className="col-4">Doe</p>
                 <button type="button" className="col-2 btn btn-secondary">Edit</button>
@@ -29,16 +35,17 @@ const ManageVolunteers = ({ onSelectBack }) => {
           <ul className="list-group">
             <li className="list-group-item">
                 <div className="row">
-                  <img src="https://via.placeholder.com/150" alt="profile" className="col-2" />
-                  <p className="col-3">John</p>
-                  <p className="col-3">Doe</p>
+                  <div className="col-2">
+                    <img src={profilePic2} alt="profile picture" width="64" height="64" className="rounded-circle" />
+                  </div>
+                  <p className="col-3">Alice</p>
+                  <p className="col-3">Bob</p>
                   <button type="button" className="col-2 btn btn-success">Add</button>
                   <button type="button" className="col-2 btn btn-danger">Deny</button>
                 </div>
               </li>
             </ul>
 
-          {/* TODO: change this to match wireframes */}
           <button type="button" className="btn btn-warning mt-2 col-4 offset-4" onClick={onSelectBack}>Go back</button>
         </div>
       </div>
