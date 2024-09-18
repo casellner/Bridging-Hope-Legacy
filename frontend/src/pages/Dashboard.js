@@ -69,9 +69,9 @@ const Landing = () => {
         {/* Client Search, Register Client, and Organization buttons */}
         <div className="card mb-3 col-lg-6 col-md-10 col-sm-12 offset-lg-3 offset-md-1 offset-sm-0"> {/* this card will have different widths depending on the resolution of the device */}
           <div className="card-body d-flex justify-content-evenly">
-            <button className="btn btn-primary" onClick={handleSearchClick}>Client Search</button>
-            <button className="btn btn-primary" onClick={handleRegisterClick}>Register Client</button>
-            <button className="btn btn-primary" onClick={handleOrganizationClick}>Organization</button>
+            <button className="btn btn-primary btn-sm" onClick={handleSearchClick}>Client Search</button>
+            <button className="btn btn-primary btn-sm" onClick={handleRegisterClick}>Register Client</button>
+            <button className="btn btn-primary btn-sm" onClick={handleOrganizationClick}>Organization</button>
           </div>
         </div>
 

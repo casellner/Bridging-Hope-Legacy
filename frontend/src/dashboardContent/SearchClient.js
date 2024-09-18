@@ -8,7 +8,7 @@ function SearchClient() {
           <div className="row"> {/* For large screens, this row has two columns: search fields and result. Results are below on smaller screens. */}
             <div className="col-lg-6 col-12">
             {/* Search fields */}
-            <form className="col-8 offset-2"> { /* these columns could be adjusted for different screen sizes */}
+            <form className="col-lg-10 col-12 offset-lg-1"> { /* these columns could be adjusted for different screen sizes */}
               <div className="row">
                 <div className="col">
                   <label for="txtFirstName" className="form-label mt-2">First name</label>

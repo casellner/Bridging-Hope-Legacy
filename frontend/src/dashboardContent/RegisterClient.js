@@ -61,7 +61,7 @@ function RegisterClient() {
 
         <div className="card-body">
           {/* Registration form */}
-          <form className="col-8 offset-2"> { /* these columns could be adjusted for different screen sizes */}
+          <form className="col-10 offset-1"> { /* these columns could be adjusted for different screen sizes */}
             {formContent}
           
             <button type="button" className={`btn btn-${btnColor} mt-4 col-10 offset-1`} onClick={handleContinue}>{ btnText }</button>
