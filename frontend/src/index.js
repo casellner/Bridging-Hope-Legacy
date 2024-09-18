@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 
 // router imports
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Dashboard from './pages/Dashboard';
 import Landing from './pages/Landing';
 import NoPage from './pages/NoPage';
 import Register from './pages/Register';
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/" element={<Landing />} />
           <Route path="/register" element={<Register />} />
           <Route path="/signin" element={<SignIn />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<NoPage />} /> {/* 404 page */}
         </Routes>
     </BrowserRouter>

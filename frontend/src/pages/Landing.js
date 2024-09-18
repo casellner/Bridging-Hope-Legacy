@@ -11,7 +11,7 @@ const Landing = () => {
       {/* navbar */}
       <nav className="navbar bg-dark">
         {/* logo */}
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="/">
           <img src={logo} alt="Bridging Hope Logo" width="64" height="64" className="bg-light ms-3 rounded" />
         </a>
 
@@ -32,7 +32,7 @@ const Landing = () => {
             <p className="text-center">Our application is a powerful tool for nonprofits. It simplifies the process of tracking clients, ensuring that those who need assistance are reached with precision and care.</p>
           </div>
 
-          <div className="card-body p-0">
+          <div className="card-body p-0"> { /* card body which displays key features and contacts */}
             {/* key features */}
             <div className="bg-info mb-3">
               <h2 className="text-center pt-3 fs-1">Key Features</h2>
@@ -55,7 +55,7 @@ const Landing = () => {
 
             {/* contact an admin section */}
             <div className="px-3">
-              <h2 className="mb-3">Contact an Administrator to connect your organization to Bridging Hope</h2>
+              <h2 className="mb-3 text-center">Contact an Administrator to connect your organization to Bridging Hope</h2>
               <ul className="list-group list-group-flush">
                 <li className="list-group-item">
                   <div className="row">
