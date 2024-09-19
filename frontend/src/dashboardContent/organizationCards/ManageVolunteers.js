@@ -12,7 +12,7 @@ const ManageVolunteers = ({ onSelectBack }) => {
             <li className="list-group-item">
               <div className="row">
                 <div className="col-2">
-                  <img src={profilePic1} alt="profile picture" width="64" height="64" className="rounded-circle" />
+                  <img src={profilePic1} alt="profile picture" style={{width:"64px", height:"64px", 'object-fit': "cover"}} className="rounded-circle" />
                 </div>
                 <p className="col-4">John</p>
                 <p className="col-4">Doe</p>
@@ -22,7 +22,7 @@ const ManageVolunteers = ({ onSelectBack }) => {
             <li className="list-group-item">
               <div className="row">
                 <div className="col-2">
-                  <img src={profilePic2} alt="profile picture" width="64" height="64" className="rounded-circle" />
+                  <img src={profilePic2} alt="profile picture" style={{width:"64px", height:"64px", 'object-fit': "cover"}} className="rounded-circle" />
                 </div>
                 <p className="col-4">Jane</p>
                 <p className="col-4">Doe</p>
@@ -36,7 +36,7 @@ const ManageVolunteers = ({ onSelectBack }) => {
             <li className="list-group-item">
                 <div className="row">
                   <div className="col-2">
-                    <img src={profilePic2} alt="profile picture" width="64" height="64" className="rounded-circle" />
+                    <img src={profilePic2} alt="profile picture" style={{width:"64px", height:"64px", 'object-fit': "cover"}} className="rounded-circle" />
                   </div>
                   <p className="col-3">Alice</p>
                   <p className="col-3">Bob</p>
