@@ -11,13 +11,13 @@ import RegisterClient from '../dashboardContent/RegisterClient';
 import Organization from '../dashboardContent/Organization';
 
 const Landing = () => {
-  //constants that determine which content is displayed
-  const [infoIsOpen, setInfoIsOpen] = React.useState(true);
+  //constants that determine which content is displayed on the dashboard
+  const [infoIsOpen, setInfoIsOpen] = React.useState(true); //only the info popup is displayed by default
   const [searchIsOpen, setSearchIsOpen] = React.useState(false);
   const [registerIsOpen, setRegisterIsOpen] = React.useState(false);
   const [organizationIsOpen, setOrganizationIsOpen] = React.useState(false);
 
-  //functions for search client, register client, and organization buttons
+  //functions for the 'search client,' 'register client,' and 'organization' buttons
   function handleSearchClick() {
     setInfoIsOpen(false);
     setSearchIsOpen(true);
@@ -51,7 +51,7 @@ const Landing = () => {
 
   return (
     <React.Fragment>
-      {/* navbar */}
+      {/* website navbar */}
       <nav className="navbar bg-dark">
         {/* logo */}
         <a className="navbar-brand" href="/">
@@ -69,9 +69,19 @@ const Landing = () => {
         {/* Client Search, Register Client, and Organization buttons */}
         <div className="card mb-3 col-lg-6 col-md-10 col-sm-12 offset-lg-3 offset-md-1 offset-sm-0"> {/* this card will have different widths depending on the resolution of the device */}
           <div className="card-body d-flex justify-content-evenly">
-            <button className="btn btn-primary btn-sm" onClick={handleSearchClick}>Client Search</button>
-            <button className="btn btn-primary btn-sm" onClick={handleRegisterClick}>Register Client</button>
-            <button className="btn btn-primary btn-sm" onClick={handleOrganizationClick}>Organization</button>
+            { /* if a button is clicked, it will have the active className */ }
+            <button {...(searchIsOpen ? { className: 'btn btn-primary btn-sm active' } : { className: 'btn btn-primary btn-sm' })}
+                    onClick={handleSearchClick}>
+              Client Search
+            </button>
+            <button {...(registerIsOpen ? { className: 'btn btn-primary btn-sm active' } : { className: 'btn btn-primary btn-sm' })}
+                    onClick={handleRegisterClick}>
+              Register Client
+            </button>
+            <button {...(organizationIsOpen ? { className: 'btn btn-primary btn-sm active' } : { className: 'btn btn-primary btn-sm' })}
+                    onClick={handleOrganizationClick}>
+              Organization
+            </button>
           </div>
         </div>
 
