@@ -1,6 +1,23 @@
 import React from "react";
 
+import SearchInstructions from "./searchResults/SearchInstructions";
+import ClientList from "./searchResults/ClientList";
+
 function SearchClient() {
+  const [instructionsIsOpen, setInstructionsIsOpen] = React.useState(true);
+  
+  let searchResults;
+  
+  function handleSearchClient() {
+    setInstructionsIsOpen(false);
+  }
+  
+  if (instructionsIsOpen) {
+    searchResults = <SearchInstructions />;
+  } else {
+    searchResults = <ClientList />;
+  }
+  
   return (
     <React.Fragment>
       <div className="card bg-info col-lg-10 col-md-10 col-sm-12 offset-lg-1 offset-md-1 offset-sm-0"> {/* this card will have different widths depending on the resolution of the device */}
@@ -53,15 +70,14 @@ function SearchClient() {
                   <input id="txtEmail" type="email" placeholder="jdoe@email.com" className="form-control" />
                 </div>
                 <div className="col">
-                  <button type="button" className="btn btn-success">Search</button>
+                  <button type="button" className="btn btn-success" onClick={handleSearchClient}>Search</button>
                 </div>
               </div>
             </form>
           </div>
           <div className="col-lg-6 col-12 bg-light rounded-end">
             {/* Results */}
-            <h2 className="mt-2 text-center">Search for a client!</h2>
-            <p>Enter details and click the search button</p>
+            {searchResults}
           </div>
           </div>
         </div>
