@@ -1,6 +1,8 @@
 //imports for images
 import logo from './../BridgingHopeLogo.png';
 import background from './../fooddrive2.jpg';
+import profilePic1 from './../ExampleProfile1.jpg';
+import profilePic2 from './../ExampleProfile2.jpg';
 
 import React from "react";
 import { Link } from 'react-router-dom';
@@ -59,20 +61,42 @@ const Landing = () => {
               <ul className="list-group list-group-flush">
                 <li className="list-group-item">
                   <div className="row">
-                    <h3 className="col-auto">Ms. X</h3>
-                    <p className="col-auto">phone: </p>
-                    <a className="col-auto" href="tel:+15555555555">(555) 555-5555</a>
-                    <p className="col-auto">email: </p>
-                    <a className="col-auto" href="mailto:msx@email.com">msx@email.com</a>
+                    <div className="col-6 row">
+                      <div className="col-auto">
+                        <img src={profilePic2} alt="profile picture" style={{width:"64px", height:"64px", 'object-fit': "cover"}} className="rounded-circle" />
+                      </div>
+                      <h3 className="col-6">Ms. X</h3>
+                    </div>
+                    <div className="col-6">
+                      <div className="row">
+                        <p className="col-auto">p: </p>
+                        <a className="col-auto" href="tel:+15555555555">(555) 555-5555</a>
+                      </div>
+                      <div className="row">
+                        <p className="col-auto">e: </p>
+                        <a className="col-auto" href="mailto:msx@email.com">msx@email.com</a>
+                      </div>
+                    </div>
                   </div>
                 </li>
                 <li className="list-group-item">
                   <div className="row">
-                    <h3 className="col-auto">Mr. Y</h3>
-                    <p className="col-auto">phone: </p>
-                    <a className="col-auto" href="tel:+15555555556">(555) 555-5556</a>
-                    <p className="col-auto">email: </p>
-                    <a className="col-auto" href="mailto:mry@email.com">mry@email.com</a>
+                    <div className="col-6 row">
+                      <div className="col-auto">
+                        <img src={profilePic1} alt="profile picture" style={{width:"64px", height:"64px", 'object-fit': "cover"}} className="rounded-circle" />
+                      </div>
+                      <h3 className="col">Mr. Y</h3>      
+                    </div>
+                    <div className="col-6">
+                      <div className="row">
+                        <p className="col-auto">p: </p>
+                        <a className="col-auto" href="tel:+15555555556">(555) 555-5556</a>
+                      </div>
+                      <div className="row">
+                        <p className="col-auto">e: </p>
+                        <a className="col-auto" href="mailto:mry@email.com">mry@email.com</a>
+                      </div>
+                    </div>
                   </div>
                 </li>
               </ul>
