@@ -58,7 +58,7 @@ function SearchClient() {
               </div>
             </form>
           </div>
-          <div className="col-lg-6 col-12 bg-light">
+          <div className="col-lg-6 col-12 bg-light rounded-end">
             {/* Results */}
             <h2 className="mt-2 text-center">Search for a client!</h2>
             <p>Enter details and click the search button</p>
