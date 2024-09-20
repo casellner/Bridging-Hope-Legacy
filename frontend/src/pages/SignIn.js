@@ -4,11 +4,39 @@ import logo from './../BridgingHopeLogo.png';
 import React from "react";
 import { Link } from 'react-router-dom';
 
-const handleLogin = () => {
-    // TO DO: Check the login information here
-    // For now, just log the username and password to the console
-    console.log(`Username: ${username}, Password: ${password}`);
-  };
+
+let username = 'user';
+let password = '123';
+const handleLogin = async () => {
+
+    // Construct the API endpoint
+    const url = 'http://localhost:3000/login';
+
+    try {
+        // Sending the username and password to the server
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, password })
+        });
+
+        if (!response.ok) {
+            throw new Error('Login failed');
+        }
+
+        // Assuming the server responds with JSON data
+        const data = await response.json();
+        console.log('Login successful:', data);
+
+        window.location.href = '/dashboard'; // Example of redirection
+        
+    } catch (error) {
+        console.error('Error during login:', error.message);
+    }
+};
+
 
 const SignIn = () => {
     const [username, SetUsername] = React.useState('');
@@ -52,14 +80,14 @@ const SignIn = () => {
                                 />
 
                                 { /* Note: this is temporary */ }
-                                <Link to="/dashboard">
+                                
                                     <button 
                                     id="btnSignIn" 
                                     type="button" 
                                     class="btn btn-success mt-5 col-12"
                                     onClick={handleLogin}
                                     >Sign In</button>
-                                </Link>
+                                
 
                                 <Link to="/register">
                                     <a className="d-flex justify-content-center mt-3">Register instead</a>
