@@ -3,7 +3,7 @@ import React from "react";
 import profilePic1 from "./../../ExampleProfile1.jpg";
 import profilePic2 from "./../../ExampleProfile2.jpg";
 
-function ClientList() {
+function ClientList({onSelect}) {
   return (
     <React.Fragment>
       <ul className="list-group">
@@ -15,7 +15,7 @@ function ClientList() {
             <div className="col-10 row d-flex align-items-center">
               <p className="col-5">John</p>
               <p className="col-5">Doe</p>
-              <button type="button" className="col-2 btn btn-primary">Select</button>
+              <button type="button" className="col-2 btn btn-primary" onClick={onSelect}>Select</button>
             </div>
           </div>
         </li>
@@ -27,7 +27,7 @@ function ClientList() {
             <div className="col-10 row d-flex align-items-center">
               <p className="col-5">Jane</p>
               <p className="col-5">Doe</p>
-              <button type="button" className="col-2 btn btn-primary">Select</button>
+              <button type="button" className="col-2 btn btn-primary" onClick={onSelect}>Select</button>
             </div>
           </div>
         </li>

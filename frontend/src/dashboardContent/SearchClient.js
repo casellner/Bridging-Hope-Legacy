@@ -14,6 +14,9 @@ function SearchClient() {
   function handleSearchClient() {
     setInstructionsIsOpen(false);
   }
+  function handleSelectClient() {
+    setClientInfoIsOpen(false);
+  }
 
   if (clientInfoIsOpen) {
     clientInfo = <SearchForm onSearch={handleSearchClient} />;
@@ -24,7 +27,7 @@ function SearchClient() {
   if (instructionsIsOpen) {
     searchResults = <SearchInstructions />;
   } else {
-    searchResults = <ClientList />;
+    searchResults = <ClientList onSelect={handleSelectClient} />;
   }
   
   return (
