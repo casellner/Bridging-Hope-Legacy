@@ -1,6 +1,6 @@
 import React from "react";
 
-function BasicInfo() {
+function BasicInfo({onClickBack, onClickContinue}) {
     return (
         <React.Fragment>
             <label for="txtDateOfBirth" className="form-label mt-2">Date of birth</label>
@@ -19,6 +19,12 @@ function BasicInfo() {
             </select>
             <label for="txtIDNumber" className="form-label mt-2">ID number</label>
             <input id="txtIDNumber" type="text" className="form-control" />
+        
+            { /* Continue and Back buttons */}
+            <div className="mt-4 d-flex justify-content-between">
+                <button type="button" className="btn btn-warning mt-4" onClick={onClickBack}>Back</button>
+                <button type="button" className="btn btn-primary mt-4" onClick={onClickContinue}>Continue</button>
+            </div>
         </React.Fragment>
     );
 }

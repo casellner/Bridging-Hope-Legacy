@@ -1,6 +1,6 @@
 import React from "react";
 
-function BasicInfo() {
+function BasicInfo({onClickContinue}) {
     return (
         <React.Fragment>
             { /* first and last name */}
@@ -12,6 +12,11 @@ function BasicInfo() {
             { /* email */}
             <label for="txtEmail" className="form-label mt-2">Email</label>
             <input id="txtEmail" type="email" placeholder="jdoe@email.com" className="form-control" />
+        
+            { /* Continue button */}
+            <div className="d-flex justify-content-center">
+                <button type="button" className="btn btn-primary mt-4" onClick={onClickContinue}>Continue</button>
+            </div>
         </React.Fragment>
     );
 }

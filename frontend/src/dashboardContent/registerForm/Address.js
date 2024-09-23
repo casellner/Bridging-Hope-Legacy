@@ -1,6 +1,6 @@
 import React from "react";
 
-function Address() {
+function Address({onClickBack}) {
     return (
         <React.Fragment>
             <label for="txtStreetAddress1" className="form-label mt-2">Street address 1</label>
@@ -73,6 +73,11 @@ function Address() {
                 <label for="txtZipCode" className="form-label mt-2">Zip</label>
                 <input id="txtZipCode" type="text" placeholder="38501" className="form-control" />
                 </div>
+            </div>
+
+            <div className="d-flex justify-content-between">
+                <button type="button" className="btn btn-warning mt-4" onClick={onClickBack}>Back</button>
+                <button type="button" className="btn btn-success mt-4">Register</button>
             </div>
         </React.Fragment>
     );
