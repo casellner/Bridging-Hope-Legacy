@@ -3,6 +3,7 @@ import React from "react";
 import SearchForm from "./searchResults/SearchForm";
 import SearchInstructions from "./searchResults/SearchInstructions";
 import ClientList from "./searchResults/ClientList";
+import ClientView from "./searchResults/ClientView";
 
 function SearchClient() {
   const [instructionsIsOpen, setInstructionsIsOpen] = React.useState(true);
@@ -21,7 +22,7 @@ function SearchClient() {
   if (clientInfoIsOpen) {
     clientInfo = <SearchForm onSearch={handleSearchClient} />;
   } else {
-    clientInfo = <h1>Test state 2</h1>
+    clientInfo = <ClientView />
   }
   
   if (instructionsIsOpen) {
