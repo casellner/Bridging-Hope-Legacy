@@ -7,6 +7,7 @@ import ClientView from "./searchResults/ClientView";
 
 function SearchClient() {
   const [instructionsIsOpen, setInstructionsIsOpen] = React.useState(true);
+  const [clientListIsOpen, setClientListIsOpen] = React.useState(false);
   const [clientInfoIsOpen, setClientInfoIsOpen] = React.useState(false);
 
   let clientInfo;
@@ -14,12 +15,15 @@ function SearchClient() {
   
   function handleSearchClient() {
     setInstructionsIsOpen(false);
+    setClientListIsOpen(true);
   }
   function handleSelectClient() {
     setClientInfoIsOpen(true);
+    setClientListIsOpen(false);
   }
   function handleBackToSearch() {
     setClientInfoIsOpen(false);
+    setClientListIsOpen(true);
   }
 
   if (clientInfoIsOpen) {
@@ -30,8 +34,10 @@ function SearchClient() {
   
   if (instructionsIsOpen) {
     searchResults = <SearchInstructions />;
-  } else {
+  } else if (clientListIsOpen) {
     searchResults = <ClientList onSelect={handleSelectClient} />;
+  } else {
+    searchResults = <p>Error</p>;
   }
   
   return (
