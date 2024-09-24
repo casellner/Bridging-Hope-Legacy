@@ -49,8 +49,9 @@ function ClientView() {
         <button type="button" className="btn btn-warning mx-2">Back</button>
         <button type="button" className="btn btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#editHouseholdBackdrop">Edit household</button>
         <button type="button" className="btn btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#editClientBackdrop">Edit client</button>
-        <button type="button" className="btn btn-success mx-2">Log visit</button>
+        <button type="button" className="btn btn-success mx-2" data-bs-toggle="modal" data-bs-target="#logVisitBackdrop">Log visit</button>
       </div>
+
 
       {/* Edit household modal */}
       <div className="modal fade" id="editHouseholdBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -111,6 +112,38 @@ function ClientView() {
             <div className="modal-footer">
               <button type="button" className="btn btn-warning" data-bs-dismiss="modal">Cancel</button>
               <button type="button" className="btn btn-success">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      { /* Log visit modal */ }
+      <div className="modal fade" id="logVisitBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="staticBackdropLabel">Log visit</h1>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div className="modal-body">
+              <label for="txtServiceType" className="form-label">Service type</label>
+              <select id="txtServiceType" className="form-select" aria-label="select service type">
+                <option selected className="text-secondary">select</option>
+                <option value="0">Food</option>
+                <option value="1">Debt payment</option>
+                <option value="2">Medical</option>
+              </select>
+
+              { /* TODO: add conditional rendering for the following fields based on the selected service type */ }
+              <label for="txtAmount" className="form-label mt-2">Amount</label>
+              <input id="txtAmount" type="text" placeholder="7" className="form-control" />
+
+              <label for="txtComments" className="form-label mt-2">Additional comments</label>
+              <textarea id="txtComments" placeholder="Comment here" className="form-control" />
+            </div>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-warning" data-bs-dismiss="modal">Cancel</button>
+              <button type="button" className="btn btn-success">Log visit!</button>
             </div>
           </div>
         </div>
