@@ -7,7 +7,7 @@ import ClientView from "./searchResults/ClientView";
 
 function SearchClient() {
   const [instructionsIsOpen, setInstructionsIsOpen] = React.useState(true);
-  const [clientInfoIsOpen, setClientInfoIsOpen] = React.useState(true);
+  const [clientInfoIsOpen, setClientInfoIsOpen] = React.useState(false);
 
   let clientInfo;
   let searchResults;
@@ -16,13 +16,16 @@ function SearchClient() {
     setInstructionsIsOpen(false);
   }
   function handleSelectClient() {
+    setClientInfoIsOpen(true);
+  }
+  function handleBackToSearch() {
     setClientInfoIsOpen(false);
   }
 
   if (clientInfoIsOpen) {
-    clientInfo = <SearchForm onSearch={handleSearchClient} />;
+    clientInfo = <ClientView onBack={handleBackToSearch} />   
   } else {
-    clientInfo = <ClientView />
+    clientInfo = <SearchForm onSearch={handleSearchClient} />;
   }
   
   if (instructionsIsOpen) {

@@ -2,7 +2,7 @@ import React from "react";
 
 import profilePic1 from "./../../ExampleProfile1.jpg";
 
-function ClientView() {
+function ClientView({ onBack }) {
   return (
     <React.Fragment>
       {/* Profile picture */}
@@ -46,7 +46,7 @@ function ClientView() {
 
       {/* Buttons */}
       <div className="d-flex justify-content-between py-3 bg-light">
-        <button type="button" className="btn btn-warning mx-2">Back</button>
+        <button type="button" className="btn btn-warning mx-2" onClick={onBack}>Back</button>
         <button type="button" className="btn btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#editHouseholdBackdrop">Edit household</button>
         <button type="button" className="btn btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#editClientBackdrop">Edit client</button>
         <button type="button" className="btn btn-success mx-2" data-bs-toggle="modal" data-bs-target="#logVisitBackdrop">Log visit</button>
