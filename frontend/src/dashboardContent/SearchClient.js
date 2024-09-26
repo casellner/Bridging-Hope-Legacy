@@ -37,7 +37,7 @@ function SearchClient() {
   } else if (clientListIsOpen) {
     searchResults = <ClientList onSelect={handleSelectClient} />;
   } else {
-    searchResults = <p>Error</p>;
+    searchResults = null;
   }
   
   return (

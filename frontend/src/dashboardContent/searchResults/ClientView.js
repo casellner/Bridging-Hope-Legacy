@@ -52,6 +52,21 @@ function ClientView({ onBack }) {
         <button type="button" className="btn btn-success mx-2" data-bs-toggle="modal" data-bs-target="#logVisitBackdrop">Log visit</button>
       </div>
 
+      {/* Household aid history */}
+      <div>
+        <h2>Household aid history</h2>
+        <ul className="list-group">
+          <li className="list-group-item">
+            <div className="row">
+              <p className="col-3">food</p>
+              <p className="col-3">[amount]</p>
+              <p className="col-3">10/26/2024</p>
+              <p className="col-3">Org. ABC</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
 
       {/* Edit household modal */}
       <div className="modal fade" id="editHouseholdBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
