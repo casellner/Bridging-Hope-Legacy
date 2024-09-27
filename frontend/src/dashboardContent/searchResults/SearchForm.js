@@ -4,7 +4,7 @@ function SearchForm({onSearch}) {
     return (
         <React.Fragment>
             {/* Search fields */}
-            <form className="col-lg-10 col-12 offset-lg-1"> { /* these columns could be adjusted for different screen sizes */}
+            <form className="col-lg-10 col-12 offset-lg-1 bg-info pb-3"> { /* these columns could be adjusted for different screen sizes */}
                 <div className="row">
                     <div className="col">
                         <label for="txtFirstName" className="form-label mt-2">First name</label>

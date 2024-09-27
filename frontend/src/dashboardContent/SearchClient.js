@@ -42,7 +42,7 @@ function SearchClient() {
   
   return (
     <React.Fragment>
-      <div className="card bg-info col-lg-10 col-md-10 col-sm-12 offset-lg-1 offset-md-1 offset-sm-0"> {/* this card will have different widths depending on the resolution of the device */}
+      <div className="card col-lg-10 col-md-10 col-sm-12 offset-lg-1 offset-md-1 offset-sm-0"> {/* this card will have different widths depending on the resolution of the device */}
         <div className="card-body p-0">
           <div className="row"> {/* For large screens, this row has two columns: search fields and result. Results are below on smaller screens. */}
             <div className="col-lg-6 col-12">

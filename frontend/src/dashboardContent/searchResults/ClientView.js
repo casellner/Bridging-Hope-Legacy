@@ -6,12 +6,12 @@ function ClientView({ onBack }) {
   return (
     <React.Fragment>
       {/* Profile picture */}
-      <div className="d-flex justify-content-center my-3">
+      <div className="d-flex justify-content-center py-3 bg-info">
         <img src={profilePic1} alt="profile picture" style={{width:"256px", height:"256px", 'object-fit': "cover"}} className="rounded-circle" />
       </div>
 
       {/* Client information */}
-      <div className="pt-4 row bg-light">
+      <div className="pt-4 row">
         <div className="col-5">
           <div className="row">
             <h2 className="col-6 fs-6">Name</h2>
@@ -55,16 +55,31 @@ function ClientView({ onBack }) {
       {/* Household aid history */}
       <div>
         <h2>Household aid history</h2>
-        <ul className="list-group">
-          <li className="list-group-item">
-            <div className="row">
-              <p className="col-3">food</p>
-              <p className="col-3">[amount]</p>
-              <p className="col-3">10/26/2024</p>
-              <p className="col-3">Org. ABC</p>
-            </div>
-          </li>
-        </ul>
+        
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Type</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Date</th>
+              <th scope="col">Organization</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Food</td>
+              <td>[amount]</td>
+              <td>10/26/2024</td>
+              <td>Org. ABC</td>
+            </tr>
+            <tr>
+              <td>Debt payment</td>
+              <td>$500.00</td>
+              <td>10/24/2024</td>
+              <td>Org. XYZ</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
 
