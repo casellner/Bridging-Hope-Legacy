@@ -3,6 +3,41 @@ import React from "react";
 import profilePic1 from "./../../ExampleProfile1.jpg";
 
 function ClientView({ onBack }) {
+  const [serviceType, setServiceType] = React.useState("0");
+  
+  let amountInput;
+
+  if (serviceType == "0") {
+    amountInput = 
+    <React.Fragment>
+      <label className="form-label mt-2">Amount</label>
+      <div className="d-flex align-items-start">
+        <p>Feeds</p>
+        <input type="text" placeholder="7" className="form-control" aria-label="number of people fed" />
+        <p>people for</p>
+        <input type="text" placeholder="7" className="form-control" aria-label="number of days fed" />
+        <p>days</p>
+      </div>
+    </React.Fragment>;
+  } else if (serviceType == "1") {
+    amountInput =
+    <React.Fragment>
+      <label for="txtAmount" className="form-label mt-2">Amount</label>
+      <div className="d-flex align-items-start">
+        <p>$</p>
+        <input id="txtAmount" type="text" placeholder="7" className="form-control" />
+      </div>
+    </React.Fragment>;
+  } else if (serviceType == "2") {
+    amountInput =
+    <React.Fragment>
+      <label for="txtAmount" className="form-label mt-2">Amount</label>
+      <input id="txtAmount" type="text" placeholder="7" className="form-control" />
+    </React.Fragment>;
+  } else {
+    amountInput = <p>error</p>;
+  }
+
   return (
     <React.Fragment>
       {/* Profile picture */}
@@ -180,7 +215,7 @@ function ClientView({ onBack }) {
             </div>
             <div className="modal-body">
               <label for="txtServiceType" className="form-label">Service type</label>
-              <select id="txtServiceType" className="form-select" aria-label="select service type">
+              <select id="txtServiceType" className="form-select" aria-label="select service type" value={serviceType} onChange={e => setServiceType(e.target.value)}>
                 <option selected className="text-secondary">select</option>
                 <option value="0">Food</option>
                 <option value="1">Debt payment</option>
@@ -188,8 +223,7 @@ function ClientView({ onBack }) {
               </select>
 
               { /* TODO: add conditional rendering for the following fields based on the selected service type */ }
-              <label for="txtAmount" className="form-label mt-2">Amount</label>
-              <input id="txtAmount" type="text" placeholder="7" className="form-control" />
+              {amountInput}
 
               <label for="txtComments" className="form-label mt-2">Additional comments</label>
               <textarea id="txtComments" placeholder="Comment here" className="form-control" />
