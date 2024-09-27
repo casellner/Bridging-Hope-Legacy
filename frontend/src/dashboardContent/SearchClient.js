@@ -4,40 +4,34 @@ import SearchForm from "./searchResults/SearchForm";
 import SearchInstructions from "./searchResults/SearchInstructions";
 import ClientList from "./searchResults/ClientList";
 import ClientView from "./searchResults/ClientView";
+import HouseholdAidHistory from "./searchResults/HouseholdAidHistory";
 
 function SearchClient() {
   const [instructionsIsOpen, setInstructionsIsOpen] = React.useState(true);
-  const [clientListIsOpen, setClientListIsOpen] = React.useState(false);
   const [clientInfoIsOpen, setClientInfoIsOpen] = React.useState(false);
 
-  let clientInfo;
-  let searchResults;
+  let left;
+  let right;
   
   function handleSearchClient() {
     setInstructionsIsOpen(false);
-    setClientListIsOpen(true);
   }
   function handleSelectClient() {
     setClientInfoIsOpen(true);
-    setClientListIsOpen(false);
   }
   function handleBackToSearch() {
     setClientInfoIsOpen(false);
-    setClientListIsOpen(true);
   }
 
-  if (clientInfoIsOpen) {
-    clientInfo = <ClientView onBack={handleBackToSearch} />   
-  } else {
-    clientInfo = <SearchForm onSearch={handleSearchClient} />;
-  }
-  
   if (instructionsIsOpen) {
-    searchResults = <SearchInstructions />;
-  } else if (clientListIsOpen) {
-    searchResults = <ClientList onSelect={handleSelectClient} />;
+    left = <SearchForm onSearch={handleSearchClient} />;
+    right = <SearchInstructions />;
+  } else if (clientInfoIsOpen) {
+    left = <ClientView onBack={handleBackToSearch} /> 
+    right = <HouseholdAidHistory />;
   } else {
-    searchResults = null;
+    left = <SearchForm onSearch={handleSearchClient} />;
+    right = <ClientList onSelect={handleSelectClient} />;
   }
   
   return (
@@ -46,11 +40,12 @@ function SearchClient() {
         <div className="card-body p-0">
           <div className="row"> {/* For large screens, this row has two columns: search fields and result. Results are below on smaller screens. */}
             <div className="col-lg-6 col-12">
-              {clientInfo}
+              { /* Left column of screen */ }
+              {left}
             </div>
             <div className="col-lg-6 col-12 bg-light rounded-end">
-              {/* Results */}
-              {searchResults}
+              {/* Right column of screen */}
+              {right}
             </div>
           </div>
         </div>
