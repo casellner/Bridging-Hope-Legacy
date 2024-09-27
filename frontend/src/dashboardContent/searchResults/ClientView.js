@@ -41,12 +41,12 @@ function ClientView({ onBack }) {
   return (
     <React.Fragment>
       {/* Profile picture */}
-      <div className="d-flex justify-content-center py-3 bg-info">
-        <img src={profilePic1} alt="profile picture" style={{width:"256px", height:"256px", 'object-fit': "cover"}} className="rounded-circle" />
+      <div className="d-flex justify-content-center py-1 bg-info">
+        <img src={profilePic1} alt="profile picture" style={{width:"128px", height:"128px", 'object-fit': "cover"}} className="rounded-circle" />
       </div>
 
       {/* Client information */}
-      <div className="pt-4 row">
+      <div className="row">
         <div className="col-5">
           <div className="row">
             <h2 className="col-6 fs-6">Name</h2>
@@ -80,7 +80,7 @@ function ClientView({ onBack }) {
       </div>
 
       {/* Buttons */}
-      <div className="d-flex justify-content-between py-3 bg-light">
+      <div className="d-flex justify-content-between py-1 bg-light">
         <button type="button" className="btn btn-warning mx-2" onClick={onBack}>Back</button>
         <button type="button" className="btn btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#editHouseholdBackdrop">Edit household</button>
         <button type="button" className="btn btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#editClientBackdrop">Edit client</button>

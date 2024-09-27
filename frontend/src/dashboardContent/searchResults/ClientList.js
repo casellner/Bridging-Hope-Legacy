@@ -13,9 +13,9 @@ function ClientList({onSelect}) {
               <img src={profilePic1} alt="profile picture" style={{width:"64px", height:"64px", 'object-fit': "cover"}} className="rounded-circle" />
             </div>
             <div className="col-10 row d-flex align-items-center">
-              <p className="col-5">John</p>
+              <p className="col-4">John</p>
               <p className="col-5">Doe</p>
-              <button type="button" className="col-2 btn btn-primary" onClick={onSelect}>Select</button>
+              <button type="button" className="col-3 btn btn-primary" onClick={onSelect}>Select</button>
             </div>
           </div>
         </li>
@@ -25,9 +25,9 @@ function ClientList({onSelect}) {
               <img src={profilePic2} alt="profile picture" style={{width:"64px", height:"64px", 'object-fit': "cover"}} className="rounded-circle" />
             </div>
             <div className="col-10 row d-flex align-items-center">
-              <p className="col-5">Jane</p>
+              <p className="col-4">Jane</p>
               <p className="col-5">Doe</p>
-              <button type="button" className="col-2 btn btn-primary" onClick={onSelect}>Select</button>
+              <button type="button" className="col-3 btn btn-primary" onClick={onSelect}>Select</button>
             </div>
           </div>
         </li>

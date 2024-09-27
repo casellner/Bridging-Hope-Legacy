@@ -7,8 +7,8 @@ const ManageVolunteers = ({ onSelectBack }) => {
     <React.Fragment>
       <div className="card col-lg-6 col-md-10 col-sm-12 offset-lg-3 offset-md-1 offset-sm-0"> {/* this card will have different widths depending on the resolution of the device */}
         <div className="card-body">
-          <h2 className="text-center mb-4">Manage volunteers</h2>
-          <ul className="list-group">
+          <h2 className="text-center mb-4 fs-3">Manage volunteers</h2>
+          <ul className="list-group overflow-y-scroll" style={{maxHeight: "100px"}}>
             <li className="list-group-item">
               <div className="row">
                 <div className="col-2">
@@ -35,8 +35,8 @@ const ManageVolunteers = ({ onSelectBack }) => {
             </li>
           </ul>
 
-          <h2 className="text-center my-3">Volunteer requests</h2>
-          <ul className="list-group">
+          <h2 className="text-center my-3 fs-3">Volunteer requests</h2>
+          <ul className="list-group overflow-y-scroll" style={{maxHeight: "100px"}}>
             <li className="list-group-item">
                 <div className="row">
                   <div className="col-2">
