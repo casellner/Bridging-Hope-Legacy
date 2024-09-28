@@ -18,12 +18,8 @@ const Landing = () => {
         </a>
 
         <div>
-          <Link to="/signin">
-            <button type="button" className="btn btn-primary me-3">Sign In</button>
-          </Link>
-          <Link to="/register">
-            <button type="button" className="btn btn-secondary me-3">Register</button>
-          </Link>
+          <Link to="/signin" className="btn btn-primary me-4">Sign In</Link>
+          <Link to="/register" className="btn btn-secondary me-4">Register</Link>
         </div>
       </nav>
 

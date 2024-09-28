@@ -62,9 +62,7 @@ const Landing = () => {
           </a>
 
           <div>
-            <Link to="/">
-              <button type="button" className="btn btn-danger me-3">Sign Out</button>
-            </Link>
+            <Link to="/" className="btn btn-danger me-4">Sign Out</Link>
           </div>
         </nav>
         

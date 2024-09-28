@@ -18,8 +18,8 @@ const FAQ = () => {
                 </a>
 
                 <div>
-                    <Link to="/signin" className="btn btn-primary me-3">Sign In</Link>
-                    <Link to="/register" className="btn btn-secondary me-3">Register</Link>
+                    <Link to="/signin" className="btn btn-primary me-4">Sign In</Link>
+                    <Link to="/register" className="btn btn-secondary me-4">Register</Link>
                 </div>
             </nav>
 
