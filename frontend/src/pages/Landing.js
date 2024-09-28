@@ -101,6 +101,13 @@ const Landing = () => {
                 </li>
               </ul>
             </div>
+
+            {/* FAQ */}
+            <h2 className="text-center mt-3">Questions?</h2>
+            <div className="d-flex flex-row justify-content-center">
+              <p>Check out our&nbsp;</p>
+              <a href="/faq">Frequently asked questions</a>
+            </div>
           </div>
         </div>
       </body>
