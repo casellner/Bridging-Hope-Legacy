@@ -1,6 +1,6 @@
 //imports for images
 import logo from './../BridgingHopeLogo.png';
-import background from './../fooddrive2.jpg';
+import background from './../fooddrive.webp';
 import profilePic1 from './../ExampleProfile1.jpg';
 import profilePic2 from './../ExampleProfile2.jpg';
 
