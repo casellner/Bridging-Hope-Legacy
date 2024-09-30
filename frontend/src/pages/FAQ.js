@@ -57,6 +57,20 @@ const FAQ = () => {
                     <a href="/" className="d-flex align-item-center">Back to home</a>
                 </div>
             </body>
+
+            { /* footer */}
+            <footer className="bg-dark">
+                <div className="row">
+                    <div className="col-6">
+                        <h3 className="fs-5 text-light ms-3 mt-3">Pages</h3>
+                        <ul className="list-group">
+                            <li className="list-group-item bg-dark border-0"><a href="/" className="link-underline link-underline-opacity-0 text-light">Landing Page</a></li>
+                            <li className="list-group-item bg-dark border-0"><a href="/faq" className="link-underline link-underline-opacity-0 text-light">Frequently Asked Questions</a></li>
+                        </ul>
+                    </div>
+                    {/* more columns can be added here */}
+                </div>
+            </footer>
         </React.Fragment>
     );
 };
