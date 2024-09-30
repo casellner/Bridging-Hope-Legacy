@@ -1,6 +1,8 @@
 //imports for images
 import logo from './../BridgingHopeLogo.png';
-import background from './../fooddrive2.jpg';
+import background from './../fooddrive.webp';
+import profilePic1 from './../ExampleProfile1.jpg';
+import profilePic2 from './../ExampleProfile2.jpg';
 
 import React from "react";
 import { Link } from 'react-router-dom';
@@ -16,12 +18,8 @@ const Landing = () => {
         </a>
 
         <div>
-          <Link to="/signin">
-            <button type="button" className="btn btn-primary me-3">Sign In</button>
-          </Link>
-          <Link to="/register">
-            <button type="button" className="btn btn-secondary me-3">Register</button>
-          </Link>
+          <Link to="/signin" className="btn btn-primary me-4">Sign In</Link>
+          <Link to="/register" className="btn btn-secondary me-4">Register</Link>
         </div>
       </nav>
 
@@ -59,27 +57,70 @@ const Landing = () => {
               <ul className="list-group list-group-flush">
                 <li className="list-group-item">
                   <div className="row">
-                    <h3 className="col-auto">Ms. X</h3>
-                    <p className="col-auto">phone: </p>
-                    <a className="col-auto" href="tel:+15555555555">(555) 555-5555</a>
-                    <p className="col-auto">email: </p>
-                    <a className="col-auto" href="mailto:msx@email.com">msx@email.com</a>
+                    <div className="col-6 row">
+                      <div className="col-auto">
+                        <img src={profilePic2} alt="profile picture" style={{width:"64px", height:"64px", 'object-fit': "cover"}} className="rounded-circle" />
+                      </div>
+                      <h3 className="col-6">Ms. X</h3>
+                    </div>
+                    <div className="col-6">
+                      <div className="row">
+                        <p className="col-auto">p: </p>
+                        <a className="col-auto" href="tel:+15555555555">(555) 555-5555</a>
+                      </div>
+                      <div className="row">
+                        <p className="col-auto">e: </p>
+                        <a className="col-auto" href="mailto:msx@email.com">msx@email.com</a>
+                      </div>
+                    </div>
                   </div>
                 </li>
                 <li className="list-group-item">
                   <div className="row">
-                    <h3 className="col-auto">Mr. Y</h3>
-                    <p className="col-auto">phone: </p>
-                    <a className="col-auto" href="tel:+15555555556">(555) 555-5556</a>
-                    <p className="col-auto">email: </p>
-                    <a className="col-auto" href="mailto:mry@email.com">mry@email.com</a>
+                    <div className="col-6 row">
+                      <div className="col-auto">
+                        <img src={profilePic1} alt="profile picture" style={{width:"64px", height:"64px", 'object-fit': "cover"}} className="rounded-circle" />
+                      </div>
+                      <h3 className="col">Mr. Y</h3>      
+                    </div>
+                    <div className="col-6">
+                      <div className="row">
+                        <p className="col-auto">p: </p>
+                        <a className="col-auto" href="tel:+15555555556">(555) 555-5556</a>
+                      </div>
+                      <div className="row">
+                        <p className="col-auto">e: </p>
+                        <a className="col-auto" href="mailto:mry@email.com">mry@email.com</a>
+                      </div>
+                    </div>
                   </div>
                 </li>
               </ul>
             </div>
+
+            {/* FAQ */}
+            <h2 className="text-center mt-3">Questions?</h2>
+            <div className="d-flex flex-row justify-content-center">
+              <p>Check out our&nbsp;</p>
+              <a href="/faq">Frequently asked questions</a>
+            </div>
           </div>
         </div>
       </body>
+
+      { /* footer */}
+      <footer className="bg-dark">
+        <div className="row">
+          <div className="col-6">
+            <h3 className="fs-5 text-light ms-3 mt-3">Pages</h3>
+            <ul className="list-group">
+              <li className="list-group-item bg-dark border-0"><a href="/" className="link-underline link-underline-opacity-0 text-light">Landing Page</a></li>
+              <li className="list-group-item bg-dark border-0"><a href="/faq" className="link-underline link-underline-opacity-0 text-light">Frequently Asked Questions</a></li>
+            </ul>
+          </div>
+          {/* more columns can be added here */}
+        </div>
+      </footer>
     </React.Fragment>
   );
 }

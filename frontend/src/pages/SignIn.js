@@ -30,9 +30,12 @@ const SignIn = () => {
                                 <label for="txtPassword" className="form-label mt-2">Password</label>
                                 <input id="txtPassword" type="password" className="form-control" />
 
+                                { /* TODO: implement forgot password functionality */ }
+                                <a href="/404" className="d-flex justify-content-center mt-4">Forgot password?</a>
+
                                 { /* Note: this is temporary */ }
                                 <Link to="/dashboard">
-                                    <button id="btnSignIn" type="button" class="btn btn-success mt-5 col-12">Sign In</button>
+                                    <button id="btnSignIn" type="button" class="btn btn-success mt-4 col-12">Sign In</button>
                                 </Link>
 
                                 <Link to="/register">

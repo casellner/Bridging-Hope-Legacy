@@ -5,48 +5,47 @@ import Identification from "./registerForm/Identification";
 import Address from "./registerForm/Address";
 
 function RegisterClient() {
-  //constants that determine which content is displayed (start with basic info)
+  //constants that determine which form content is displayed (start with basic info)
   const [basicInfoIsOpen, setBasicInfoIsOpen] = React.useState(true);
   const [identificationIsOpen, setIdentificationIsOpen] = React.useState(false);
   const [AddressIsOpen, setAddressIsOpen] = React.useState(false);
 
   const [progressBarValue, setProgressBarValue] = React.useState(10);
-  
-  //constants to change the continue button to a register button
-  const [btnText, setBtnText] = React.useState("Continue");
-  const [btnColor, setBtnColor] = React.useState("primary");
 
   let formContent;
 
-  function handleProgressBar() {
-    setProgressBarValue(progressBarValue + 45);
-  }
-
-  function handleBtn() {
-    setBtnText("Register");
-    setBtnColor("success");
-  }
-
-  //functions for continue buttons
-  function handleContinue() {
+  //function for continue buttons
+  const handleContinue = () => {
+    setProgressBarValue(progressBarValue + 45); //first, update the progress bar
     if (basicInfoIsOpen) { //if basic info is open, close it and open identification
+      console.log("basic info is open");
       setBasicInfoIsOpen(false);
+      console.log(basicInfoIsOpen);
       setIdentificationIsOpen(true);
     } else if (identificationIsOpen) { //if identification is open, close it and open address
       setIdentificationIsOpen(false);
       setAddressIsOpen(true);
-      handleBtn();
     }
-    handleProgressBar();
-    console.log(progressBarValue);
+  }
+
+  //function for back buttons
+  const handleBack = () => {
+    setProgressBarValue(progressBarValue - 45); //first, update the progress bar
+    if (identificationIsOpen) { //if identification is open, close it and open basic info
+      setIdentificationIsOpen(false);
+      setBasicInfoIsOpen(true);
+    } else if (AddressIsOpen) { //if address is open, close it and open identification
+      setAddressIsOpen(false);
+      setIdentificationIsOpen(true);
+    }
   }
 
   if (basicInfoIsOpen) {
-    formContent = <BasicInfo />;
+    formContent = <BasicInfo onClickContinue={handleContinue} />;
   } else if (identificationIsOpen) {
-    formContent = <Identification />;
+    formContent = <Identification onClickBack={handleBack} onClickContinue={handleContinue}/>; 
   } else if (AddressIsOpen) {
-    formContent = <Address />;
+    formContent = <Address onClickBack={handleBack}/>;
   }
 
   return (
@@ -63,8 +62,6 @@ function RegisterClient() {
           {/* Registration form */}
           <form className="col-10 offset-1"> { /* these columns could be adjusted for different screen sizes */}
             {formContent}
-          
-            <button type="button" className={`btn btn-${btnColor} mt-4 col-10 offset-1`} onClick={handleContinue}>{ btnText }</button>
           </form>
         </div>
       </div>
