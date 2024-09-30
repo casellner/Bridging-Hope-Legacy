@@ -23,12 +23,10 @@ jobs:
 
               # Now we have got the access of EC2 and we will start the deploy .
               cd /home/ubuntu/BridgingHope &&
-              npx pm2 stop 1 &&
               git checkout main &&
               git fetch --all &&
               git reset --hard origin/main &&
               git pull origin main &&
               cd frontend &&
-              npm run build &&
-              npx pm2 start 1
+              ./update.sh
               '
