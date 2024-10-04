@@ -5,42 +5,39 @@ import React from "react";
 import { Link } from 'react-router-dom';
 
 
-let username = 'user';
-let password = '123';
-const handleLogin = async () => {
-
-    // Construct the API endpoint
-    const url = 'http://localhost:3000/login';
-
-    try {
-        // Sending the username and password to the server
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ username, password })
-        });
-
-        if (!response.ok) {
-            throw new Error('Login failed');
-        }
-
-        // Assuming the server responds with JSON data
-        const data = await response.json();
-        console.log('Login successful:', data);
-
-        window.location.href = '/dashboard'; // Example of redirection
-        
-    } catch (error) {
-        console.error('Error during login:', error.message);
-    }
-};
-
-
 const SignIn = () => {
     const [username, SetUsername] = React.useState('');
     const [password, SetPassword] = React.useState('');
+    
+    const handleLogin = async () => {
+        // Construct the API endpoint
+        const url = 'http://192.168.56.1:8000/signin';
+    
+        try {
+            // Sending the username and password to the server
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            });
+    
+            if (!response.ok) {
+                throw new Error('Login failed');
+            }
+    
+            // Assuming the server responds with JSON data
+            const data = await response.json();
+            console.log('Login successful:', data);
+    
+            window.location.href = '/dashboard'; // Example of redirection
+            
+        } catch (error) {
+            console.error('Error during login:', error.message);
+        }
+    };
+
     return (
         <React.Fragment>
             {/* navbar */}
