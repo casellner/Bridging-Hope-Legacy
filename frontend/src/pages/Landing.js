@@ -1,5 +1,5 @@
 //imports for images
-import logo from './../BridgingHopeLogo.png';
+//import BridgingHopeNoWord from './../images/BridgingHopeNoWord.svg'; //TODO: fix this import
 import background from './../fooddrive.webp';
 import profilePic1 from './../ExampleProfile1.jpg';
 import profilePic2 from './../ExampleProfile2.jpg';
@@ -11,15 +11,29 @@ const Landing = () => {
   return (
     <React.Fragment>
       {/* navbar */}
-      <nav className="navbar bg-dark">
-        {/* logo */}
-        <a className="navbar-brand" href="/">
-          <img src={logo} alt="Bridging Hope Logo" width="64" height="64" className="bg-light ms-3 rounded" />
-        </a>
+      <nav className="nav navbar navbar-expand-xl navbar-light iq-navbar">
+        <div className="container-fluid navbar-inner">
+          <a href="/" className="navbar-brand">
+            <div className="logo-main">
+              <div className="logo-normal">
+                {/* <img src={BridgingHopeNoWord} className="img-fluid" alt="logo" style={{maxHeight: "45px"}} /> */}
+              </div>
+              <div className="logo-mini">
+                <svg className="text-primary icon-30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="-0.757324" y="19.2427" width="28" height="4" rx="2" transform="rotate(-45 -0.757324 19.2427)" fill="currentColor"></rect>
+                  <rect x="7.72803" y="27.728" width="28" height="4" rx="2" transform="rotate(-45 7.72803 27.728)" fill="currentColor"></rect>
+                  <rect x="10.5366" y="16.3945" width="16" height="4" rx="2" transform="rotate(45 10.5366 16.3945)" fill="currentColor"></rect>
+                  <rect x="10.5562" y="-0.556152" width="28" height="4" rx="2" transform="rotate(45 10.5562 -0.556152)" fill="currentColor"></rect>
+                </svg>
+              </div>
+            </div>
+            <h4 className="logo-title">Bridging Hope</h4>
+          </a>
 
-        <div>
-          <Link to="/signin" className="btn btn-primary me-4">Sign In</Link>
-          <Link to="/register" className="btn btn-secondary me-4">Register</Link>
+          <div className="d-flex justify-content-around align-items-center">
+            <Link to="/signin" className="btn btn-primary btn-sm align-items-center me-2">Sign In</Link>
+            <Link to="/register" className="btn btn-secondary btn-sm align-items-center">Register</Link>
+          </div>
         </div>
       </nav>
 
