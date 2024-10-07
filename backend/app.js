@@ -73,34 +73,6 @@ app.post("/signin", (req, res) => {
     });
 });
 
-/*pool.getConnection()
-    .then(conn => {
-    
-      conn.query("SELECT 1 as val")
-        .then((rows) => {
-          console.log(rows); //[ {val: 1}, meta: ... ]
-          //Table must have been created before 
-          // " CREATE TABLE myTable (id int, val varchar(255)) "
-          //conn.query(" INSERT INTO tblClient (clientID, lastName, email) VALUES ('1234', 'goodbye!', 'meow@gmail.com')", [1, "mariadb"])
-          return conn.query("SELECT * FROM tblUser", [1, "mariadb"]);
-        })
-        .then((res) => {
-          console.log(res); // { affectedRows: 1, insertId: 1, warningStatus: 0 }
-          conn.end();
-          pool.end();
-        })
-        .catch(err => {
-          //handle error
-          console.log(err); 
-          conn.end();
-          pool.end();
-        })
-        
-    }).catch(err => {
-      //not connected
-      pool.end();
-});*/
-
 app.listen(port, () => {
   console.log(`Express listening at http://0.0.0.0:${port}`);
 });
