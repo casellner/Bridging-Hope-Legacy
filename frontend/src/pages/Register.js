@@ -7,16 +7,16 @@ import { Link } from 'react-router-dom';
 const Register = () => {
     return (
         <React.Fragment>
+            <body className="bg-secondary">
             {/* navbar */}
-            <nav className="navbar bg-dark">
-                {/* logo */}
-                <a className="navbar-brand" href="/">
-                    <img src={logo} alt="Bridging Hope Logo" width="64" height="64" className="bg-light ms-3 rounded"/>
-                </a>
-            </nav>
+                <nav className="navbar bg-dark">
+                    {/* logo */}
+                    <a className="navbar-brand" href="/">
+                        <img src={logo} alt="Bridging Hope Logo" width="64" height="64" className="bg-light ms-3 rounded"/>
+                    </a>
+                </nav>
 
-            <body className="py-lg-3 py-md-2 bg-secondary">
-                <div className="card col-lg-6 col-md-10 col-sm-12 offset-lg-3 offset-md-1 offset-sm-0"> {/* this card will have different widths depending on the resolution of the device */}
+                <div className="card col-lg-6 col-md-10 col-sm-12 offset-lg-3 offset-md-1 offset-sm-0 mt-3"> {/* this card will have different widths depending on the resolution of the device */}
                     <div className="card-header">
                         <h1 className="text-center my-1">Register</h1>
                     </div>
