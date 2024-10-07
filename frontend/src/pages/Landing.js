@@ -1,7 +1,6 @@
 //imports for images
 //import BridgingHopeNoWord from './../images/BridgingHopeNoWord.svg'; //TODO: fix this import
-import profilePic1 from './../ExampleProfile1.jpg';
-import profilePic2 from './../ExampleProfile2.jpg';
+import background from './../images/volunteer.jpg';
 
 import React from "react";
 import { Link } from 'react-router-dom';
@@ -41,7 +40,7 @@ const Landing = () => {
 
       {/* background image and info */}
       <div className="col-12">
-        <div className="h-75">
+        <div className="h-75" style={{backgroundImage: `url(${background})`, backgroundRepeat: "no-repeat", backgroundAttachment: "fixed", backgroundSize:"cover"}}>
           <div className="row justify-content-end" style={{minHeight: "100%", maxWidth: "100%", important:false}}>
             <div className="col-12 col-md-6" style={{backgroundColor: 'rgba(0,0,0,.4)', minHeight: "100%"}}>
               <h1 className="text-white mt-5">Building Non-Profit Connections</h1>
