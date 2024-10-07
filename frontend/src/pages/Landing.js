@@ -1,6 +1,5 @@
 //imports for images
 //import BridgingHopeNoWord from './../images/BridgingHopeNoWord.svg'; //TODO: fix this import
-import background from './../fooddrive.webp';
 import profilePic1 from './../ExampleProfile1.jpg';
 import profilePic2 from './../ExampleProfile2.jpg';
 
@@ -8,6 +7,9 @@ import React from "react";
 import { Link } from 'react-router-dom';
 
 const Landing = () => {
+  let newDate = new Date();
+  let year = newDate.getFullYear();
+
   return (
     <React.Fragment>
       {/* navbar */}
@@ -37,104 +39,100 @@ const Landing = () => {
         </div>
       </nav>
 
-      <body className="py-lg-3 py-md-2" style={{ backgroundImage: `url(${background})`, backgroundSize: "cover" }}>
-        <div className="card col-lg-6 col-md-10 col-sm-12 offset-lg-3 offset-md-1 offset-sm-0"> {/* this card will have different widths depending on the resolution of the device */}
-          <div className="card-header">
-            <h1 className="text-center fw-bold my-3">Bridging Hope</h1>
-            <p className="text-center">Our application is a powerful tool for nonprofits. It simplifies the process of tracking clients, ensuring that those who need assistance are reached with precision and care.</p>
-          </div>
-
-          <div className="card-body p-0"> { /* card body which displays key features and contacts */}
-            {/* key features */}
-            <div className="bg-info mb-3">
-              <h2 className="text-center pt-3 fs-1">Key Features</h2>
-              <hr className="border border-1 border-dark opacity-100"></hr>
-              <ul className="list-group list-group-horizontal">
-                <li className="list-group-item bg-info col-4 border-0">
-                  <h3 className="fw-bold">Register Clients</h3>
-                  <p>File new clients to track aid over time. Digitize records to simplify your data.</p>
-                </li>
-                <li className="list-group-item bg-info col-4 border-0">
-                  <h3 className="fw-bold">Log Visits</h3>
-                  <p>Record assistance and choose which organizations can access your records</p>
-                </li>
-                <li className="list-group-item bg-info col-4 border-0">
-                  <h3 className="fw-bold">Search Clients</h3>
-                  <p>Easily find clients so help can be delivered quickly</p>
-                </li>
-              </ul>
-            </div>
-
-            {/* contact an admin section */}
-            <div className="px-3">
-              <h2 className="mb-3 text-center">Contact an Administrator to connect your organization to Bridging Hope</h2>
-              <ul className="list-group list-group-flush">
-                <li className="list-group-item">
-                  <div className="row">
-                    <div className="col-6 row">
-                      <div className="col-auto">
-                        <img src={profilePic2} alt="profile picture" style={{width:"64px", height:"64px", 'object-fit': "cover"}} className="rounded-circle" />
-                      </div>
-                      <h3 className="col-6">Ms. X</h3>
-                    </div>
-                    <div className="col-6">
-                      <div className="row">
-                        <p className="col-auto">p: </p>
-                        <a className="col-auto" href="tel:+15555555555">(555) 555-5555</a>
-                      </div>
-                      <div className="row">
-                        <p className="col-auto">e: </p>
-                        <a className="col-auto" href="mailto:msx@email.com">msx@email.com</a>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li className="list-group-item">
-                  <div className="row">
-                    <div className="col-6 row">
-                      <div className="col-auto">
-                        <img src={profilePic1} alt="profile picture" style={{width:"64px", height:"64px", 'object-fit': "cover"}} className="rounded-circle" />
-                      </div>
-                      <h3 className="col">Mr. Y</h3>      
-                    </div>
-                    <div className="col-6">
-                      <div className="row">
-                        <p className="col-auto">p: </p>
-                        <a className="col-auto" href="tel:+15555555556">(555) 555-5556</a>
-                      </div>
-                      <div className="row">
-                        <p className="col-auto">e: </p>
-                        <a className="col-auto" href="mailto:mry@email.com">mry@email.com</a>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-
-            {/* FAQ */}
-            <h2 className="text-center mt-3">Questions?</h2>
-            <div className="d-flex flex-row justify-content-center">
-              <p>Check out our&nbsp;</p>
-              <a href="/faq">Frequently asked questions</a>
+      {/* background image and info */}
+      <div className="col-12">
+        <div className="h-75">
+          <div className="row justify-content-end" style={{minHeight: "100%", maxWidth: "100%", important:false}}>
+            <div className="col-12 col-md-6" style={{backgroundColor: 'rgba(0,0,0,.4)', minHeight: "100%"}}>
+              <h1 className="text-white mt-5">Building Non-Profit Connections</h1>
+              <h4 className="mt-3 mx-4 text-white">Our application has the features to help you better serve your mission</h4>
+              <p className="mt-4 mx-5 text-white"><i className="bi bi-heart-fill me-2 text-info"></i>Manage volunteer credentials and availability</p>
+              <p className="mt-2 mx-5 text-white"><i className="bi bi-heart-fill me-2 text-info"></i>Resource and assett tracking</p>
+              <p className="mt-2 mx-5 text-white"><i className="bi bi-heart-fill me-2 text-info"></i>Visibility into client needs and services</p>
+              <p className="mt-2 mx-5 text-white"><i className="bi bi-heart-fill me-2 text-info"></i>Centrally communicate with other area non-profits</p>
+              <p className="mt-2 mx-5 text-white"><i className="bi bi-heart-fill me-2 text-info"></i>Advanced analytics for resource planning</p>
+              <div className="row col-12 justify-content-center mt-5">
+                <Link to="/faq" className="btn btn-secondary col-6 mb-5">Learn More</Link>
+              </div>
             </div>
           </div>
         </div>
-      </body>
 
-      { /* footer */}
-      <footer className="bg-dark">
-        <div className="row">
-          <div className="col-6">
-            <h3 className="fs-5 text-light ms-3 mt-3">Pages</h3>
-            <ul className="list-group">
-              <li className="list-group-item bg-dark border-0"><a href="/" className="link-underline link-underline-opacity-0 text-light">Landing Page</a></li>
-              <li className="list-group-item bg-dark border-0"><a href="/faq" className="link-underline link-underline-opacity-0 text-light">Frequently Asked Questions</a></li>
+        {/* Our Vision */}
+        <div className="col-12 row mb-5 justify-content-center">
+          <div className="col-12 col-md-6 ">
+            <div className="">
+              <h2 className="text-center col-12 mt-5">Our Vision</h2>
+              <hr />
+              <p className="text-center col-12 mt-3">Our vision is to create a world where non-profits can easily connect and share resources to better serve their communities. We believe that by providing a platform for non-profits to connect and share resources, we can help them better serve their communities and make a positive impact on the world.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* More info cards */}
+        <div className="col-12 row mt-4 mb-5 justify-content-around">
+          <div className="col-12 col-md-3 card">
+            <div className="card-body">
+              <h2 className="text-center col-12 mt-2">Areas Served</h2>
+              <hr />
+              <p className="col-12 mt-4"><i className="bi bi-heart-fill me-2 text-info"></i>Algood</p>
+              <p className="col-12 mt-2"><i className="bi bi-heart-fill me-2 text-info"></i>Baxter</p>
+              <p className="col-12 mt-2"><i className="bi bi-heart-fill me-2 text-info"></i>Cookeville</p>
+              <p className="col-12 mt-2"><i className="bi bi-heart-fill me-2 text-info"></i>Crossville</p>
+              <p className="col-12 mt-2"><i className="bi bi-heart-fill me-2 text-info"></i>Cumberland County</p>
+              <p className="col-12 mt-2"><i className="bi bi-heart-fill me-2 text-info"></i>Monterey</p>
+              <p className="col-12 mt-2"><i className="bi bi-heart-fill me-2 text-info"></i>Putnam County</p>
+            </div>
+          </div>
+          <div className="col-12 col-md-3 card">
+            <div className="card-body">
+              <h2 className="text-center col-12 mt-2">Partners</h2>
+              <hr />
+              <p className="col-12 mt-4"><i className="bi bi-heart-fill me-2 text-info"></i>DUO Mobile Missions</p>
+              <p className="col-12 mt-2"><i className="bi bi-heart-fill me-2 text-info"></i>Life Church</p>
+              <p className="col-12 mt-2"><i className="bi bi-heart-fill me-2 text-info"></i>Putnam County</p>
+              <p className="col-12 mt-2"><i className="bi bi-heart-fill me-2 text-info"></i>Steven's Street Baptist Church</p>
+              <p className="col-12 mt-2"><i className="bi bi-heart-fill me-2 text-info"></i>Upper Cumberland Family Justice Center</p>
+            </div>
+          </div>
+          <div className="col-12 col-md-3 card">
+            <div className="card-body">
+              <h2 className="text-center col-12 mt-2">Features</h2>
+              <hr />
+              <p className="col-12 mt-4 mb-0"><i className="bi bi-heart-fill me-2 text-info"></i>Register Clients</p>
+              <p className="col-12 mt-0 ms-4"><small className="fw-lighter fst-italic">Add new clients to Bridging Hope</small></p>
+              <p className="col-12 mt-2 mb-0"><i className="bi bi-heart-fill me-2 text-info"></i>Log Visits</p>
+              <p className="col-12 mt-0 ms-4"><small className="fw-lighter fst-italic">Track the aid you give digitally</small></p>
+              <p className="col-12 mt-2 mb-0"><i className="bi bi-heart-fill me-2 text-info"></i>Search Clients</p>
+              <p className="col-12 mt-0 ms-4"><small className="fw-lighter fst-italic">Find existing client accounts with ease</small></p>
+            </div>
+          </div>
+        </div>
+
+        {/* Register Now button */}
+        <div className="col-12 row mt-4 mb-5 justify-content-around">
+          <button className="btn btn-secondary btn-lg col-8">Register Now</button>
+        </div>
+
+        {/* Developed and maintained with love */}
+        <div className="col-12 row mb-5 justify-content-center">
+          <p className="text-primary text-center">Developed and maintained with<i className="bi bi-heart-fill ms-2 me-2 text-info"></i>by Business Information Technology and Computer Science students at Tennessee Technological University</p>
+        </div>
+
+        {/* footer */}
+        <footer className="footer">
+          <div className="footer-body d-flex justify-content-between mx-4 pb-3">
+            <ul className="list-inline mb-0 p-0">
+              <li className="list-inline-item"><a href="./dashboard/extra/privacy-policy.html">Privacy Policy</a></li>
+              <li className="list-inline-item"><a href="./dashboard/extra/terms-of-service.html">Terms of Use</a></li>
             </ul>
+            <div className="right-panel">
+              <p>© {year} Bridging Hope. All Rights Reserved.</p>
+            </div>
           </div>
-          {/* more columns can be added here */}
+        </footer>
+        
         </div>
-      </footer>
     </React.Fragment>
   );
 }
