@@ -1,5 +1,5 @@
 //imports for images
-//import BridgingHopeNoWord from './../images/BridgingHopeNoWord.svg'; //TODO: fix this import
+//import BridgingHopeNoWord from './../images/BridgingHopeNoWord.svg';
 import background from './../images/volunteer.jpg';
 
 import React from "react";
