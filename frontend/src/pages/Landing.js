@@ -17,7 +17,7 @@ const Landing = () => {
           <a href="/" className="navbar-brand">
             <div className="logo-main">
               <div className="logo-normal">
-                {/* <img src={BridgingHopeNoWord} className="img-fluid" alt="logo" style={{maxHeight: "45px"}} /> */}
+                <img src="./images/BridgingHopeNoWord.svg" className="img-fluid" alt="logo" style={{maxHeight: "45px"}} />
               </div>
               <div className="logo-mini">
                 <svg className="text-primary icon-30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -92,6 +92,7 @@ const Landing = () => {
               <p className="col-12 mt-2"><i className="bi bi-heart-fill me-2 text-info"></i>Putnam County</p>
               <p className="col-12 mt-2"><i className="bi bi-heart-fill me-2 text-info"></i>Steven's Street Baptist Church</p>
               <p className="col-12 mt-2"><i className="bi bi-heart-fill me-2 text-info"></i>Upper Cumberland Family Justice Center</p>
+              <btn className="btn btn-secondary">Contact us to add your organization!</btn> {/* TODO make this link to an email */}
             </div>
           </div>
           <div className="col-12 col-md-3 card">

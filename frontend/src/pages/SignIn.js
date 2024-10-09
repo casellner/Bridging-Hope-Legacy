@@ -7,45 +7,39 @@ import { Link } from 'react-router-dom';
 const SignIn = () => {
     return (
         <React.Fragment>
-            <body className="bg-secondary vh-100">
-                {/* navbar */}
-                <nav className="navbar bg-dark mb-3">
-                    {/* logo */}
-                    <a className="navbar-brand" href="/">
-                        <img src={logo} alt="Bridging Hope Logo" width="64" height="64" className="bg-light ms-3 rounded"/>
-                    </a>
-                </nav>
-                
-                <div className="card col-lg-6 col-md-10 col-sm-12 offset-lg-3 offset-md-1 offset-sm-0"> {/* this card will have different widths depending on the resolution of the device */}
-                    <div className="card-header">
-                        <h1 className="text-center my-1">Sign In</h1>
-                    </div>
-                    
-                    <div className="card-body p-0">
-                        {/* Sign in form */}
-                        <div className="bg-info rounded-bottom-1 pb-3">
-                            <form className="col-8 offset-2"> { /* these columns could be adjusted for different screen sizes */ }
-                                <label for="txtUsername" className="form-label mt-2">Username</label>
-                                <input id="txtUsername" type="text" placeholder="johndoe" className="form-control" />
-                                <label for="txtPassword" className="form-label mt-2">Password</label>
-                                <input id="txtPassword" type="password" className="form-control" />
-
-                                { /* TODO: implement forgot password functionality */ }
-                                <a href="/404" className="d-flex justify-content-center mt-4">Forgot password?</a>
-
-                                { /* Note: this is temporary */ }
-                                <Link to="/dashboard">
-                                    <button id="btnSignIn" type="button" class="btn btn-success mt-4 col-12">Sign In</button>
-                                </Link>
-
-                                <Link to="/register">
-                                    <a className="d-flex justify-content-center mt-3">Register instead</a>
-                                </Link>
-                            </form>
-                        </div>
-                    </div>
+                <div class="col-12 d-flex justify-content-center align-items-center" >
+        <div class="col-11 col-md-4 col-lg-3 card my-4">
+            <div class="card-body">
+                <div class="d-flex col-12 mt-4 justify-content-center align-items-center">
+                    <img src="images/BridgingHopeWord.svg" class="img-fluid" alt="logo" style={{maxWidth:"50%"}} />
                 </div>
-            </body>
+                <form class="mt-5">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control mb-3" placeholder="Email" />
+                    <label class="form-label mt-3">Password</label>
+                    <input type="password" class="form-control mb-3" placeholder="Password" />
+                    <button type="button" class="btn btn-primary col-12 mt-3">Login</button>
+                    <button type="button" class="btn btn-secondary col-12 mt-2">Register</button>
+                    <hr />
+                    <div class="col-12 d-flex justify-content-center align-items-center mb-3">
+                        <a href="" class="text-center col-12">Forgot Password</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+     
+    <footer class="footer">
+        <div class="footer-body d-flex justify-content-between mx-4 pb-3">
+            <ul class="list-inline mb-0 p-0">
+                <li class="list-inline-item"><a href="./dashboard/extra/privacy-policy.html">Privacy Policy</a></li>
+                <li class="list-inline-item"><a href="./dashboard/extra/terms-of-service.html">Terms of Use</a></li>
+            </ul>
+            <div class="right-panel">
+                ©<script>document.write(new Date().getFullYear())</script> Bridging Hope. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
         </React.Fragment>
     );
 }
