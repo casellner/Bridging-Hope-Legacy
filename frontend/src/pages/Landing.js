@@ -107,7 +107,7 @@ const Landing = () => {
 
         {/* Register Now button */}
         <div className="col-12 row mt-4 mb-5 justify-content-around">
-          <button className="btn btn-secondary btn-lg col-8">Register Now</button>
+          <Link to="/register" className="btn btn-secondary btn-lg col-8">Register Now</Link>
         </div>
 
         {/* Developed and maintained with love */}
