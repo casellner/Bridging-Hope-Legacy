@@ -16,7 +16,7 @@ const SignIn = () => {
               <label class="form-label mt-3">Password</label>
               <input type="password" class="form-control mb-3" placeholder="Password" />
               <button type="button" class="btn btn-primary col-12 mt-3">Login</button>
-              <button type="button" class="btn btn-secondary col-12 mt-2">Register</button>
+              <Link to="/register" type="button" class="btn btn-secondary col-12 mt-2">Register</Link>
               <hr />
               <div class="col-12 d-flex justify-content-center align-items-center mb-3">
                 <a href="" class="text-center col-12">Forgot Password</a>
