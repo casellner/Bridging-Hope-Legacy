@@ -47,14 +47,14 @@ const Landing = () => {
               <p className="mt-2 mx-5 text-white"><i className="bi bi-heart-fill me-2 text-info"></i>Centrally communicate with other area non-profits</p>
               <p className="mt-2 mx-5 text-white"><i className="bi bi-heart-fill me-2 text-info"></i>Advanced analytics for resource planning</p>
               <div className="row col-12 justify-content-center mt-5">
-                <Link to="/faq" className="btn btn-secondary col-6 mb-5">Learn More</Link>
+                <a className="btn btn-secondary col-6 mb-5" href="#vision">Learn More</a>
               </div>
             </div>
           </div>
         </div>
 
         {/* Our Vision */}
-        <div className="col-12 row mb-5 justify-content-center">
+        <div id="vision" className="col-12 row mb-5 justify-content-center">
           <div className="col-12 col-md-6 ">
             <div className="">
               <h2 className="text-center col-12 mt-5">Our Vision</h2>
@@ -88,19 +88,22 @@ const Landing = () => {
               <p className="col-12 mt-2"><i className="bi bi-heart-fill me-2 text-info"></i>Putnam County</p>
               <p className="col-12 mt-2"><i className="bi bi-heart-fill me-2 text-info"></i>Steven's Street Baptist Church</p>
               <p className="col-12 mt-2"><i className="bi bi-heart-fill me-2 text-info"></i>Upper Cumberland Family Justice Center</p>
-              <btn className="btn btn-secondary">Contact us to add your organization!</btn> {/* TODO make this link to an email */}
+              <btn className="btn btn-secondary col-12">Contact Us to Add Your Organization!</btn> {/* TODO make this link to an email */}
             </div>
           </div>
           <div className="col-12 col-md-3 card">
-            <div className="card-body">
-              <h2 className="text-center col-12 mt-2">Features</h2>
-              <hr />
-              <p className="col-12 mt-4 mb-0"><i className="bi bi-heart-fill me-2 text-info"></i>Register Clients</p>
-              <p className="col-12 mt-0 ms-4"><small className="fw-lighter fst-italic">Add new clients to Bridging Hope</small></p>
-              <p className="col-12 mt-2 mb-0"><i className="bi bi-heart-fill me-2 text-info"></i>Log Visits</p>
-              <p className="col-12 mt-0 ms-4"><small className="fw-lighter fst-italic">Track the aid you give digitally</small></p>
-              <p className="col-12 mt-2 mb-0"><i className="bi bi-heart-fill me-2 text-info"></i>Search Clients</p>
-              <p className="col-12 mt-0 ms-4"><small className="fw-lighter fst-italic">Find existing client accounts with ease</small></p>
+            <div className="card-body d-flex flex-column">
+              <div className="flex-grow-1">
+                <h2 className="text-center col-12 mt-2">Features</h2>
+                <hr />
+                <p className="col-12 mt-4 mb-0"><i className="bi bi-heart-fill me-2 text-info"></i>Register Clients</p>
+                <p className="col-12 mt-0 ms-4"><small className="fw-lighter fst-italic">Add new clients to Bridging Hope</small></p>
+                <p className="col-12 mt-2 mb-0"><i className="bi bi-heart-fill me-2 text-info"></i>Log Visits</p>
+                <p className="col-12 mt-0 ms-4"><small className="fw-lighter fst-italic">Track the aid you give digitally</small></p>
+                <p className="col-12 mt-2 mb-0"><i className="bi bi-heart-fill me-2 text-info"></i>Search Clients</p>
+                <p className="col-12 mt-0 ms-4"><small className="fw-lighter fst-italic">Find existing client accounts with ease</small></p>
+              </div>
+              <Link to="/faq" className="btn btn-secondary col-12">Frequently Asked Questions</Link>
             </div>
           </div>
         </div>
