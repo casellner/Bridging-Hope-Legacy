@@ -5,53 +5,50 @@ import React from "react";
 import { Link } from 'react-router-dom';
 
 
-let username = 'user';
-let password = '123';
-const handleLogin = async () => {
-
-    // Construct the API endpoint
-    const url = 'http://localhost:3000/login';
-
-    try {
-        // Sending the username and password to the server
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ username, password })
-        });
-
-        if (!response.ok) {
-            throw new Error('Login failed');
-        }
-
-        // Assuming the server responds with JSON data
-        const data = await response.json();
-        console.log('Login successful:', data);
-
-        window.location.href = '/dashboard'; // Example of redirection
-        
-    } catch (error) {
-        console.error('Error during login:', error.message);
-    }
-};
-
-
 const SignIn = () => {
     const [username, SetUsername] = React.useState('');
     const [password, SetPassword] = React.useState('');
+    
+    const handleLogin = async () => {
+        // Construct the API endpoint
+        const url = 'http://192.168.99.87:8000/signin';     //need to fix this so we don't have to keep doing this
+    
+        try {
+            // Sending the username and password to the server
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            });
+    
+            if (!response.ok) {
+                throw new Error('Login failed');
+            }
+    
+            // Assuming the server responds with JSON data
+            const data = await response.json();
+            console.log('Login successful:', data);
+    
+            window.location.href = '/dashboard'; // Example of redirection
+            
+        } catch (error) {
+            console.error('Error during login:', error.message);
+        }
+    };
+
     return (
         <React.Fragment>
-            {/* navbar */}
-            <nav className="navbar bg-dark">
-                {/* logo */}
-                <a className="navbar-brand" href="/">
-                    <img src={logo} alt="Bridging Hope Logo" width="64" height="64" className="bg-light ms-3 rounded"/>
-                </a>
-            </nav>
-
-            <body className="py-lg-3 py-md-2 bg-secondary">
+            <body className="bg-secondary vh-100">
+                {/* navbar */}
+                <nav className="navbar bg-dark mb-3">
+                    {/* logo */}
+                    <a className="navbar-brand" href="/">
+                        <img src={logo} alt="Bridging Hope Logo" width="64" height="64" className="bg-light ms-3 rounded"/>
+                    </a>
+                </nav>
+                
                 <div className="card col-lg-6 col-md-10 col-sm-12 offset-lg-3 offset-md-1 offset-sm-0"> {/* this card will have different widths depending on the resolution of the device */}
                     <div className="card-header">
                         <h1 className="text-center my-1">Sign In</h1>
