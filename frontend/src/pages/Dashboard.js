@@ -51,6 +51,20 @@ const Landing = () => {
 
   return (
     <React.Fragment>
+      <aside className="sidebar-sidebar-default sidebar-white sidebar-base navs-rounded-all sidebar-mini on-resize">
+        <div className="sidebar-header d-flex align-items-center justify-content-start">
+          <a className="navbar-brand" href="/">
+            TODO: Insert Logo Here
+          </a>
+          <div className="sidebar-toggle" data-toggle="sidebar" data-active="true">
+            <p>TODO: add icon</p>
+          </div>
+        </div>
+        <div className="sidebar-body pt-0 data-scrollbar" dataScrollbar="true" tabIndex={-1} style={{overflow:"hidden", outline:"none"}}>
+
+        </div>
+        <div className="sidebar-footer"></div>
+      </aside>
       <body className="vh-100">
         {/* website navbar */}
         <nav className="navbar">
