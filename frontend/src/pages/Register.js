@@ -38,6 +38,10 @@ const Register = () => {
               <Link to="/dashboard" type="button" className="btn btn-primary col-12 mt-3">Register</Link>
               <Link to="/signin" type="button" className="btn btn-secondary col-12 mt-2">Sign In</Link>
             </form>
+
+            <div className="col-12 d-flex justify-content-center align-items-center mb-3">
+              <Link to="/" href="" className="text-center col-12 mt-5">Go back to home</Link>
+            </div>
           </div>
         </div>
       </div>

@@ -18,8 +18,11 @@ const SignIn = () => {
               <button type="button" className="btn btn-primary col-12 mt-3">Login</button>
               <Link to="/register" type="button" className="btn btn-secondary col-12 mt-2">Register</Link>
               <hr />
-              <div className="col-12 d-flex justify-content-center align-items-center mb-3">
+              <div className="col-12 d-flex justify-content-center align-items-center mb-4">
                 <a href="" className="text-center col-12">Forgot Password</a>
+              </div>
+              <div className="col-12 d-flex justify-content-center align-items-center mb-3">
+                <Link to="/" href="" className="text-center col-12">Go back to home</Link>
               </div>
             </form>
           </div>
