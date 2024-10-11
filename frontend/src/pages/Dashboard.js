@@ -51,23 +51,21 @@ const Landing = () => {
 
   return (
     <React.Fragment>
-      
-
-      <body className="bg-secondary vh-100">
+      <body className="vh-100">
         {/* website navbar */}
-        <nav className="navbar bg-dark">
+        <nav className="navbar">
           {/* logo */}
-          <a className="navbar-brand" href="/">
-            <img src={logo} alt="Bridging Hope Logo" width="64" height="64" className="bg-light ms-3 rounded" />
+          <a className="navbar-brand ms-3" href="/">
+            <img src="./images/BridgingHopeNoWord.svg" className="img-fluid" alt="logo" style={{maxHeight: "45px"}} />
           </a>
 
           <div>
-            <Link to="/" className="btn btn-danger me-4">Sign Out</Link>
+            <Link to="/" className="btn btn-danger btn-sm me-4">Sign Out</Link>
           </div>
         </nav>
         
         {/* Client Search, Register Client, and Organization buttons */}
-        <div className="card my-3 col-lg-6 col-md-10 col-sm-12 offset-lg-3 offset-md-1 offset-sm-0"> {/* this card will have different widths depending on the resolution of the device */}
+        <div className="card bg-dark my-3 col-lg-6 col-md-10 col-sm-12 offset-lg-3 offset-md-1 offset-sm-0"> {/* this card will have different widths depending on the resolution of the device */}
           <div className="card-body d-flex justify-content-evenly">
             { /* if a button is clicked, it will have the active className */ }
             <button {...(searchIsOpen ? { className: 'btn btn-primary btn-sm active' } : { className: 'btn btn-primary btn-sm' })}
