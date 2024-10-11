@@ -9,6 +9,7 @@ import NoPage from './pages/NoPage';
 import Register from './pages/Register';
 import SignIn from './pages/SignIn';
 import FAQ from './pages/FAQ';
+import ClientHelp from './pages/ClientHelp';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -26,6 +27,7 @@ const App = () => {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/faq" element={<FAQ />} />
+          <Route path="/clienthelp" element={<ClientHelp />} />
           <Route path="*" element={<NoPage />} /> {/* 404 page */}
         </Routes>
     </BrowserRouter>

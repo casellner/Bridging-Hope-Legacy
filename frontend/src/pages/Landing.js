@@ -39,7 +39,7 @@ const Landing = () => {
         <div className="h-75" style={{backgroundImage: `url(./images/volunteer.jpg)`, backgroundRepeat: "no-repeat", backgroundAttachment: "fixed", backgroundSize:"cover"}}>
           <div className="row justify-content-end" style={{minHeight: "100%", maxWidth: "100%", important:false}}>
             <div className="col-12 col-md-6" style={{backgroundColor: 'rgba(0,0,0,.4)', minHeight: "100%"}}>
-              <h1 className="text-white mt-5">Building Non-Profit Connections</h1>
+              <h1 className="text-white mt-4">Building Non-Profit Connections</h1>
               <h4 className="mt-3 mx-4 text-white">Our application has the features to help you better serve your mission</h4>
               <p className="mt-4 mx-5 text-white"><i className="bi bi-heart-fill me-2 text-info"></i>Manage volunteer credentials and availability</p>
               <p className="mt-2 mx-5 text-white"><i className="bi bi-heart-fill me-2 text-info"></i>Resource and assett tracking</p>
@@ -47,7 +47,10 @@ const Landing = () => {
               <p className="mt-2 mx-5 text-white"><i className="bi bi-heart-fill me-2 text-info"></i>Centrally communicate with other area non-profits</p>
               <p className="mt-2 mx-5 text-white"><i className="bi bi-heart-fill me-2 text-info"></i>Advanced analytics for resource planning</p>
               <div className="row col-12 justify-content-center mt-5">
-                <a className="btn btn-secondary col-6 mb-5" href="#vision">Learn More</a>
+                <a className="btn btn-secondary col-6 mb-1" href="#vision">Learn More</a>
+              </div>
+              <div className="row col-12 justify-content-center mt-3">
+                <Link to="/clienthelp" className="btn btn-primary col-6 mb-4">I need aid</Link>
               </div>
             </div>
           </div>
@@ -131,7 +134,7 @@ const Landing = () => {
           </div>
         </footer>
         
-        </div>
+      </div>
     </React.Fragment>
   );
 }
