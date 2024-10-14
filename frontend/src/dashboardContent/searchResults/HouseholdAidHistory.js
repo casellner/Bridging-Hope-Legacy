@@ -36,10 +36,10 @@ function HouseholdAidHistory() {
 
       <div className="bg-info rounded row d-flex justify-content-center">
         <div className="col-auto d-flex align-items-center">
-          <FontAwesomeIcon icon={faCircleInfo} />
+          <FontAwesomeIcon icon={faCircleInfo} className="text-dark" />
         </div>
         <div className="col-auto">
-          <p className="my-2">Click on an entry for more details</p>
+          <p className="my-2 text-dark">Click on an entry for more details</p>
         </div>
       </div>
     </React.Fragment>

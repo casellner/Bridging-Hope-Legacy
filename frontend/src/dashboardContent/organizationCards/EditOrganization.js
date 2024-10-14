@@ -5,7 +5,7 @@ import exampleLogo from './../../ExampleLogo.png';
 const EditOrganization = ({ onSelectBack }) => {
   return (
     <React.Fragment>
-      <div className="card bg-info col-lg-6 col-md-10 col-sm-12 offset-lg-3 offset-md-1 offset-sm-0"> {/* this card will have different widths depending on the resolution of the device */}
+      <div className="card col-lg-6 col-md-10 col-sm-12 offset-lg-3 offset-md-1 offset-sm-0"> {/* this card will have different widths depending on the resolution of the device */}
         <div className="card-body">
           <form>
             <div className="row">
@@ -167,11 +167,11 @@ const EditOrganization = ({ onSelectBack }) => {
       <div className="modal fade" id="editServicesBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div className="modal-dialog">
           <div className="modal-content">
-            <div className="modal-header bg-info border-dark">
+            <div className="modal-header">
               <h3 className="modal-title fs-5" id="staticBackdropLabel">Edit services</h3>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div className="modal-body bg-info">
+            <div className="modal-body">
               <h2>Services</h2>
               <div className="form-check">
                 <input className="form-check-input" type="checkbox" value="" id="flexCheckFood" />
@@ -190,7 +190,7 @@ const EditOrganization = ({ onSelectBack }) => {
                 <label className="form-check-label" for="flexCheckClothing">Clothing</label>
               </div>
             </div>
-            <div className="modal-footer bg-info border-dark">
+            <div className="modal-footer">
               <button type="button" className="btn btn-warning" data-bs-dismiss="modal">Cancel</button>
               <button type="button" className="btn btn-success">Save</button>
             </div>
