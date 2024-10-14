@@ -14,6 +14,8 @@ const Landing = () => {
   const [registerIsOpen, setRegisterIsOpen] = React.useState(false);
   const [organizationIsOpen, setOrganizationIsOpen] = React.useState(false);
 
+  const [sidebarExpanded, setSidebarExpanded] = React.useState(true);
+
   //functions for search client, register client, and organization buttons
   function handleSearchClick() {
     setInfoIsOpen(false);
@@ -34,6 +36,10 @@ const Landing = () => {
     setOrganizationIsOpen(true);
   }
 
+  function sidebarToggle() {
+    setSidebarExpanded(!sidebarExpanded);
+  }
+
   //content to be displayed (client search, register client, organization, etc.)
   let content;
   if (infoIsOpen) {
@@ -48,15 +54,14 @@ const Landing = () => {
 
   return (
     <React.Fragment>
-      <aside className="sidebar sidebar-default sidebar-white sidebar-base navs-rounded-all">
+      <aside {...(sidebarExpanded ? { className: "sidebar sidebar-default sidebar-white sidebar-base navs-rounded-all" } : { className: "sidebar sidebar-default sidebar-white sidebar-base navs-rounded-all sidebar-mini" })} onClick={handleOrganizationClick}>
         <div className="sidebar-header d-flex align-items-center justify-content-start">
           <a className="navbar-brand" href="/">
             <img src="./images/BridgingHopeNoWord.svg" className="img-fluid" alt="logo" style={{maxHeight: "45px"}} />
           </a>
-          <div className="sidebar-toggle" data-toggle="sidebar" data-active="true">
-            {/* TODO: make icon change */}
+          <button type="button" className="btn" aria-label="close sidebar" onClick={sidebarToggle}>
             <i class="bi bi-arrow-left-circle-fill"></i>
-          </div>
+          </button>
         </div>
         <div className="sidebar-body pt-0 data-scrollbar" dataScrollbar="true" tabIndex={-1} style={{overflow:"hidden", outline:"none"}}>
           <div className="scroll-content">
@@ -90,17 +95,37 @@ const Landing = () => {
         <div className="sidebar-footer"></div>
       </aside>
 
-
-      <body className="vh-100">
+      <main className="main-content">
         {/* website navbar */}
-        <nav className="navbar">
-          <div>
-            <Link to="/" className="btn btn-danger btn-sm me-4">Sign Out</Link>
+        <nav className="nav navbar">
+          <div className="container-fluid navbar-inner">
+            <button type="button" className="btn" aria-label="open sidebar" onClick={sidebarToggle}>
+              <i class="bi bi-arrow-right-circle-fill"></i>
+            </button>
+            <a href="/" className="navbar-brand">
+              <div className="logo-main">
+                <div className="logo-normal">
+                  <img src="./images/BridgingHopeNoWord.svg" className="img-fluid" alt="logo" style={{maxHeight: "45px"}} />
+                </div>
+                <div className="logo-mini">
+                  <svg className="text-primary icon-30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="-0.757324" y="19.2427" width="28" height="4" rx="2" transform="rotate(-45 -0.757324 19.2427)" fill="currentColor"></rect>
+                    <rect x="7.72803" y="27.728" width="28" height="4" rx="2" transform="rotate(-45 7.72803 27.728)" fill="currentColor"></rect>
+                    <rect x="10.5366" y="16.3945" width="16" height="4" rx="2" transform="rotate(45 10.5366 16.3945)" fill="currentColor"></rect>
+                    <rect x="10.5562" y="-0.556152" width="28" height="4" rx="2" transform="rotate(45 10.5562 -0.556152)" fill="currentColor"></rect>
+                  </svg>
+                </div>
+              </div>
+              <h4 className="logo-title">Bridging Hope</h4>
+            </a>
+            <div>
+              <Link to="/" className="btn btn-danger btn-sm me-4">Sign Out</Link>
+            </div>
           </div>
         </nav>
 
         {content}
-      </body>
+      </main>
     </React.Fragment>
   );
 }
