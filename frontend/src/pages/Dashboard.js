@@ -5,19 +5,19 @@ import React from "react";
 import { Link } from 'react-router-dom';
 
 //imports for content (search client, register client, etc.)
-import InfoPopup from '../dashboardContent/InfoPopup';
-import SearchClient from '../dashboardContent/SearchClient';
-import RegisterClient from '../dashboardContent/RegisterClient';
-import Organization from '../dashboardContent/Organization';
+import InfoPopup from '../content/InfoPopup';
+import SearchClient from '../content/SearchClient';
+import RegisterClient from '../content/RegisterClient';
+import Organization from '../content/Organization';
 
 const Landing = () => {
-  //constants that determine which content is displayed on the dashboard
-  const [infoIsOpen, setInfoIsOpen] = React.useState(true); //only the info popup is displayed by default
+  //constants that determine which content is displayed
+  const [infoIsOpen, setInfoIsOpen] = React.useState(true);
   const [searchIsOpen, setSearchIsOpen] = React.useState(false);
   const [registerIsOpen, setRegisterIsOpen] = React.useState(false);
   const [organizationIsOpen, setOrganizationIsOpen] = React.useState(false);
 
-  //functions for the 'search client,' 'register client,' and 'organization' buttons
+  //functions for search client, register client, and organization buttons
   function handleSearchClick() {
     setInfoIsOpen(false);
     setSearchIsOpen(true);
