@@ -27,13 +27,10 @@ const Landing = () => {
             <h4 className="logo-title">Bridging Hope</h4>
           </a>
 
-        <div>
-          <Link to="/signin">
-            <button type="button" className="btn btn-primary me-3">Sign In</button>
-          </Link>
-          <Link to="/register">
-            <button type="button" className="btn btn-secondary me-3">Register</button>
-          </Link>
+          <div className="d-flex justify-content-around align-items-center">
+            <Link to="/signin" className="btn btn-primary btn-sm align-items-center me-2">Sign In</Link>
+            <Link to="/register" className="btn btn-secondary btn-sm align-items-center">Register</Link>
+          </div>
         </div>
       </nav>
 
@@ -136,7 +133,6 @@ const Landing = () => {
             </div>
           </div>
         </footer>
-        
       </div>
     </React.Fragment>
   );
