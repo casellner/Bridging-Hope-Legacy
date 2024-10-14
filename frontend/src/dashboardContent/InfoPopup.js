@@ -13,7 +13,7 @@ function InfoPopup() {
             <FontAwesomeIcon icon={faCircleInfo} className="text-dark" />
           </div>
           <div className="col-auto">
-            <p className="text-dark my-2">Click on a button above to get started!</p>
+            <p className="text-dark my-2">Click on a button to get started!</p>
           </div>
         </div>
       </React.Fragment>

@@ -51,7 +51,7 @@ const Landing = () => {
 
   return (
     <React.Fragment>
-      <aside className="sidebar sidebar-default sidebar-white sidebar-base navs-rounded-all sidebar-mini on-resize">
+      <aside className="sidebar sidebar-default sidebar-white sidebar-base navs-rounded-all">
         <div className="sidebar-header d-flex align-items-center justify-content-start">
           <a className="navbar-brand" href="/">
             <img src="./images/BridgingHopeNoWord.svg" className="img-fluid" alt="logo" style={{maxHeight: "45px"}} />
@@ -65,8 +65,27 @@ const Landing = () => {
           <div className="scroll-content">
             <div className="sidebar-list">
               <ul className="navbar-nav iq-main-menu" id="sidebar-menu">
-                
-                
+                <li className="nav-item static-item">
+                  <a className="nav-link static-item disabled" href="#" tabIndex="-1">
+                    <span className="default-icon">Tools</span>
+                    <span className="mini-icon">-</span>
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a {...(searchIsOpen ? { className: 'nav-link active' } : { className: 'nav-link' })} onClick={handleSearchClick}>
+                    <span className="item-name">Client Search</span>
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a {...(registerIsOpen ? { className: 'nav-link active' } : { className: 'nav-link' })} onClick={handleRegisterClick}>
+                    <span className="item-name">Register Client</span>
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a {...(organizationIsOpen ? { className: 'nav-link active' } : { className: 'nav-link' })} onClick={handleOrganizationClick}>
+                    <span className="item-name">Organization</span>
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
@@ -78,34 +97,10 @@ const Landing = () => {
       <body className="vh-100">
         {/* website navbar */}
         <nav className="navbar">
-          {/* logo */}
-          <a className="navbar-brand ms-3" href="/">
-            <img src="./images/BridgingHopeNoWord.svg" className="img-fluid" alt="logo" style={{maxHeight: "45px"}} />
-          </a>
-
           <div>
             <Link to="/" className="btn btn-danger btn-sm me-4">Sign Out</Link>
           </div>
         </nav>
-        
-        {/* Client Search, Register Client, and Organization buttons */}
-        <div className="card bg-dark my-3 col-lg-6 col-md-10 col-sm-12 offset-lg-3 offset-md-1 offset-sm-0"> {/* this card will have different widths depending on the resolution of the device */}
-          <div className="card-body d-flex justify-content-evenly">
-            { /* if a button is clicked, it will have the active className */ }
-            <button {...(searchIsOpen ? { className: 'btn btn-primary btn-sm active' } : { className: 'btn btn-primary btn-sm' })}
-                    onClick={handleSearchClick}>
-              Client Search
-            </button>
-            <button {...(registerIsOpen ? { className: 'btn btn-primary btn-sm active' } : { className: 'btn btn-primary btn-sm' })}
-                    onClick={handleRegisterClick}>
-              Register Client
-            </button>
-            <button {...(organizationIsOpen ? { className: 'btn btn-primary btn-sm active' } : { className: 'btn btn-primary btn-sm' })}
-                    onClick={handleOrganizationClick}>
-              Organization
-            </button>
-          </div>
-        </div>
 
         {content}
       </body>
