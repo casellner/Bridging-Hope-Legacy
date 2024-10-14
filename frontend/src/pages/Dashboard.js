@@ -51,20 +51,30 @@ const Landing = () => {
 
   return (
     <React.Fragment>
-      <aside className="sidebar-sidebar-default sidebar-white sidebar-base navs-rounded-all sidebar-mini on-resize">
+      <aside className="sidebar sidebar-default sidebar-white sidebar-base navs-rounded-all sidebar-mini on-resize">
         <div className="sidebar-header d-flex align-items-center justify-content-start">
           <a className="navbar-brand" href="/">
-            TODO: Insert Logo Here
+            <img src="./images/BridgingHopeNoWord.svg" className="img-fluid" alt="logo" style={{maxHeight: "45px"}} />
           </a>
           <div className="sidebar-toggle" data-toggle="sidebar" data-active="true">
-            <p>TODO: add icon</p>
+            {/* TODO: make icon change */}
+            <i class="bi bi-arrow-left-circle-fill"></i>
           </div>
         </div>
         <div className="sidebar-body pt-0 data-scrollbar" dataScrollbar="true" tabIndex={-1} style={{overflow:"hidden", outline:"none"}}>
-
+          <div className="scroll-content">
+            <div className="sidebar-list">
+              <ul className="navbar-nav iq-main-menu" id="sidebar-menu">
+                
+                
+              </ul>
+            </div>
+          </div>
         </div>
         <div className="sidebar-footer"></div>
       </aside>
+
+
       <body className="vh-100">
         {/* website navbar */}
         <nav className="navbar">
