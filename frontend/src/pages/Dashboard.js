@@ -1,6 +1,3 @@
-//imports for images
-import logo from './../BridgingHopeLogo.png';
-
 import React from "react";
 import { Link } from 'react-router-dom';
 
