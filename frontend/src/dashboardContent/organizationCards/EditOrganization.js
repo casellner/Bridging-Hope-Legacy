@@ -202,4 +202,3 @@ const EditOrganization = ({ onSelectBack }) => {
 }
 
 export default EditOrganization;
-  
