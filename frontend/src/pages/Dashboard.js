@@ -9,31 +9,22 @@ import Organization from '../dashboardContent/Organization';
 
 const Landing = () => {
   //constants that determine which content is displayed
-  const [infoIsOpen, setInfoIsOpen] = React.useState(true);
-  const [searchIsOpen, setSearchIsOpen] = React.useState(false);
-  const [registerIsOpen, setRegisterIsOpen] = React.useState(false);
-  const [organizationIsOpen, setOrganizationIsOpen] = React.useState(false);
+  const [contentOpen, setContentOpen] = React.useState("info");
 
   const [sidebarExpanded, setSidebarExpanded] = React.useState(true);
 
   //functions for search client, register client, and organization buttons
   function handleSearchClick() {
-    setInfoIsOpen(false);
-    setSearchIsOpen(true);
-    setRegisterIsOpen(false);
-    setOrganizationIsOpen(false);
+    setContentOpen("search");
+    console.log("search clicked");
   }
   function handleRegisterClick() {
-    setInfoIsOpen(false);
-    setSearchIsOpen(false);
-    setRegisterIsOpen(true);
-    setOrganizationIsOpen(false);
+    setContentOpen("register");
+    console.log("register clicked");
   }
   function handleOrganizationClick() {
-    setInfoIsOpen(false);
-    setSearchIsOpen(false);
-    setRegisterIsOpen(false);
-    setOrganizationIsOpen(true);
+    setContentOpen("organization");
+    console.log("organization clicked");
   }
 
   function sidebarToggle() {
@@ -42,19 +33,19 @@ const Landing = () => {
 
   //content to be displayed (client search, register client, organization, etc.)
   let content;
-  if (infoIsOpen) {
+  if (contentOpen === "info") {
     content = <InfoPopup />;
-  } else if (searchIsOpen) {
+  } else if (contentOpen === "search") {
     content = <SearchClient />;
-  } else if (registerIsOpen) {
+  } else if (contentOpen === "register") {
     content = <RegisterClient />;
-  } else if (organizationIsOpen) {
+  } else if (contentOpen === "organization") {
     content = <Organization />;
   }
 
   return (
     <React.Fragment>
-      <aside {...(sidebarExpanded ? { className: "sidebar sidebar-default sidebar-white sidebar-base navs-rounded-all" } : { className: "sidebar sidebar-default sidebar-white sidebar-base navs-rounded-all sidebar-mini" })} onClick={handleOrganizationClick}>
+      <aside {...(sidebarExpanded ? { className: "sidebar sidebar-default sidebar-white sidebar-base navs-rounded-all" } : { className: "sidebar sidebar-default sidebar-white sidebar-base navs-rounded-all sidebar-mini" })}>
         <div className="sidebar-header d-flex align-items-center justify-content-start">
           <a className="navbar-brand" href="/">
             <img src="./images/BridgingHopeNoWord.svg" className="img-fluid" alt="logo" style={{maxHeight: "45px"}} />
@@ -74,17 +65,23 @@ const Landing = () => {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a {...(searchIsOpen ? { className: 'nav-link active' } : { className: 'nav-link' })} onClick={handleSearchClick}>
+                  <a {...((contentOpen === "search") ? { className: 'nav-link active' } : { className: 'nav-link' })} onClick={handleSearchClick}>
                     <span className="item-name">Client Search</span>
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a {...(registerIsOpen ? { className: 'nav-link active' } : { className: 'nav-link' })} onClick={handleRegisterClick}>
+                  <a {...((contentOpen === "register") ? { className: 'nav-link active' } : { className: 'nav-link' })} onClick={handleRegisterClick}>
                     <span className="item-name">Register Client</span>
                   </a>
                 </li>
+                <li className="nav-item static-item">
+                  <a className="nav-link static-item disabled" href="#" tabIndex="-1">
+                    <span className="default-icon">Organization</span>
+                    <span className="mini-icon">-</span>
+                  </a>
+                </li>
                 <li className="nav-item">
-                  <a {...(organizationIsOpen ? { className: 'nav-link active' } : { className: 'nav-link' })} onClick={handleOrganizationClick}>
+                  <a {...((contentOpen === "organization") ? { className: 'nav-link active' } : { className: 'nav-link' })} onClick={handleOrganizationClick}>
                     <span className="item-name">Organization</span>
                   </a>
                 </li>
@@ -96,7 +93,7 @@ const Landing = () => {
       </aside>
 
       <main className="main-content">
-        {/* website navbar */}
+        {/* navbar */}
         <nav className="nav navbar">
           <div className="container-fluid navbar-inner">
             <button type="button" className="btn" aria-label="open sidebar" onClick={sidebarToggle}>
