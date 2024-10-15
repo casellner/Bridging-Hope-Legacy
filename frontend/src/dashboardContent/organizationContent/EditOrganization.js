@@ -40,7 +40,7 @@ const EditOrganization = () => {
               <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editLogoBackdrop">Edit logo</button>
               <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editServicesBackdrop">Edit services</button>
             </div>
-            <div className="d-flex justify-content-between mt-3">
+            <div className="d-flex justify-content-center mt-3">
               <button type="button" className="btn btn-success">Save</button>
             </div>
           </form>
