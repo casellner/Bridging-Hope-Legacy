@@ -2,7 +2,7 @@ import React from "react";
 import profilePic1 from "../../ExampleProfile1.jpg";
 import profilePic2 from "../../ExampleProfile2.jpg";
 
-const ManageVolunteers = ({ onSelectBack }) => {
+const ManageVolunteers = () => {
   return (
     <React.Fragment>
       <div className="card col-lg-6 col-md-10 col-sm-12 offset-lg-3 offset-md-1 offset-sm-0"> {/* this card will have different widths depending on the resolution of the device */}
@@ -51,8 +51,6 @@ const ManageVolunteers = ({ onSelectBack }) => {
                 </div>
               </li>
             </ul>
-
-          <button type="button" className="btn btn-warning mt-4 col-4 offset-4" onClick={onSelectBack}>Go back</button>
         </div>
       </div>
     </React.Fragment>

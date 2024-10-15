@@ -2,7 +2,7 @@ import React from "react";
 
 import exampleLogo from './../../ExampleLogo.png';
 
-const EditOrganization = ({ onSelectBack }) => {
+const EditOrganization = () => {
   return (
     <React.Fragment>
       <div className="card col-lg-6 col-md-10 col-sm-12 offset-lg-3 offset-md-1 offset-sm-0"> {/* this card will have different widths depending on the resolution of the device */}
@@ -41,7 +41,6 @@ const EditOrganization = ({ onSelectBack }) => {
               <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editServicesBackdrop">Edit services</button>
             </div>
             <div className="d-flex justify-content-between mt-3">
-              <button type="button" className="btn btn-warning" onClick={onSelectBack}>Go back</button>
               <button type="button" className="btn btn-success">Save</button>
             </div>
           </form>

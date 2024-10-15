@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom';
 import InfoPopup from '../dashboardContent/InfoPopup';
 import SearchClient from '../dashboardContent/SearchClient';
 import RegisterClient from '../dashboardContent/RegisterClient';
-import Organization from '../dashboardContent/Organization';
+import SwitchOrganization from "../dashboardContent/organizationContent/SwitchOrganization";
+import EditOrganization from "../dashboardContent/organizationContent/EditOrganization";
+import ManageVolunteers from "../dashboardContent/organizationContent/ManageVolunteers";
 
 const Landing = () => {
   //constants that determine which content is displayed
@@ -14,17 +16,20 @@ const Landing = () => {
   const [sidebarExpanded, setSidebarExpanded] = React.useState(true);
 
   //functions for search client, register client, and organization buttons
-  function handleSearchClick() {
+  function handleClientSearchClick() {
     setContentOpen("search");
-    console.log("search clicked");
   }
-  function handleRegisterClick() {
+  function handleRegisterClientClick() {
     setContentOpen("register");
-    console.log("register clicked");
   }
-  function handleOrganizationClick() {
-    setContentOpen("organization");
-    console.log("organization clicked");
+  function handleSwitchOrganizationClick() {
+    setContentOpen("switchOrganization");
+  }
+  function handleEditOrganizationClick() {
+    setContentOpen("editOrganization");
+  }
+  function handleManageVolunteersClick() {
+    setContentOpen("manageVolunteers");
   }
 
   function sidebarToggle() {
@@ -39,8 +44,12 @@ const Landing = () => {
     content = <SearchClient />;
   } else if (contentOpen === "register") {
     content = <RegisterClient />;
-  } else if (contentOpen === "organization") {
-    content = <Organization />;
+  } else if (contentOpen === "switchOrganization") {
+    content = <SwitchOrganization />;
+  } else if (contentOpen === "editOrganization") {
+    content = <EditOrganization />;
+  } else if (contentOpen === "manageVolunteers") {
+    content = <ManageVolunteers />;
   }
 
   return (
@@ -65,12 +74,12 @@ const Landing = () => {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a {...((contentOpen === "search") ? { className: 'nav-link active' } : { className: 'nav-link' })} onClick={handleSearchClick}>
+                  <a {...((contentOpen === "search") ? { className: 'nav-link active' } : { className: 'nav-link' })} onClick={handleClientSearchClick}>
                     <span className="item-name">Client Search</span>
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a {...((contentOpen === "register") ? { className: 'nav-link active' } : { className: 'nav-link' })} onClick={handleRegisterClick}>
+                  <a {...((contentOpen === "register") ? { className: 'nav-link active' } : { className: 'nav-link' })} onClick={handleRegisterClientClick}>
                     <span className="item-name">Register Client</span>
                   </a>
                 </li>
@@ -81,8 +90,18 @@ const Landing = () => {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a {...((contentOpen === "organization") ? { className: 'nav-link active' } : { className: 'nav-link' })} onClick={handleOrganizationClick}>
-                    <span className="item-name">Organization</span>
+                  <a {...((contentOpen === "organization") ? { className: 'nav-link active' } : { className: 'nav-link' })} onClick={handleSwitchOrganizationClick}>
+                    <span className="item-name">Switch Organization</span>
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a {...((contentOpen === "organization") ? { className: 'nav-link active' } : { className: 'nav-link' })} onClick={handleEditOrganizationClick}>
+                    <span className="item-name">Edit Organization</span>
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a {...((contentOpen === "organization") ? { className: 'nav-link active' } : { className: 'nav-link' })} onClick={handleManageVolunteersClick}>
+                    <span className="item-name">ManageVolunteers</span>
                   </a>
                 </li>
               </ul>
