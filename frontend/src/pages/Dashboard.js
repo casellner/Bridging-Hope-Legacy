@@ -59,7 +59,7 @@ const Landing = () => {
           <a className="navbar-brand" href="/">
             <img src="./images/BridgingHopeNoWord.svg" className="img-fluid" alt="logo" style={{maxHeight: "45px"}} />
           </a>
-          <button type="button" className="btn" aria-label="close sidebar" onClick={sidebarToggle}>
+          <button type="button" {...(sidebarExpanded ? { className: 'btn' } : { className: 'btn invisible' })} aria-label="close sidebar" onClick={sidebarToggle}>
             <i class="bi bi-arrow-left-circle-fill"></i>
           </button>
         </div>
@@ -115,7 +115,7 @@ const Landing = () => {
         {/* navbar */}
         <nav className="nav navbar">
           <div className="container-fluid navbar-inner">
-            <button type="button" className="btn" aria-label="open sidebar" onClick={sidebarToggle}>
+            <button type="button" {...(sidebarExpanded ? { className: 'btn invisible' } : { className: 'btn' })} aria-label="open sidebar" onClick={sidebarToggle}>
               <i class="bi bi-arrow-right-circle-fill"></i>
             </button>
             <a href="/" className="navbar-brand">
