@@ -75,11 +75,13 @@ const Landing = () => {
                 </li>
                 <li className="nav-item">
                   <a {...((contentOpen === "search") ? { className: 'nav-link active' } : { className: 'nav-link' })} onClick={handleClientSearchClick}>
+                    <i className="bi bi-search"></i>
                     <span className="item-name">Client Search</span>
                   </a>
                 </li>
                 <li className="nav-item">
                   <a {...((contentOpen === "register") ? { className: 'nav-link active' } : { className: 'nav-link' })} onClick={handleRegisterClientClick}>
+                    <i className="bi bi-clipboard-check"></i>
                     <span className="item-name">Register Client</span>
                   </a>
                 </li>
@@ -90,17 +92,20 @@ const Landing = () => {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a {...((contentOpen === "organization") ? { className: 'nav-link active' } : { className: 'nav-link' })} onClick={handleSwitchOrganizationClick}>
+                  <a {...((contentOpen === "switchOrganization") ? { className: 'nav-link active' } : { className: 'nav-link' })} onClick={handleSwitchOrganizationClick}>
+                    <i className="bi bi-arrow-left-right"></i>
                     <span className="item-name">Switch Organization</span>
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a {...((contentOpen === "organization") ? { className: 'nav-link active' } : { className: 'nav-link' })} onClick={handleEditOrganizationClick}>
+                  <a {...((contentOpen === "editOrganization") ? { className: 'nav-link active' } : { className: 'nav-link' })} onClick={handleEditOrganizationClick}>
+                    <i className="bi bi-pen"></i>
                     <span className="item-name">Edit Organization</span>
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a {...((contentOpen === "organization") ? { className: 'nav-link active' } : { className: 'nav-link' })} onClick={handleManageVolunteersClick}>
+                  <a {...((contentOpen === "manageVolunteers") ? { className: 'nav-link active' } : { className: 'nav-link' })} onClick={handleManageVolunteersClick}>
+                    <i className="bi bi-person-lines-fill"></i>
                     <span className="item-name">ManageVolunteers</span>
                   </a>
                 </li>
