@@ -50,7 +50,7 @@ function RegisterClient() {
 
   return (
     <React.Fragment>
-      <div className="card col-lg-6 col-md-10 col-sm-12 offset-lg-3 offset-md-1 offset-sm-0"> {/* this card will have different widths depending on the resolution of the device */}
+      <div className="card col-12 col-md-10 offset-0 offset-md-1 mt-3"> {/* this card will have different widths depending on the resolution of the device */}
         <div className="card-header">
           {/* currently, this progress bar will go from 10% to 55% to 100% */}
           <div className="progress" role="progressbar" aria-label="Basic example" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">

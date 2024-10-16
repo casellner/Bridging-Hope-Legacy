@@ -5,7 +5,7 @@ import exampleLogo from './../../ExampleLogo.png';
 const EditOrganization = () => {
   return (
     <React.Fragment>
-      <div className="card col-lg-6 col-md-10 col-sm-12 offset-lg-3 offset-md-1 offset-sm-0"> {/* this card will have different widths depending on the resolution of the device */}
+      <div className="card col-12 col-md-10 offset-0 offset-md-1 mt-3"> {/* this card will have different widths depending on the resolution of the device */}
         <div className="card-body">
           <form>
             <div className="row">
