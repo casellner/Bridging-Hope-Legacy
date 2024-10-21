@@ -81,7 +81,7 @@ const Register = () => {
 
               {errors.message && <div className="alert alert-danger" role="alert">{errors.message}</div>}
 
-              <button id="btnRegister" type="submit" className="btn btn-success mt-5 col-12">Register</button>
+              <button id="btnRegister" type="submit" className="btn btn-primary mt-5 col-12">Register</button>
 
               <Link to="/signin" type="button" className="btn btn-secondary col-12 mt-2">Sign In</Link>
             </form>

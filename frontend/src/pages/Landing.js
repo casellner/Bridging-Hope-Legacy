@@ -91,7 +91,7 @@ const Landing = () => {
               <p className="col-12 mt-2"><i className="bi bi-heart-fill me-2 text-info"></i>Putnam County</p>
               <p className="col-12 mt-2"><i className="bi bi-heart-fill me-2 text-info"></i>Steven's Street Baptist Church</p>
               <p className="col-12 mt-2"><i className="bi bi-heart-fill me-2 text-info"></i>Upper Cumberland Family Justice Center</p>
-              <btn className="btn btn-secondary col-12">Contact Us to Add Your Organization!</btn> {/* TODO make this link to an email */}
+              <Link to="/404" className="btn btn-secondary col-12">Contact Us to Add Your Organization!</Link> {/* TODO make this link to an email */}
             </div>
           </div>
           <div className="col-12 col-md-3 card">

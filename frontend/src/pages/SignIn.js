@@ -65,7 +65,7 @@ const SignIn = () => {
               <button
                 id="btnSignIn"
                 type="button"
-                class="btn btn-success mt-5 col-12"
+                class="btn btn-primary mt-5 col-12"
                 onClick={handleLogin}
               >Sign In</button>
 
