@@ -18,9 +18,7 @@ function RegisterClient() {
   const handleContinue = () => {
     setProgressBarValue(progressBarValue + 45); //first, update the progress bar
     if (basicInfoIsOpen) { //if basic info is open, close it and open identification
-      console.log("basic info is open");
       setBasicInfoIsOpen(false);
-      console.log(basicInfoIsOpen);
       setIdentificationIsOpen(true);
     } else if (identificationIsOpen) { //if identification is open, close it and open address
       setIdentificationIsOpen(false);
