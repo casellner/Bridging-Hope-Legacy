@@ -13,7 +13,7 @@ const FAQ = () => {
       <h1 className="text-center py-3">Frequently Asked Questions</h1>
 
       {/* Questions and answers */}
-      <div className="accordion" id="accordionFAQ">
+      <div className="accordion col-10 offset-1" id="accordionFAQ">
         <div className="accordion-item">
           <h2 className="accordion-header">
             <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
