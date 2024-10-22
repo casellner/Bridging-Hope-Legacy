@@ -76,7 +76,7 @@ const FAQ = () => {
         <div className="accordion-item">
           <h2 className="accordion-header">
             <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-              <span className="fw-bold" style={{color:"#232d42"}}>Question 5</span>
+              <span className="fw-bold">Question 5</span>
             </button>
           </h2>
           <div id="collapseFive" className="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
