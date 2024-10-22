@@ -53,10 +53,12 @@ A information management system for non-profits, starting in the Putnam County, 
 - ```cd frontend```
 - ```npm start```
 
+type ```localhost:3000``` into the search bar of any web browser
+
 ## Contributors
 
 - [Benjamin Burchfield] (https://github.com/ttu-bburchfield)
-- [Edward Gannod] (https://github.com/egannod)
-- [Zeppe Guzzi] (https://github.com/zepz001)
-- [Nathan Lamb] (https://github.com/njlamb)
-- [Colton Sellner] (https://github.com/casellner)
+- [Edward Gannod](https://github.com/egannod)
+- [Zeppe Guzzi](https://github.com/zepz001)
+- [Nathan Lamb](https://github.com/njlamb)
+- [Colton Sellner](https://github.com/casellner)
