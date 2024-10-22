@@ -15,12 +15,12 @@ const FAQ = () => {
       <div className="d-flex justify-content-center mt-3">
         <img src="./images/BridgingHopeNoWord.svg" className="img-fluid" alt="logo" style={{maxHeight: "64px"}} />
       </div>
-      <div className="d-flex justify-content-center mt-3 align-items-center">
-        <img src="./images/corporate_people/box.png" className="img-fluid mx-0" style={{maxHeight:"75px", transform:"rotate(-12deg)"}}></img>
-        <img src="./images/corporate_people/waving.png" className="img-fluid ms-0 me-4" style={{maxHeight:"75px"}}></img>
+      <div className="d-flex justify-content-center my-3 align-items-center">
+        <img src="./images/corporate_people/box.png" className="img-fluid mx-2" style={{maxHeight:"75px", transform:"rotate(-5deg)"}}></img>
+        <img src="./images/corporate_people/waving.png" className="img-fluid mx-2" style={{maxHeight:"75px"}}></img>
         <h1 className="text-center pt-1 pb-3">Frequently Asked Questions</h1>
-        <img src="./images/corporate_people/feeding_dog.png" className="img-fluid mx-4" style={{maxHeight:"75px"}}></img>
-        <img src="./images/corporate_people/haircut.png" className="img-fluid mx-4" style={{maxHeight:"75px"}}></img>
+        <img src="./images/corporate_people/feeding_dog.png" className="img-fluid mx-2" style={{maxHeight:"75px"}}></img>
+        <img src="./images/corporate_people/box2.png" className="img-fluid mx-2" style={{maxHeight:"75px", transform:"rotate(5deg"}}></img>
       </div>
 
       {/* Questions and answers */}
