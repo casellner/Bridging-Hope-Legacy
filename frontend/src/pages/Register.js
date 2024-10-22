@@ -4,7 +4,7 @@ import logo from './../BridgingHopeLogo.png';
 import axios from 'axios';
 
 const Register = () => {
-    const url = 'http://192.168.99.87:8000/register';   //need to fix this so we don't have to keep doing this
+    const url = 'http://10.123.133.175:8000/register';   //need to fix this so we don't have to keep doing this
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -41,12 +41,13 @@ const Register = () => {
         } catch (error) {
             const errorMessage = error.response?.data?.message || 'Error registering user';
             setErrors({ message: errorMessage });
+            alert("Registration Failed");
         }
     };
 
     const handleCloseModal = () => {
         setShowSuccessModal(false);
-        navigate('/signin'); // Redirect to sign-in page
+        navigate('/dashboard'); // Redirect to sign-in page
     };
 
     return (
@@ -111,10 +112,10 @@ const Register = () => {
                                 <button type="button" className="btn-close" onClick={handleCloseModal}></button>
                             </div>
                             <div className="modal-body">
-                                <p>Your account has been created successfully. You can now sign in.</p>
+                                <p>Your account has been created successfully. You are now signed in.</p>
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-primary" onClick={handleCloseModal}>Go to Sign In</button>
+                                <button type="button" className="btn btn-primary" onClick={handleCloseModal}>Okay</button>
                             </div>
                         </div>
                     </div>
