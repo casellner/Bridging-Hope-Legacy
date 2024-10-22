@@ -57,7 +57,7 @@ type ```localhost:3000``` into the search bar of any web browser
 
 ## Contributors
 
-- [Benjamin Burchfield] (https://github.com/ttu-bburchfield)
+- [Benjamin Burchfield](https://github.com/ttu-bburchfield)
 - [Edward Gannod](https://github.com/egannod)
 - [Zeppe Guzzi](https://github.com/zepz001)
 - [Nathan Lamb](https://github.com/njlamb)
