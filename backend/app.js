@@ -71,6 +71,7 @@ app.post("/signin", (req, res) => {
     });
 });
 
+//BE SURE TO ADD A FOREIGN KEY 'orgID' REFERNCING 'tblOrganization' TO 'tblClient' OR THIS WILL NTO WORK!!
 app.post("/register", (req, res) => {
     const { username, password, firstName, lastName, organization } = req.body;
 
