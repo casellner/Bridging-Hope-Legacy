@@ -17,9 +17,9 @@ function BasicInfo({ onClickContinue }) {
   return (
     <React.Fragment>
       { /* first and last name */}
-      <label for="txtFirstName" className="form-label mt-2">First Name</label>
+      <label for="txtFirstName" className="form-label mt-2">First Name <span className="align-top" style={{fontSize:"0.6em"}}>*required</span></label>
       <input id="txtFirstName" type="text" placeholder="John" className="form-control" required aria-required="true" />
-      <label for="txtLastName" className="form-label mt-2">Last Name</label>
+      <label for="txtLastName" className="form-label mt-2">Last Name <span className="align-top" style={{fontSize:"0.6em"}}>*required</span></label>
       <input id="txtLastName" type="text" placeholder="Doe" className="form-control" required aria-required="true" />
 
       { /* email */}
