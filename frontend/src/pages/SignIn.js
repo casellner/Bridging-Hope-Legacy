@@ -4,7 +4,41 @@ import logo from './../BridgingHopeLogo.png';
 import React from "react";
 import { Link } from 'react-router-dom';
 
+
 const SignIn = () => {
+    const [username, SetUsername] = React.useState('');
+    const [password, SetPassword] = React.useState('');
+    
+    const handleLogin = async () => {
+        // Construct the API endpoint
+        const url = 'http://10.123.133.175:8000/signin';     //need to fix this so we don't have to keep doing this
+    
+        try {
+            // Sending the username and password to the server
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            });
+    
+            if (!response.ok) {
+                throw new Error('Login failed');
+            }
+    
+            // Assuming the server responds with JSON data
+            const data = await response.json();
+            console.log('Login successful:', data);
+    
+            window.location.href = '/dashboard'; // Example of redirection
+            
+        } catch (error) {
+            console.error('Error during login:', error.message);
+            alert('Login failed: ' + error.message);
+        }
+    };
+
     return (
         <React.Fragment>
             <body className="bg-secondary vh-100">
@@ -26,17 +60,32 @@ const SignIn = () => {
                         <div className="bg-info rounded-bottom-1 pb-3">
                             <form className="col-8 offset-2"> { /* these columns could be adjusted for different screen sizes */ }
                                 <label for="txtUsername" className="form-label mt-2">Username</label>
-                                <input id="txtUsername" type="text" placeholder="johndoe" className="form-control" />
+                                <input 
+                                id="txtUsername" 
+                                type="text" 
+                                placeholder="johndoe" 
+                                className="form-control" 
+                                value={username}
+                                onChange={(e) => SetUsername(e.target.value)}
+                                />
                                 <label for="txtPassword" className="form-label mt-2">Password</label>
-                                <input id="txtPassword" type="password" className="form-control" />
-
-                                { /* TODO: implement forgot password functionality */ }
-                                <a href="/404" className="d-flex justify-content-center mt-4">Forgot password?</a>
+                                <input 
+                                id="txtPassword" 
+                                type="password" 
+                                className="form-control" 
+                                value={password}
+                                onChange={(e) => SetPassword(e.target.value)}
+                                />
 
                                 { /* Note: this is temporary */ }
-                                <Link to="/dashboard">
-                                    <button id="btnSignIn" type="button" class="btn btn-success mt-4 col-12">Sign In</button>
-                                </Link>
+                                
+                                    <button 
+                                    id="btnSignIn" 
+                                    type="button" 
+                                    class="btn btn-success mt-5 col-12"
+                                    onClick={handleLogin}
+                                    >Sign In</button>
+                                
 
                                 <Link to="/register">
                                     <a className="d-flex justify-content-center mt-3">Register instead</a>
