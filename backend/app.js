@@ -10,7 +10,7 @@ const mariadb = require("mariadb");
 const pool = mariadb.createPool({
 	host: "localhost",
 	user: "root",
-	password: "123",
+	password: "toor",
 	connectionLimit: 10,
 	database: "BridgingHope",
 	port: 3306
@@ -42,8 +42,6 @@ app.post("/signin", (req, res) => {
     if (!username || !password) {
         return res.status(400).json({ message: 'Username and password are required' });
     }
-    console.log(username)
-    console.log(password)
     pool.getConnection().then(connection => {
         let query = 'SELECT userID, password FROM tblUser WHERE username = ?';
         connection.execute(query, [username])
@@ -77,12 +75,13 @@ app.post("/register", (req, res) => {
     const { username, password, firstName, lastName, organization } = req.body;
 
     // Validate input
-    if (!username || !password || !firstName || !lastName) {
+    if (!username || !password || !firstName || !lastName || !organization) {
         return res.status(400).json({ message: 'All fields are required!' });
     }
 
     pool.getConnection().then(connection => {
         // Check if username already exists
+        
         let query = 'SELECT username FROM tblUser WHERE username = ?';
         connection.execute(query, [username])
         .then(results => {
@@ -92,12 +91,33 @@ app.post("/register", (req, res) => {
             } else {
                 // Hash password and insert new user
                 const hashedPassword = hashPassword(password);
-                query = 'INSERT INTO tblUser (username, password, firstName, lastName, organization) VALUES (?, ?, ?, ?, ?)';
-                connection.execute(query, [username, hashedPassword, firstName, lastName, organization])
+                const newUserID = uuidv4();
+                const newClientID = uuidv4();
+                
+                query = 'INSERT INTO tblUser (userID, username, password) VALUES (?, ?, ?)';
+                connection.execute(query, [newUserID, username, hashedPassword])
                 .then(result => {
                     const userId = result.insertId.toString(); // Convert BigInt to Number
                     console.log('User registered successfully');
-                    res.status(201).json({ message: 'User registered successfully', userId });
+                }).catch(err => {
+                    console.error("Error inserting user", err);
+                    res.status(500).json({ message: 'Error registering user' });
+                });
+                query = 'SELECT orgID FROM tblOrganization WHERE orgName = (?)';
+                connection.execute(query, [organization])
+                .then(result => {
+                    const orgID = result[0].orgID; //sets the orgID const
+                    console.log(orgID)
+                    query = 'INSERT INTO tblClient (clientID, firstName, lastName, userID, orgID) VALUES (?,?,?,?,?)';
+                    connection.execute(query, [newClientID, firstName, lastName, newUserID, orgID])
+                        .then(result => {
+                            const userId = result.insertId.toString(); // Convert BigInt to Number
+                            console.log('Client registered successfully');
+                            res.status(201).json({ message: 'User registered successfully', userId });
+                    }).catch(err => {
+                        console.error("Error inserting user", err);
+                        res.status(500).json({ message: 'Error registering user' });
+                    });
                 }).catch(err => {
                     console.error("Error inserting user", err);
                     res.status(500).json({ message: 'Error registering user' });
