@@ -9,6 +9,11 @@ import SwitchOrganization from "../dashboardContent/organizationContent/SwitchOr
 import EditOrganization from "../dashboardContent/organizationContent/EditOrganization";
 import ManageVolunteers from "../dashboardContent/organizationContent/ManageVolunteers";
 
+{ /*
+  Filename:    Dashboard.js
+  Description: This page displays the tools volunteers and admins use to manage clients and organizations.
+*/ }
+
 const Landing = () => {
   //constants that determine which content is displayed
   const [contentOpen, setContentOpen] = React.useState("info");

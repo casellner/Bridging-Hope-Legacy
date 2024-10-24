@@ -1,6 +1,11 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 
+{ /*
+  Filename:    Landing.js
+  Description: This page is the landing page for the Bridging Hope website. It contains basic information about the website, its features, and its vision.
+*/ }
+
 const Landing = () => {
   let newDate = new Date();
   let year = newDate.getFullYear();

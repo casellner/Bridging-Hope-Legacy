@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+{ /*
+  Filename:    Register.js
+  Description: This page is the registration page for volunteers.
+*/ }
+
 const Register = () => {
   const url = 'http://192.168.99.87:8000/register';   //need to fix this so we don't have to keep doing this
   const navigate = useNavigate();

@@ -1,6 +1,11 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 
+{ /*
+  Filename:    SignIn.js
+  Description: This page is the sign in for volunteers and admins.
+*/ }
+
 const SignIn = () => {
   const [username, SetUsername] = React.useState('');
   const [password, SetPassword] = React.useState('');

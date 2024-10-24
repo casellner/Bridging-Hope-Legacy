@@ -1,5 +1,10 @@
 import React from "react";
 
+{ /*
+  Filename:    ClientHelp.js
+  Description: This page is a work in progress. It will contain information for clients on how to connect with organizations and volunteers.
+*/ }
+
 const ClientHelp = () => {
   let newDate = new Date();
   let year = newDate.getFullYear();

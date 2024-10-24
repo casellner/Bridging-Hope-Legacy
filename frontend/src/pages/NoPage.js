@@ -1,5 +1,10 @@
 import React from "react";
 
+{ /*
+    Filename:    NoPage.js
+    Description: This is Bridging Hope's 404 page. It is displayed when a user navigates to a page that does not exist.
+*/ }
+
 const NoPage = () => {
     return (
         <React.Fragment>
