@@ -7,46 +7,38 @@ import { Link } from 'react-router-dom';
 */ }
 
 const SignIn = () => {
-    const [username, SetUsername] = React.useState('');
-    const [password, SetPassword] = React.useState('');
-    
-    const handleLogin = async () => {
-        // Construct the API endpoint
-        const url = 'http://10.123.133.175:8000/signin';     //need to fix this so we don't have to keep doing this
-    
-        try {
-            // Sending the username and password to the server
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ username, password })
-            });
-    
-            if (!response.ok) {
-                throw new Error('Login failed');
-            }
-    
-            // Assuming the server responds with JSON data
-            const data = await response.json();
-            console.log('Login successful:', data);
-    
-            window.location.href = '/dashboard'; // Example of redirection
-            
-        } catch (error) {
-            console.error('Error during login:', error.message);
-            alert('Login failed: ' + error.message);
-        }
-    };
+  const [username, SetUsername] = React.useState('');
+  const [password, SetPassword] = React.useState('');
+
+  const handleLogin = async () => {
+    // Construct the API endpoint
+    const url = 'http://10.123.133.175:8000/signin';     //need to fix this so we don't have to keep doing this
+
+    try {
+      // Sending the username and password to the server
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, password })
+      });
+
+      if (!response.ok) {
+        throw new Error('Login failed');
+      }
+
+      // Assuming the server responds with JSON data
+      const data = await response.json();
+      console.log('Login successful:', data);
 
       window.location.href = '/dashboard'; // Example of redirection
 
     } catch (error) {
       console.error('Error during login:', error.message);
+      alert('Login failed: ' + error.message);
     }
   };
-
 
   return (
     <React.Fragment>
