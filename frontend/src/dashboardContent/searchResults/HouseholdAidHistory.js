@@ -1,5 +1,10 @@
 import React from "react";
 
+{ /*
+  Filename:    HouseholdAidHistory.js
+  Description: This component renders a user's household aid history in a table.
+*/ }
+
 function HouseholdAidHistory() {
   return (
     <React.Fragment>

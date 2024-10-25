@@ -2,6 +2,11 @@ import React from "react";
 
 import exampleLogo from './../../ExampleLogo.png';
 
+{ /*
+  Filename:    Identification.js
+  Description: This component allows an organization admin to edit details of their organization.
+*/ }
+
 const EditOrganization = () => {
   return (
     <React.Fragment>

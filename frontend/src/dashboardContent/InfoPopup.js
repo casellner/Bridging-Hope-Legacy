@@ -1,5 +1,10 @@
 import React from "react";
 
+{ /*
+  Filename:    InfoPopup.js
+  Description: This "popup" component is used to display a message to the user when they first visit the dashboard.
+*/ }
+
 function InfoPopup() {
     return (
       <React.Fragment>

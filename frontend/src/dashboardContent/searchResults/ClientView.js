@@ -2,6 +2,11 @@ import React from "react";
 
 import profilePic1 from "./../../ExampleProfile1.jpg";
 
+{ /*
+  Filename:    ClientView.js
+  Description: This component renders the details of a specific client.
+*/ }
+
 function ClientView({ onBack }) {
   const [serviceType, setServiceType] = React.useState("0");
   

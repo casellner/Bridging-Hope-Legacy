@@ -2,6 +2,11 @@ import React from "react";
 import profilePic1 from "../../ExampleProfile1.jpg";
 import profilePic2 from "../../ExampleProfile2.jpg";
 
+{ /*
+  Filename:    ManageVolunteers.js
+  Description: This component allows an organization admin to view, add, edit, and remove volunteers from their organization.
+*/ }
+
 const ManageVolunteers = () => {
   return (
     <React.Fragment>

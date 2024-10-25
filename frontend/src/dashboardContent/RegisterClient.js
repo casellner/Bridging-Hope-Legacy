@@ -4,6 +4,12 @@ import BasicInfo from "./registerForm/BasicInfo";
 import Identification from "./registerForm/Identification";
 import Address from "./registerForm/Address";
 
+{ /*
+  Filename:    RegisterClient.js
+  Description: This component renders BasicInfo.js, Identification.js, or Address.js
+               depending on where a user is in the Register Client form.
+*/ }
+
 function RegisterClient() {
   //constants that determine which form content is displayed (start with basic info)
   const [basicInfoIsOpen, setBasicInfoIsOpen] = React.useState(true);

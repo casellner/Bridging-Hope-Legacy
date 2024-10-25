@@ -1,5 +1,10 @@
 import React from "react";
 
+{ /*
+  Filename:    BasicInfo.js
+  Description: This component is the first part of registering a client.
+*/ }
+
 function BasicInfo({ onClickContinue }) {
   /*
     Function: checkValidity

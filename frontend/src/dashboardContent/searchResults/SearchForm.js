@@ -1,5 +1,11 @@
 import React from 'react';
 
+{ /*
+    Filename:    SearchForm.js
+    Description: This component is a form of fields a volunteer can search clients by.
+                 (First name, Last name, Date of Birth, Phone, ID type, ID number, Email)
+  */ }
+
 function SearchForm({onSearch}) {
     return (
         <React.Fragment>

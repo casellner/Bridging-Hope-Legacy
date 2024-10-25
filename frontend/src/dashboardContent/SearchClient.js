@@ -6,6 +6,11 @@ import ClientList from "./searchResults/ClientList";
 import ClientView from "./searchResults/ClientView";
 import HouseholdAidHistory from "./searchResults/HouseholdAidHistory";
 
+{ /*
+  Filename:    SearchClient.js
+  Description: This component renders the components in /searchResults.
+*/ }
+
 function SearchClient() {
   const [instructionsIsOpen, setInstructionsIsOpen] = React.useState(true);
   const [clientInfoIsOpen, setClientInfoIsOpen] = React.useState(false);

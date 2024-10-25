@@ -3,6 +3,11 @@ import React from "react";
 import exampleLogo from './../../ExampleLogo.png';
 import exampleLogo2 from './../../ExampleLogo2.png';
 
+{ /*
+  Filename:    SwitchOrganization.js
+  Description: This component renders a list of organizations that the user can switch to and allows a user to join a new organization.
+*/ }
+
 const SwitchOrganization = () => {
   return (
     <React.Fragment>
