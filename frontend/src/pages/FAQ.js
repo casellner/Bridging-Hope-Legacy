@@ -23,6 +23,9 @@ const FAQ = () => {
         <img src="./images/corporate_people/box2.png" className="img-fluid mx-2" style={{maxHeight:"75px", transform:"rotate(5deg"}}></img>
       </div>
 
+      {/* Attribution for images. Note that it is aligned with the accordion below. */}
+      <p className="col-10 offset-1 text-end">Designed by <a href="https://www.freepik.com">Freepik</a></p>
+
       {/* Questions and answers */}
       <div className="accordion col-10 offset-1" id="accordionFAQ">
         <div className="accordion-item">
