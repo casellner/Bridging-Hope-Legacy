@@ -8,17 +8,17 @@ import axios from 'axios';
 */ }
 
 const Register = () => {
-  const url = 'http://192.168.99.87:8000/register';   //need to fix this so we don't have to keep doing this
-  const navigate = useNavigate();
+    const url = 'http://10.123.133.175:8000/register';   //need to fix this so we don't have to keep doing this
+    const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
-    username: '',
-    password: '',
-    confirmPassword: '',
-    firstName: '',
-    lastName: '',
-    organization: ''
-  });
+    const [formData, setFormData] = useState({
+        username: '',
+        password: '',
+        confirmPassword: '',
+        firstName: '',
+        lastName: '',
+        organization: ''
+    });
 
   const [errors, setErrors] = useState({
     message: ''
@@ -33,25 +33,35 @@ const Register = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      setErrors({ message: 'Passwords do not match' });
-      return;
-    }
-    try {
-      await axios.post(url, formData);
-      setShowSuccessModal(true); // Show success modal
-    } catch (error) {
-      const errorMessage = error.response?.data?.message || 'Error registering user';
-      setErrors({ message: errorMessage });
-    }
-  };
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
-  const handleCloseModal = () => {
-    setShowSuccessModal(false);
-    navigate('/signin'); // Redirect to sign-in page
-  };
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.id]: e.target.value
+        });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (formData.password !== formData.confirmPassword) {
+            setErrors({ message: 'Passwords do not match' });
+            return;
+        }
+        try {
+            await axios.post(url, formData);
+            setShowSuccessModal(true); // Show success modal
+        } catch (error) {
+            const errorMessage = error.response?.data?.message || 'Error registering user';
+            setErrors({ message: errorMessage });
+            alert("Registration Failed");
+        }
+    };
+
+    const handleCloseModal = () => {
+        setShowSuccessModal(false);
+        navigate('/dashboard'); // Redirect to sign-in page
+    };
 
   return (
     <React.Fragment>
