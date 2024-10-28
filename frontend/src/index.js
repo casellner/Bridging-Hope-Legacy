@@ -8,13 +8,10 @@ import Landing from './pages/Landing';
 import NoPage from './pages/NoPage';
 import Register from './pages/Register';
 import SignIn from './pages/SignIn';
+import FAQ from './pages/FAQ';
+import ClientHelp from './pages/ClientHelp';
 
 import reportWebVitals from './reportWebVitals';
-
-// Bootstrap CSS
-import "bootstrap/dist/css/bootstrap.min.css";
-// Bootstrap Bundle JS
-import "bootstrap/dist/js/bootstrap.bundle.min";
 
 const App = () => {
   return (
@@ -24,6 +21,8 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/clienthelp" element={<ClientHelp />} />
           <Route path="*" element={<NoPage />} /> {/* 404 page */}
         </Routes>
     </BrowserRouter>
