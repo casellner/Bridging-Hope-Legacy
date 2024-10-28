@@ -37,12 +37,16 @@ app.get('/', () => {
 });
 
 app.post("/signin", (req, res) => {
+    console.log("entered sign in function")
     const { username, password } = req.body;
+    console.log("received", username, " ", password)
 
     if (!username || !password) {
         return res.status(400).json({ message: 'Username and password are required' });
     }
+    console.log("attempting to connect to database")
     pool.getConnection().then(connection => {
+        console.log("connected to database")
         let query = 'SELECT userID, password FROM tblUser WHERE username = ?';
         connection.execute(query, [username])
         .then(results => {
@@ -71,18 +75,19 @@ app.post("/signin", (req, res) => {
     });
 });
 
-//BE SURE TO ADD A FOREIGN KEY 'orgID' REFERNCING 'tblOrganization' TO 'tblClient' OR THIS WILL NTO WORK!!
+//BE SURE TO ADD A FOREIGN KEY 'orgID' REFERNCING 'tblOrganization' TO 'tblClient' OR THIS WILL NOT WORK!!
 app.post("/register", (req, res) => {
+    console.log("entered register function")
     const { username, password, firstName, lastName, organization } = req.body;
 
     // Validate input
     if (!username || !password || !firstName || !lastName || !organization) {
         return res.status(400).json({ message: 'All fields are required!' });
     }
-
+    console.log("attempting to connect to database")
     pool.getConnection().then(connection => {
         // Check if username already exists
-        
+        console.log("checking user info")
         let query = 'SELECT username FROM tblUser WHERE username = ?';
         connection.execute(query, [username])
         .then(results => {
@@ -135,7 +140,6 @@ app.post("/register", (req, res) => {
         res.status(500).json({ message: 'Error connecting to the database' });
     });
 });
-
 
 app.listen(port, () => {
   console.log(`Express listening at http://0.0.0.0:${port}`);

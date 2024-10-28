@@ -8,7 +8,7 @@ import axios from 'axios';
 */ }
 
 const Register = () => {
-    const url = 'http://localhost:8000/register';   //need to fix this so we don't have to keep doing this
+    const url = 'http://localhost:8000/register';  
     const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
