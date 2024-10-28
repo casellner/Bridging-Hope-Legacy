@@ -8,6 +8,7 @@ import RegisterClient from '../dashboardContent/RegisterClient';
 import SwitchOrganization from "../dashboardContent/organizationContent/SwitchOrganization";
 import EditOrganization from "../dashboardContent/organizationContent/EditOrganization";
 import ManageVolunteers from "../dashboardContent/organizationContent/ManageVolunteers";
+import CreateOrganization from "../dashboardContent/CreateOrganization";
 
 { /*
   Filename:    Dashboard.js
@@ -36,6 +37,9 @@ const Landing = () => {
   function handleManageVolunteersClick() {
     setContentOpen("manageVolunteers");
   }
+  function handleCreateOrganizationClick() {
+    setContentOpen("createOrganization");
+  }
 
   function sidebarToggle() {
     setSidebarExpanded(!sidebarExpanded);
@@ -55,6 +59,8 @@ const Landing = () => {
     content = <EditOrganization />;
   } else if (contentOpen === "manageVolunteers") {
     content = <ManageVolunteers />;
+  } else if (contentOpen === "createOrganization") {
+    content = <CreateOrganization />;
   }
 
   return (
@@ -112,6 +118,18 @@ const Landing = () => {
                   <a {...((contentOpen === "manageVolunteers") ? { className: 'nav-link active' } : { className: 'nav-link' })} onClick={handleManageVolunteersClick}>
                     <i className="bi bi-person-lines-fill"></i>
                     <span className="item-name">ManageVolunteers</span>
+                  </a>
+                </li>
+                <li className="nav-item static-item">
+                  <a className="nav-link static-item disabled" href="#" tabIndex="-1">
+                    <span className="default-icon">BH Admin</span>
+                    <span className="mini-icon">-</span>
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a {...((contentOpen === "createOrganization") ? { className: 'nav-link active' } : { className: 'nav-link' })} onClick={handleCreateOrganizationClick}>
+                    <i className="bi bi-building-add"></i>
+                    <span className="item-name">Create Organization</span>
                   </a>
                 </li>
               </ul>
