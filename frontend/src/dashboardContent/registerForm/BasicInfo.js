@@ -14,7 +14,7 @@ function BasicInfo({ onClickContinue }) {
   function checkValidity() {
     const txtFirstName = document.getElementById("txtFirstName");
     const txtLastName = document.getElementById("txtLastName");
-    if (txtFirstName.value != "" && txtLastName != "") {
+    if (txtFirstName.value != "" && txtLastName.value != "") {
       onClickContinue();
     }
   }
