@@ -1,5 +1,10 @@
 import React from "react";
 
+{ /*
+  Filename:    SearchInstructions.js
+  Description: This component guides a user on how to use Search Client.
+*/ }
+
 function SearchInstructions() {
   return (
     <React.Fragment>

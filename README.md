@@ -62,6 +62,11 @@ A information management system for non-profits, starting in the Putnam County, 
 
 - For more commands and information, see the [frontend README](frontend/README.md)
 
+## Usage
+1. Install all packages using "npm install" 
+2. To run backend use "node app.js"
+This should give you the message "Express listening at http://0.0.0.0:3000"
+
 ## Contributors
 
 - [Benjamin Burchfield](https://github.com/ttu-bburchfield)

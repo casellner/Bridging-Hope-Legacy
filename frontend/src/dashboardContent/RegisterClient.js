@@ -4,6 +4,12 @@ import BasicInfo from "./registerForm/BasicInfo";
 import Identification from "./registerForm/Identification";
 import Address from "./registerForm/Address";
 
+{ /*
+  Filename:    RegisterClient.js
+  Description: This component renders BasicInfo.js, Identification.js, or Address.js
+               depending on where a user is in the Register Client form.
+*/ }
+
 function RegisterClient() {
   //constants that determine which form content is displayed (start with basic info)
   const [basicInfoIsOpen, setBasicInfoIsOpen] = React.useState(true);
@@ -18,9 +24,7 @@ function RegisterClient() {
   const handleContinue = () => {
     setProgressBarValue(progressBarValue + 45); //first, update the progress bar
     if (basicInfoIsOpen) { //if basic info is open, close it and open identification
-      console.log("basic info is open");
       setBasicInfoIsOpen(false);
-      console.log(basicInfoIsOpen);
       setIdentificationIsOpen(true);
     } else if (identificationIsOpen) { //if identification is open, close it and open address
       setIdentificationIsOpen(false);
@@ -50,7 +54,7 @@ function RegisterClient() {
 
   return (
     <React.Fragment>
-      <div className="card col-lg-6 col-md-10 col-sm-12 offset-lg-3 offset-md-1 offset-sm-0"> {/* this card will have different widths depending on the resolution of the device */}
+      <div className="card col-12 col-md-10 offset-0 offset-md-1 mt-3"> {/* this card will have different widths depending on the resolution of the device */}
         <div className="card-header">
           {/* currently, this progress bar will go from 10% to 55% to 100% */}
           <div className="progress" role="progressbar" aria-label="Basic example" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">

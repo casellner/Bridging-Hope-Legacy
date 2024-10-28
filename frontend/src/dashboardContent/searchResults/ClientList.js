@@ -3,6 +3,11 @@ import React from "react";
 import profilePic1 from "./../../ExampleProfile1.jpg";
 import profilePic2 from "./../../ExampleProfile2.jpg";
 
+{ /*
+  Filename:    ClientList.js
+  Description: This component renders a list of users returned after searching.
+*/ }
+
 function ClientList({onSelect}) {
   return (
     <React.Fragment>
