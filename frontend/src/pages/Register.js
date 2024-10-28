@@ -81,8 +81,8 @@ const Register = () => {
               <label htmlFor="organization" className="form-label mt-5">Choose your organization</label>
               <select id="organization" className="form-select" value={formData.organization} onChange={handleChange}>
                 <option value="" className="text-secondary">Select</option>
-                <option value="1">Organization XYZ</option>
-                <option value="2">Organization ABC</option>
+                <option value="Organization XYZ">Organization XYZ</option>
+                <option value="Organization ABC">Organization ABC</option>
               </select>
 
               {errors.message && <div className="alert alert-danger" role="alert">{errors.message}</div>}
