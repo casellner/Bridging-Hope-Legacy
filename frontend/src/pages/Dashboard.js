@@ -9,6 +9,7 @@ import SwitchOrganization from "../dashboardContent/organizationContent/SwitchOr
 import EditOrganization from "../dashboardContent/organizationContent/EditOrganization";
 import ManageVolunteers from "../dashboardContent/organizationContent/ManageVolunteers";
 import CreateOrganization from "../dashboardContent/CreateOrganization";
+import ViewOrganizations from "../dashboardContent/ViewOrganizations";
 
 { /*
   Filename:    Dashboard.js
@@ -40,6 +41,9 @@ const Landing = () => {
   function handleCreateOrganizationClick() {
     setContentOpen("createOrganization");
   }
+  function handleViewOrganizationsClick() {
+    setContentOpen("viewOrganizations");
+  }
 
   function sidebarToggle() {
     setSidebarExpanded(!sidebarExpanded);
@@ -61,6 +65,8 @@ const Landing = () => {
     content = <ManageVolunteers />;
   } else if (contentOpen === "createOrganization") {
     content = <CreateOrganization />;
+  } else if (contentOpen === "viewOrganizations") {
+    content = <ViewOrganizations />;
   }
 
   return (
@@ -130,6 +136,12 @@ const Landing = () => {
                   <a {...((contentOpen === "createOrganization") ? { className: 'nav-link active' } : { className: 'nav-link' })} onClick={handleCreateOrganizationClick}>
                     <i className="bi bi-building-add"></i>
                     <span className="item-name">Create Organization</span>
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a {...((contentOpen === "viewOrganizations") ? { className: 'nav-link active' } : { className: 'nav-link' })} onClick={handleViewOrganizationsClick}>
+                    <i className="bi bi-view-list"></i>
+                    <span className="item-name">View Organizations</span>
                   </a>
                 </li>
               </ul>
