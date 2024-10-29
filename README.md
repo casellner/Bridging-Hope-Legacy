@@ -55,10 +55,16 @@ A information management system for non-profits, starting in the Putnam County, 
 
 type ```localhost:3000``` into the search bar of any web browser
 
-## Usage
-1. Install all packages using "npm install" 
-2. To run backend use "node app.js"
-This should give you the message "Express listening at http://0.0.0.0:3000"
+### Backend
+
+#### To test backend on local machine:
+- Fill in your IP in the url in both signin.js and register.js files in the frontend
+  - EX: 'http://100.200.55.55:8000/register'
+- In CMD change directory to the .\backend\ file
+- Make sure all dependencies are installed 
+    - ```npm install```
+- Run ```node app.js```
+    - If done right, you should get the message "Express listening at http://0.0.0.0:8000"
 
 ## Contributors
 
