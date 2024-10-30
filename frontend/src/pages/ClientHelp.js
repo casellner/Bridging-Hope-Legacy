@@ -1,4 +1,5 @@
 import React from "react";
+import ClientMap from "./../ClientMap.tsx";
 
 { /*
   Filename:    ClientHelp.js
@@ -37,12 +38,9 @@ const ClientHelp = () => {
       <div className="col-12">
         <h1>Find an organization near you</h1>
 
-        <gmp-map
-          center="37.4220656,-122.0840897"
-          zoom="10"
-          map-id="DEMO_MAP_ID"
-          style={{height: "400px"}}
-        ></gmp-map>
+        <div style={{height:"100vh", width:"100%"}}>
+          <ClientMap />
+        </div>
 
         {/* footer */}
         <footer className="footer">
