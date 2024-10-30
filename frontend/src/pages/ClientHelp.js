@@ -35,7 +35,14 @@ const ClientHelp = () => {
 
       {/* body */}
       <div className="col-12">
-        <h1>TODO: add content</h1>
+        <h1>Find an organization near you</h1>
+
+        <gmp-map
+          center="37.4220656,-122.0840897"
+          zoom="10"
+          map-id="DEMO_MAP_ID"
+          style={{height: "400px"}}
+        ></gmp-map>
 
         {/* footer */}
         <footer className="footer">

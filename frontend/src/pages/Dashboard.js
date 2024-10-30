@@ -87,7 +87,7 @@ const Landing = () => {
                 <li className="nav-item static-item">
                   <a className="nav-link static-item disabled" href="#" tabIndex="-1">
                     <span className="default-icon">Tools</span>
-                    <span className="mini-icon">-</span>
+                    <span className="mini-icon">━━━━━</span>
                   </a>
                 </li>
                 <li className="nav-item">
@@ -105,7 +105,7 @@ const Landing = () => {
                 <li className="nav-item static-item">
                   <a className="nav-link static-item disabled" href="#" tabIndex="-1">
                     <span className="default-icon">Organization</span>
-                    <span className="mini-icon">-</span>
+                    <span className="mini-icon">━━━━━</span>
                   </a>
                 </li>
                 <li className="nav-item">
@@ -129,7 +129,7 @@ const Landing = () => {
                 <li className="nav-item static-item">
                   <a className="nav-link static-item disabled" href="#" tabIndex="-1">
                     <span className="default-icon">BH Admin</span>
-                    <span className="mini-icon">-</span>
+                    <span className="mini-icon">━━━━━</span>
                   </a>
                 </li>
                 <li className="nav-item">
