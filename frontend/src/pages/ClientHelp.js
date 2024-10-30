@@ -38,7 +38,7 @@ const ClientHelp = () => {
       <div className="col-12">
         <h1>Find an organization near you</h1>
 
-        <div style={{height:"100vh", width:"100%"}}>
+        <div style={{height:"80vh", width:"100%"}}>
           <ClientMap />
         </div>
 
