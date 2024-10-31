@@ -11,14 +11,16 @@ import {
 
 type Poi={key: string, location: google.maps.LatLngLiteral}
 const locations: Poi[] = [
-  {key: 'CookevilleRescueMission', location: {lat: 36.1259299, lng: -85.50677}}
+  {key: 'CookevilleRescueMission', location: {lat: 36.126104072519304, lng: -85.50700598196516}},
+  {key: 'LifeChurch', location: {lat: 36.19121147075565, lng: -85.49167830894544}},
+  {key: 'CookevilleFirstBaptist', location: {lat: 36.1626903747245, lng: -85.50597237724672}}
 ];
 
 const ClientMap = () => {
   return(
     <APIProvider apiKey={'AIzaSyCMhIQ8SSNqECfLiNC2kyXZiV_z9wghRgw'} onLoad={() => console.log('Maps API has loaded.')}>
       <Map
-        defaultZoom={13}
+        defaultZoom={12}
         defaultCenter={{lat: 36.162839, lng: -85.5016423}}
         mapId='Client_Map'
         onCameraChanged={ (ev: MapCameraChangedEvent) =>
