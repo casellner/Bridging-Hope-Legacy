@@ -6,6 +6,8 @@ import React from "react";
 */ }
 
 const FAQ = () => {
+  window.scrollTo(0, 0); // scroll to top of page
+
   let newDate = new Date();
   let year = newDate.getFullYear();
 

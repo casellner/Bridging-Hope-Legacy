@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import ClientMap from "./../ClientMap.tsx";
 
 { /*
@@ -7,6 +8,8 @@ import ClientMap from "./../ClientMap.tsx";
 */ }
 
 const ClientHelp = () => {
+  window.scrollTo(0, 0); // scroll to top of page
+
   let newDate = new Date();
   let year = newDate.getFullYear();
 
@@ -41,6 +44,8 @@ const ClientHelp = () => {
         <div style={{height:"80vh", width:"100%"}}>
           <ClientMap />
         </div>
+
+        <Link to="/" className="btn btn-secondary col-4 offset-4 my-5">Back to home page</Link>
 
         {/* footer */}
         <footer className="footer">

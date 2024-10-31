@@ -8,6 +8,8 @@ import axios from 'axios';
 */ }
 
 const Register = () => {
+  window.scrollTo(0, 0); // scroll to top of page
+
   const url = 'http://10.123.133.175:8000/register';   //need to fix this so we don't have to keep doing this
   const navigate = useNavigate();
 

@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 */ }
 
 const SignIn = () => {
+  window.scrollTo(0, 0); // scroll to top of page
+  
   const [username, SetUsername] = React.useState('');
   const [password, SetPassword] = React.useState('');
 
