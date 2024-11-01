@@ -3,7 +3,7 @@ const cors = require('cors');
 const {v4:uuidv4} = require('uuid');
 const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
-const port = 8000;
+const port = 4433;
 const intSalt = 10;
 const mariadb = require("mariadb");
 
@@ -36,7 +36,7 @@ app.get('/', () => {
     console.log("hiya")
 });
 
-app.post("/signin", (req, res) => {
+app.post("/api/signin", (req, res) => {
     console.log("entered sign in function")
     const { username, password } = req.body;
     console.log("received", username, " ", password)
@@ -76,7 +76,7 @@ app.post("/signin", (req, res) => {
 });
 
 //BE SURE TO ADD A FOREIGN KEY 'orgID' REFERNCING 'tblOrganization' TO 'tblClient' OR THIS WILL NOT WORK!!
-app.post("/register", (req, res) => {
+app.post("/api/register", (req, res) => {
     console.log("entered register function")
     const { username, password, firstName, lastName, organization } = req.body;
 
