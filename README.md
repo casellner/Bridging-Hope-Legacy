@@ -62,6 +62,18 @@ A information management system for non-profits, starting in the Putnam County, 
 
 - For more commands and information, see the [frontend README](frontend/README.md)
 
+### Backend
+
+#### To test backend on local machine:
+- Fill in your IP in the url in both signin.js and register.js files in the frontend
+  - EX: 'http://100.200.55.55:8000/register'
+- In CMD or VSCode console change directory to the .\backend\ file
+- Make sure all dependencies are installed 
+    - ```npm install```
+- Run ```node app.js```
+    - If done right, you should get the message "Express listening at http://0.0.0.0:8000" in your console
+    - Also, console messages will show up here as well
+
 ## Contributors
 
 - [Benjamin Burchfield](https://github.com/ttu-bburchfield)

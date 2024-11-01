@@ -1,6 +1,12 @@
 import React from "react";
 
 import profilePic1 from "./../../ExampleProfile1.jpg";
+import profilePic2 from "./../../ExampleProfile2.jpg";
+
+{ /*
+  Filename:    ClientView.js
+  Description: This component renders the details of a specific client.
+*/ }
 
 function ClientView({ onBack }) {
   const [serviceType, setServiceType] = React.useState("0");
@@ -97,12 +103,35 @@ function ClientView({ onBack }) {
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
-              <h2>TODO: finish this</h2>
-              <p>note: there are no wireframes for this yet</p>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Picture</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><img src={profilePic1} alt="profile picture" style={{width:"64px", height:"64px", 'object-fit': "cover"}} className="rounded-circle" /></td>
+                    <td>John</td>
+                    <td>Doe</td>
+                    <td><button type="button" className="btn btn-danger">Delete</button></td>
+                  </tr>
+                  <tr>
+                    <td><img src={profilePic2} alt="profile picture" style={{width:"64px", height:"64px", 'object-fit': "cover"}} className="rounded-circle" /></td>
+                    <td>Jane</td>
+                    <td>Doe</td>
+                    <td><button type="button" className="btn btn-danger">Delete</button></td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="button" className="btn btn-secondary">+ Add household member</button>
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-warning" data-bs-dismiss="modal">Cancel</button>
-              <button type="button" className="btn btn-success">Save</button>
+              <button type="button" className="btn btn-primary">Save</button>
             </div>
           </div>
         </div>

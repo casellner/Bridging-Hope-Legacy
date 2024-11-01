@@ -1,19 +1,20 @@
 import React from "react";
 
-//imports for icons
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+{ /*
+  Filename:    InfoPopup.js
+  Description: This "popup" component is used to display a message to the user when they first visit the dashboard.
+*/ }
 
 function InfoPopup() {
     return (
       <React.Fragment>
         { /* info "popup" */}
-        <div className="bg-info rounded row d-flex justify-content-center col-lg-6 col-md-6 col-12 offset-lg-3 offset-md-3">
+        <div className="bg-info rounded row my-3 d-flex justify-content-center col-10 col-md-6 col-lg-4 offset-1 offset-md-3 offset-lg-4">
           <div className="col-auto d-flex align-items-center">
-            <FontAwesomeIcon icon={faCircleInfo} />
+            <i className="bi bi-info-circle text-dark"></i>
           </div>
           <div className="col-auto">
-            <p className="my-2">Click on a button above to get started!</p>
+            <p className="text-dark my-2">Click on a button to get started!</p>
           </div>
         </div>
       </React.Fragment>

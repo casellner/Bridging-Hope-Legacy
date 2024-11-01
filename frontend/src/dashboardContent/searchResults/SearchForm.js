@@ -1,10 +1,16 @@
 import React from 'react';
 
+{ /*
+    Filename:    SearchForm.js
+    Description: This component is a form of fields a volunteer can search clients by.
+                 (First name, Last name, Date of Birth, Phone, ID type, ID number, Email)
+  */ }
+
 function SearchForm({onSearch}) {
     return (
         <React.Fragment>
             {/* Search fields */}
-            <form className="bg-info pb-3 rounded"> { /* these columns could be adjusted for different screen sizes */}
+            <form className="pb-3 rounded"> { /* these columns could be adjusted for different screen sizes */}
                 <div className="row mx-3">
                     <div className="col">
                         <label for="txtFirstName" className="form-label mt-2">First name</label>
