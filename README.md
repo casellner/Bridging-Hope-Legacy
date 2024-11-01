@@ -49,11 +49,18 @@ A information management system for non-profits, starting in the Putnam County, 
 
 ### Frontend
 
-#### To test the frontend on your machine, run:
-- ```cd frontend```
-- ```npm start```
+#### To test the frontend on your machine:
 
-type ```localhost:3000``` into the search bar of any web browser
+- Download [Node.js](https://nodejs.org)
+
+- Then type the following commands in your terminal:
+1. ```cd frontend```
+2. if you have not downloaded the node packages yet: ```npm install```
+3. ```npm start```
+
+- type ```localhost:3000``` into the search bar of any web browser
+
+- For more commands and information, see the [frontend README](frontend/README.md)
 
 ### Backend
 

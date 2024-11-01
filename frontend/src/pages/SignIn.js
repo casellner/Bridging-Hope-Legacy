@@ -14,7 +14,7 @@ const SignIn = () => {
 
   const handleLogin = async () => {
     // Construct the API endpoint
-    const url = 'http://10.123.133.175:8000/signin';     //need to fix this so we don't have to keep doing this
+    const url = 'http://localhost:8000/signin';     //need to fix this so we don't have to keep doing this
 
     try {
       // Sending the username and password to the server
