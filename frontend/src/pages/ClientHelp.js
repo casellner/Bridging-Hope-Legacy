@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from 'react-router-dom';
+import ClientMap from "./../ClientMap.tsx";
 
 { /*
   Filename:    ClientHelp.js
@@ -6,6 +8,8 @@ import React from "react";
 */ }
 
 const ClientHelp = () => {
+  window.scrollTo(0, 0); // scroll to top of page
+
   let newDate = new Date();
   let year = newDate.getFullYear();
 
@@ -35,14 +39,13 @@ const ClientHelp = () => {
 
       {/* body */}
       <div className="col-12">
-        <h1>Find an organization near you</h1>
+        <h1 className="text-center my-2">Find an organization near you</h1>
 
-        <gmp-map
-          center="37.4220656,-122.0840897"
-          zoom="10"
-          map-id="DEMO_MAP_ID"
-          style={{height: "400px"}}
-        ></gmp-map>
+        <div style={{height:"80vh", width:"100%"}}>
+          <ClientMap />
+        </div>
+
+        <Link to="/" className="btn btn-secondary col-4 offset-4 my-5">Back to home page</Link>
 
         {/* footer */}
         <footer className="footer">

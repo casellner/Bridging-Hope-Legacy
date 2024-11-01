@@ -8,7 +8,8 @@ import axios from 'axios';
 */ }
 
 const Register = () => {
-    const url = 'http://localhost:8000/register';  
+    window.scrollTo(0, 0); // scroll to top of page
+    const url = 'https://bridginghope.life/api/register';  
     const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
