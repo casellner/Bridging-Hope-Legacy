@@ -1,5 +1,10 @@
 import React from "react";
 
+{ /*
+    Filename:    Address.js
+    Description: This component is the third part of registering a client.
+*/ }
+
 function Address({onClickBack}) {
     return (
         <React.Fragment>

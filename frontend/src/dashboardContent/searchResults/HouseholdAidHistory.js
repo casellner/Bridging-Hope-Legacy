@@ -1,8 +1,9 @@
 import React from "react";
 
-//imports for icons
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+{ /*
+  Filename:    HouseholdAidHistory.js
+  Description: This component renders a user's household aid history in a table.
+*/ }
 
 function HouseholdAidHistory() {
   return (
@@ -36,10 +37,10 @@ function HouseholdAidHistory() {
 
       <div className="bg-info rounded row d-flex justify-content-center">
         <div className="col-auto d-flex align-items-center">
-          <FontAwesomeIcon icon={faCircleInfo} />
+          <i className="bi bi-info-circle text-dark"></i>
         </div>
         <div className="col-auto">
-          <p className="my-2">Click on an entry for more details</p>
+          <p className="my-2 text-dark">Click on an entry for more details</p>
         </div>
       </div>
     </React.Fragment>

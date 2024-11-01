@@ -1,5 +1,10 @@
 import React from "react";
 
+{ /*
+    Filename:    Identification.js
+    Description: This component is the second part of registering a client.
+*/ }
+
 function BasicInfo({onClickBack, onClickContinue}) {
     return (
         <React.Fragment>
