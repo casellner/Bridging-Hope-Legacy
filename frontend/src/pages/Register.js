@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -8,7 +8,10 @@ import axios from 'axios';
 */ }
 
 const Register = () => {
-  window.scrollTo(0, 0); // scroll to top of page
+  useEffect(() => { // Code to run only on first page load
+    window.scrollTo(0, 0); // scroll to top of page
+  }, []);
+  
   const url = 'https://bridginghope.life/api/register';
   const navigate = useNavigate();
 
