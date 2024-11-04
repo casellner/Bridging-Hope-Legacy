@@ -28,25 +28,20 @@ function validatePassword(strPassword, strHash){
     return bcrypt.compareSync(strPassword, strHash);
 }
   
-  //delete unwanted characters
+//delete unwanted characters
 function clean(str) {
     return str.replace(/[^0-9a-zA-Z_\-@.\s]/gi, "");
-}   
-app.get('/', () => {
-    console.log("hiya")
-});
+}
 
 app.post("/api/signin", (req, res) => {
-    console.log("entered sign in function")
     const { username, password } = req.body;
-    console.log("received", username, " ", password)
 
     if (!username || !password) {
         return res.status(400).json({ message: 'Username and password are required' });
     }
-    console.log("attempting to connect to database")
+
     pool.getConnection().then(connection => {
-        console.log("connected to database")
+        //query that checks to see if user exits
         let query = 'SELECT userID, password FROM tblUser WHERE username = ?';
         connection.execute(query, [username])
         .then(results => {
@@ -56,38 +51,36 @@ app.post("/api/signin", (req, res) => {
                     console.log('Logged in successfully')
                     res.json({ message: 'Logged in successfully', userId: user.UserID });
                 } else {
-                    console.log('Invalid credentials')
-                    res.status(401).json({ message: 'Invalid credentials' });
+                    console.log('Incorrect password')
+                    res.status(401).json({ message: 'Incorrect password' });
                 }
             } else {
-                console.log('User not found')
-                res.status(404).json({ message: 'User not found' });
+                console.log('User does not exist')
+                res.status(404).json({ message: 'User does not exist' });
             }
         }).catch(err => {
-            console.error("Error retrieving user", err);
-            res.status(500).json({ status: "error", message: "Error retrieving user" });
+            console.error("User does not exist", err);
+            res.status(500).json({ status: "error", message: "User does not exist" });
         }).finally(() => {
             connection.release();
         });
+        
     }).catch(err => {
         console.error("Error connecting to the database", err);
         res.status(500).json({ status: "error", message: "Error connecting to the database" });
     });
 });
 
-//BE SURE TO ADD A FOREIGN KEY 'orgID' REFERNCING 'tblOrganization' TO 'tblClient' OR THIS WILL NOT WORK!!
 app.post("/api/register", (req, res) => {
-    console.log("entered register function")
     const { username, password, firstName, lastName, organization } = req.body;
 
-    // Validate input
+    //rejects the input if user didn't fill all fields
     if (!username || !password || !firstName || !lastName || !organization) {
         return res.status(400).json({ message: 'All fields are required!' });
     }
-    console.log("attempting to connect to database")
+
     pool.getConnection().then(connection => {
-        // Check if username already exists
-        console.log("checking user info")
+        //Checks to see if username already exists
         let query = 'SELECT username FROM tblUser WHERE username = ?';
         connection.execute(query, [username])
         .then(results => {
@@ -95,38 +88,48 @@ app.post("/api/register", (req, res) => {
                 console.log('Username already exists');
                 res.status(409).json({ message: 'Username already exists' });
             } else {
-                // Hash password and insert new user
-                const hashedPassword = hashPassword(password);
-                const newUserID = uuidv4();
-                const newClientID = uuidv4();
+                const hashedPassword = hashPassword(password); //hashes user password
+                const newUserID = uuidv4(); //creates a new uuid for the user
+                const newVolunteerID = uuidv4(); //creates a new uuid for the volunteer
                 
+                //this query is for inserting a new user into table
                 query = 'INSERT INTO tblUser (userID, username, password) VALUES (?, ?, ?)';
                 connection.execute(query, [newUserID, username, hashedPassword])
                 .then(result => {
-                    const userId = result.insertId.toString(); // Convert BigInt to Number
                     console.log('User registered successfully');
                 }).catch(err => {
-                    console.error("Error inserting user", err);
+                    console.error("Error registering user", err);
                     res.status(500).json({ message: 'Error registering user' });
                 });
+                
+                //nested set of queries for linking organization and a new volunteer
                 query = 'SELECT orgID FROM tblOrganization WHERE orgName = (?)';
                 connection.execute(query, [organization])
                 .then(result => {
-                    const orgID = result[0].orgID; //sets the orgID const
-                    console.log(orgID)
-                    query = 'INSERT INTO tblClient (clientID, firstName, lastName, userID, orgID) VALUES (?,?,?,?,?)';
-                    connection.execute(query, [newClientID, firstName, lastName, newUserID, orgID])
+                    const orgID = result[0].orgID; //sets the orgID const based on what organization the user selected
+                    //creates the new volunteer based on the info the user entered
+                    query = 'INSERT INTO tblVolunteer (volunteerID, firstName, lastName, userID) VALUES (?,?,?,?)';
+                    connection.execute(query, [newVolunteerID, firstName, lastName, newUserID])
                         .then(result => {
-                            const userId = result.insertId.toString(); // Convert BigInt to Number
-                            console.log('Client registered successfully');
-                            res.status(201).json({ message: 'User registered successfully', userId });
-                    }).catch(err => {
-                        console.error("Error inserting user", err);
-                        res.status(500).json({ message: 'Error registering user' });
-                    });
+                            const volunteerID = result.insertId.toString(); // Convert BigInt to Number
+                            console.log('Volunteer registered successfully');
+                            res.status(201).json({ message: 'Volunteer registered successfully', volunteerID });
+                                //this query linked the volunteer to their selected orgnization
+                                query = 'INSERT INTO tblVolunteerOrgList (volunteerID, orgID, isActive) VALUES (?,?,?)';
+                                connection.execute(query, [newVolunteerID, orgID, true])
+                                .then(result => { 
+                                    console.log('volunteer linked successfully');
+                                }).catch(err => {
+                                    console.error("Error linking volunteer", err);
+                                    res.status(500).json({ message: 'Error linking volunteer' });
+                                });
+                        }).catch(err => {
+                            console.error("Error registering volunteer", err);
+                            res.status(500).json({ message: 'Error registering volunteer' });
+                        });
                 }).catch(err => {
-                    console.error("Error inserting user", err);
-                    res.status(500).json({ message: 'Error registering user' });
+                    console.error("Error finding organization", err);
+                    res.status(500).json({ message: 'Error finding organization' });
                 });
             }
         }).catch(err => {
@@ -135,6 +138,7 @@ app.post("/api/register", (req, res) => {
         }).finally(() => {
             connection.release();
         });
+
     }).catch(err => {
         console.error("Error connecting to the database", err);
         res.status(500).json({ message: 'Error connecting to the database' });
