@@ -78,6 +78,10 @@ const Register = () => {
               <label htmlFor="lastName" className="form-label mt-2">Last Name</label>
               <input id="lastName" type="text" placeholder="Doe" className="form-control" value={formData.lastName} onChange={handleChange} />
 
+              { /* email */ }
+              <label htmlFor="email" className="form-label mt-5">Email</label>
+              <input id="email" type="email" placeholder="jdoe@email.com" className="form-control" />
+
               { /* organization */}
               <label htmlFor="organization" className="form-label mt-5">Choose your organization</label>
               <select id="organization" className="form-select" value={formData.organization} onChange={handleChange}>

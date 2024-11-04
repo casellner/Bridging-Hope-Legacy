@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from 'react-router-dom';
 
 //imports for content (search client, register client, etc.)
-import InfoPopup from '../dashboardContent/InfoPopup';
 import SearchClient from '../dashboardContent/SearchClient';
 import RegisterClient from '../dashboardContent/RegisterClient';
 import SwitchOrganization from "../dashboardContent/organizationContent/SwitchOrganization";
@@ -18,7 +17,7 @@ import ViewOrganizations from "../dashboardContent/ViewOrganizations";
 
 const Landing = () => {
   //constants that determine which content is displayed
-  const [contentOpen, setContentOpen] = React.useState("info");
+  const [contentOpen, setContentOpen] = React.useState("search"); //default is client search
 
   const [sidebarExpanded, setSidebarExpanded] = React.useState(true);
 
