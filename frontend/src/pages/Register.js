@@ -8,17 +8,17 @@ import axios from 'axios';
 */ }
 
 const Register = () => {
-    window.scrollTo(0, 0); // scroll to top of page
-    const url = 'https://bridginghope.life/api/register';  
-    const navigate = useNavigate();
+  window.scrollTo(0, 0); // scroll to top of page
+  const url = 'https://bridginghope.life/api/register';
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-      username: '',
-      password: '',
-      confirmPassword: '',
-      firstName: '',
-      lastName: '',
-      organization: ''
+    username: '',
+    password: '',
+    confirmPassword: '',
+    firstName: '',
+    lastName: '',
+    organization: ''
   });
 
   const [errors, setErrors] = useState({
@@ -37,22 +37,22 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
-        setErrors({ message: 'Passwords do not match' });
-        return;
+      setErrors({ message: 'Passwords do not match' });
+      return;
     }
     try {
-        await axios.post(url, formData);
-        setShowSuccessModal(true); // Show success modal
+      await axios.post(url, formData);
+      setShowSuccessModal(true); // Show success modal
     } catch (error) {
-        const errorMessage = error.response?.data?.message || 'Error registering user';
-        setErrors({ message: errorMessage });
-        alert("Registration Failed");
+      const errorMessage = error.response?.data?.message || 'Error registering user';
+      setErrors({ message: errorMessage });
+      alert("Registration Failed");
     }
   };
 
   const handleCloseModal = () => {
-      setShowSuccessModal(false);
-      navigate('/dashboard'); // Redirect to dashboard
+    setShowSuccessModal(false);
+    navigate('/dashboard'); // Redirect to dashboard
   };
 
   return (
@@ -78,7 +78,7 @@ const Register = () => {
               <label htmlFor="lastName" className="form-label mt-2">Last Name</label>
               <input id="lastName" type="text" placeholder="Doe" className="form-control" value={formData.lastName} onChange={handleChange} />
 
-              { /* email */ }
+              { /* email */}
               <label htmlFor="email" className="form-label mt-5">Email</label>
               <input id="email" type="email" placeholder="jdoe@email.com" className="form-control" />
 
