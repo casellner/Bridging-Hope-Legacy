@@ -72,29 +72,29 @@ app.post("/api/signin", (req, res) => {
 });
 
 app.post("/api/register", (req, res) => {
-    const { username, password, firstName, lastName, organization } = req.body;
+    const { username, email, password, firstName, lastName, organization } = req.body;
 
     //rejects the input if user didn't fill all fields
-    if (!username || !password || !firstName || !lastName || !organization) {
+    if (!username || !email || !password || !firstName || !lastName || !organization) {
         return res.status(400).json({ message: 'All fields are required!' });
     }
 
     pool.getConnection().then(connection => {
         //Checks to see if username already exists
-        let query = 'SELECT username FROM tblUser WHERE username = ?';
+        let query = 'SELECT username, email FROM tblUser WHERE username = ?';
         connection.execute(query, [username])
         .then(results => {
             if (results.length > 0) {
-                console.log('Username already exists');
-                res.status(409).json({ message: 'Username already exists' });
+                console.log('Username or email already exists');
+                res.status(409).json({ message: 'Username or email already exists' });
             } else {
                 const hashedPassword = hashPassword(password); //hashes user password
                 const newUserID = uuidv4(); //creates a new uuid for the user
                 const newVolunteerID = uuidv4(); //creates a new uuid for the volunteer
                 
                 //this query is for inserting a new user into table
-                query = 'INSERT INTO tblUser (userID, username, password) VALUES (?, ?, ?)';
-                connection.execute(query, [newUserID, username, hashedPassword])
+                query = 'INSERT INTO tblUser (userID, username, email, password) VALUES (?, ?, ?, ?)';
+                connection.execute(query, [newUserID, username, email, hashedPassword])
                 .then(result => {
                     console.log('User registered successfully');
                 }).catch(err => {
