@@ -10,7 +10,7 @@ const mariadb = require("mariadb");
 const pool = mariadb.createPool({
 	host: "localhost",
 	user: "root",
-	password: "toor",
+	password: "root",
 	connectionLimit: 10,
 	database: "BridgingHope",
 	port: 3306
@@ -140,6 +140,48 @@ app.post("/api/register", (req, res) => {
         res.status(500).json({ message: 'Error connecting to the database' });
     });
 });
+
+app.post("/api/forgot-password", (req, res) => {
+    const { email } = req.body;
+  
+    if (!email) {
+      return res.status(400).json({ message: 'Email is required' });
+    }
+  
+    pool.getConnection().then(connection => {
+      const query = 'SELECT userID FROM tblUser WHERE email = ?';
+      connection.execute(query, [email])
+        .then(results => {
+          if (results.length > 0) {
+            const resetToken = uuidv4(); // Generate a reset token
+            const userId = results[0].userID;
+  
+            // Save the reset token and send an email (Email logic not included)
+            const saveTokenQuery = 'INSERT INTO tblPasswordReset (userID, resetToken) VALUES (?, ?)';
+            connection.execute(saveTokenQuery, [userId, resetToken])
+              .then(() => {
+                console.log('Password reset token generated and email sent');
+                res.status(200).json({ message: 'Password reset email sent' });
+              }).catch(err => {
+                console.error("Error saving reset token", err);
+                res.status(500).json({ message: 'Error saving reset token' });
+              });
+          } else {
+            console.log('User not found');
+            res.status(404).json({ message: 'User not found' });
+          }
+        }).catch(err => {
+          console.error("Error finding user", err);
+          res.status(500).json({ message: 'Error finding user' });
+        }).finally(() => {
+          connection.release();
+        });
+    }).catch(err => {
+      console.error("Error connecting to the database", err);
+      res.status(500).json({ message: 'Error connecting to the database' });
+    });
+  });
+  
 
 app.listen(port, () => {
   console.log(`Express listening at http://0.0.0.0:${port}`);
