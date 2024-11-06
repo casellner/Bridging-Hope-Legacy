@@ -9,8 +9,8 @@ import axios from 'axios';
 
 const Register = () => {
     window.scrollTo(0, 0); // scroll to top of page
-    const url = 'https://bridginghope.life/api/register';  
-    const navigate = useNavigate();
+    const url = 'https://192.168.99.84:4433/register';  // 'https://bridginghope.life/api/register'
+    const navigate = useNavigate(); 
 
   const [formData, setFormData] = useState({
       username: '',
