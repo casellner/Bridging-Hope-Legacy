@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from 'react-router-dom';
 import ClientMap from "./../ClientMap.tsx";
 
@@ -8,7 +8,9 @@ import ClientMap from "./../ClientMap.tsx";
 */ }
 
 const ClientHelp = () => {
-  window.scrollTo(0, 0); // scroll to top of page
+  useEffect(() => { // Code to run only on first page load
+    window.scrollTo(0, 0); // scroll to top of page
+  }, []);
 
   let newDate = new Date();
   let year = newDate.getFullYear();
