@@ -10,10 +10,11 @@ import axios from 'axios';
 const Register = () => {
   useEffect(() => { // Code to run only on first page load
     window.scrollTo(0, 0); // scroll to top of page
-    const url = 'https://bridginghope.life/api/register'; 
-    //const url = 'http://localhost:4433/api/register';  //uncomment for local testing
-    const navigate = useNavigate();
   }, []);
+
+  const url = 'https://bridginghope.life/api/register'; 
+  //const url = 'http://localhost:4433/api/register';  //uncomment for local testing
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
       username: '',
