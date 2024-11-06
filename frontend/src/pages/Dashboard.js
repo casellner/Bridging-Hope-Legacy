@@ -50,9 +50,7 @@ const Landing = () => {
 
   //content to be displayed (client search, register client, organization, etc.)
   let content;
-  if (contentOpen === "info") {
-    content = <InfoPopup />;
-  } else if (contentOpen === "search") {
+  if (contentOpen === "search") {
     content = <SearchClient />;
   } else if (contentOpen === "register") {
     content = <RegisterClient />;
