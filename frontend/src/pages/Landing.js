@@ -123,7 +123,7 @@ const Landing = () => {
 
         {/* Developed and maintained with love */}
         <div className="col-12 row mb-5 justify-content-center">
-          <p className="text-primary text-center">Developed and maintained with<i className="bi bi-heart-fill ms-2 me-2 text-info"></i>by Business Information Technology and Computer Science students at Tennessee Technological University</p>
+          <p className="text-center">Developed and maintained with<i className="bi bi-heart-fill ms-2 me-2 text-info"></i>by Business Information Technology and Computer Science students at Tennessee Technological University</p>
         </div>
 
         {/* footer */}
