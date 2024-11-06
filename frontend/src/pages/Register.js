@@ -69,7 +69,7 @@ const Register = () => {
               <img src="images/BridgingHopeWord.svg" className="img-fluid" alt="logo" style={{ maxWidth: "50%" }} />
             </div>
             <form className="mt-5" onSubmit={handleSubmit}> { /* these columns could be adjusted for different screen sizes */}
-              { /* username and password */}
+              { /* username, email, and password */}
               <label htmlFor="username" className="form-label mt-2">Username</label>
               <input id="username" type="text" placeholder="johndoe" className="form-control" value={formData.username} onChange={handleChange} />
               <label htmlFor="email" className="form-label mt-2">Email</label>
@@ -84,10 +84,6 @@ const Register = () => {
               <input id="firstName" type="text" placeholder="John" className="form-control" value={formData.firstName} onChange={handleChange} />
               <label htmlFor="lastName" className="form-label mt-2">Last Name</label>
               <input id="lastName" type="text" placeholder="Doe" className="form-control" value={formData.lastName} onChange={handleChange} />
-
-              { /* email */}
-              <label htmlFor="email" className="form-label mt-5">Email</label>
-              <input id="email" type="email" placeholder="jdoe@email.com" className="form-control" />
 
               { /* organization */}
               <label htmlFor="organization" className="form-label mt-5">Choose your organization</label>
