@@ -4,7 +4,6 @@ import React, { useCallback, useState } from 'react';
 import {
   APIProvider,
   Map,
-  MapCameraChangedEvent,
   AdvancedMarker,
   Pin,
   InfoWindow,
@@ -12,13 +11,6 @@ import {
   AdvancedMarkerProps,
   AdvancedMarkerAnchorPoint
 } from '@vis.gl/react-google-maps';
-
-type Poi={key: string, location: google.maps.LatLngLiteral, description: string};
-const locations: Poi[] = [
-  {key: 'CookevilleRescueMission', location: {lat: 36.126104072519304, lng: -85.50700598196516}, description: 'Cookeville Rescue Mission'},
-  {key: 'LifeChurch', location: {lat: 36.19121147075565, lng: -85.49167830894544}, description: 'Life Church'},
-  {key: 'CookevilleFirstBaptist', location: {lat: 36.1626903747245, lng: -85.50597237724672}, description: 'Cookeville First Baptist Church'},
-];
 
 const data = getData()
   .sort((a, b) => b.position.lat - a.position.lat)
@@ -33,7 +25,6 @@ const ClientMap = () => {
   const [hoverId, setHoverId] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
-  const [anchorPoint, setAnchorPoint] = useState('BOTTOM' as AnchorPointName);
   const [selectedMarker, setSelectedMarker] =
     useState<google.maps.marker.AdvancedMarkerElement | null>(null);
   const [infoWindowShown, setInfoWindowShown] = useState(false);
@@ -57,18 +48,37 @@ const ClientMap = () => {
     [selectedId]
   );
 
+  const onMapClick = useCallback(() => {
+    setSelectedId(null);
+    setSelectedMarker(null);
+    setInfoWindowShown(false);
+  }, []);
+
+  const handleInfowindowCloseClick = useCallback(
+    () => setInfoWindowShown(false),
+    []
+  );
+
   return(
     <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY} onLoad={() => console.log('Maps API has loaded.')}>
       <Map
         defaultZoom={12}
         defaultCenter={{lat: 36.162839, lng: -85.5016423}}
         mapId='44349268b190049a'
-        onCameraChanged={ (ev: MapCameraChangedEvent) =>
-          console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)
-        }>
+        onClick={onMapClick}
+        clickableIcons={false}
+        disableDefaultUI>
         {/* <PoiMarkers pois={locations} /> */}
-        {markers.map(({id, zIndex: zIndexDefault, position, type}) => {
+        {markers.map(({id, zIndex: zIndexDefault, position}) => {
           let zIndex = zIndexDefault;
+
+          if (hoverId === id) {
+            zIndex = Z_INDEX_HOVER;
+          }
+
+          if (selectedId === id) {
+            zIndex = Z_INDEX_SELECTED;
+          }
 
           return (
             <AdvancedMarkerWithRef
@@ -93,39 +103,20 @@ const ClientMap = () => {
             </AdvancedMarkerWithRef>
           );
         })}
+
+        {infoWindowShown && selectedMarker && (
+          <InfoWindow
+            anchor={selectedMarker}
+            pixelOffset={[0, -2]}
+            onCloseClick={handleInfowindowCloseClick}>
+            <h2>Marker {selectedId}</h2>
+            <p>Some arbitrary html to be rendered into the InfoWindow.</p>
+          </InfoWindow>
+        )}
       </Map>
     </APIProvider>
   );
 }
-
-const PoiMarkers = (props: {pois: Poi[]}) => {
-  const [infowindowOpen, setInfowindowOpen] = useState(true);
-  const [markerRef, marker] = useAdvancedMarkerRef();
-
-  return (
-    <>
-      {props.pois.map( (poi: Poi) => (
-        <AdvancedMarker
-          key={poi.key}
-          position={poi.location}
-          //title={poi.key}
-          clickable={true}
-          ref={markerRef}
-          onClick={() => setInfowindowOpen(true)}>
-          {infowindowOpen && (
-            <InfoWindow
-              anchor={marker}
-              maxWidth={200}
-              onCloseClick={() => setInfowindowOpen(false)}>
-              {poi.description}
-            </InfoWindow>
-          )}
-          <Pin background={'#FBBC04'} glyphColor={'#000'} borderColor={'#000'} />
-        </AdvancedMarker>
-      ))}
-    </>
-  );
-};
 
 const AdvancedMarkerWithRef = (
   props: AdvancedMarkerProps & {
