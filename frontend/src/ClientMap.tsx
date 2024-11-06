@@ -140,27 +140,34 @@ const AdvancedMarkerWithRef = (
   );
 };
 
+// This type is used to define the data for the markers on the map
 type MarkerData = Array<{
   id: string;
+  name: string;
   position: google.maps.LatLngLiteral;
   zIndex: number;
 }>;
 
+/* function: getData
+   purpose:  This function returns an array of locations where clients can get aid */
 function getData() {
   const data: MarkerData = [];
 
   data.push({
     id: '0',
+    name: 'Cookeville Rescue Mission',
     position: {lat: 36.126104072519304, lng: -85.50700598196516},
     zIndex: 0,
   });
   data.push({
     id: '1',
+    name: 'TODO',
     position: {lat: 36.19121147075565, lng: -85.49167830894544},
     zIndex: 0,
   });
   data.push({
     id: '2',
+    name: 'TODO',
     position: {lat: 36.1626903747245, lng: -85.50597237724672},
     zIndex: 0
   });
