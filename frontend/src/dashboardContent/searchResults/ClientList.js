@@ -83,7 +83,7 @@ function ClientList({onSelect}) {
           className="form-control mb-2"
         />
           { /*Search button */ }
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
             Search
           </button>
       </form>

@@ -1,13 +1,11 @@
-CHANGELOG:
+# Changlog
 
-**Vesrion x.x.x**
-- 11/7/2024
-- Updated ClientList.js to also use DOB, email, and phone to pull the first and last name
+## [Unreleased]
 
-**Version x.x.x**
-- 11/7/2024
-- Updated ClientList.js to pull data from the database
+### Added
+- Client Search API
 
-**Version x.x.x**
-- 11/6/2024
-- Added Client Search API
+### Changed
+- Turned ClientList.js from static to dynamic
+
+[Unreleased]: https://github.com/tntechcsc/BridgingHope
