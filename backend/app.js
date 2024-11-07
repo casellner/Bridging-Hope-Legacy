@@ -145,7 +145,7 @@ app.post("/api/register", (req, res) => {
 app.get("/api/clientSearch", (req, res) => {
     //Gets Parameters
     console.log("entered search function")
-    const { sessionID, firstName, lastName } = req.body;
+    const { sessionID, firstName, lastName, DOB, email, phone } = req.body;
     console.log("received:", sessionID, " ", firstName, " ", lastName)
 
     //Checks for sessionID
@@ -154,8 +154,8 @@ app.get("/api/clientSearch", (req, res) => {
     }
 
     //Checks for first name or last name
-    if (!firstName && !lastName) {
-        return res.status(400).json({ message: 'At least first name or last name is required' });
+    if (!firstName && !lastName && !DOB && !email && !phone) {
+        return res.status(400).json({ message: 'At least first name, last name, DOB, email, or phone is required' });
     }
 
     //Connects to database
@@ -163,20 +163,34 @@ app.get("/api/clientSearch", (req, res) => {
     pool.getConnection().then(connection => {
         console.log("connected to database")
         
-        let query;
+        let query = 'SELECT  FROM tblClient WHERE ';
         const params = [];
 
         //Creates the quey based on the parameters
-        if (firstName && lastName) {
-            query = 'SELECT * FROM tblClient WHERE firstname = ? AND lastname = ?';
-            params.push(firstName, lastName);
-        } else if (firstName) {
-            query = 'SELECT * FROM tblClient WHERE firstname = ?';
+        if (firstName) {
+            query += 'firstname = ? AND ';
             params.push(firstName);
-        } else {
-            query = 'SELECT * FROM tblClient WHERE lastname = ?';
+        }
+        if (lastName) {
+            query += 'lastname = ? AND ';
             params.push(lastName);
         }
+        if (DOB) {
+            query += 'DOB = ? AND ';
+            params.push(DOB);
+        }
+        if (phone) {
+            query += 'phone = ? AND ';
+            params.push(phone);
+        }
+        if (email) {
+            query += 'email = ? AND ';
+            params.push(email);
+        }
+
+        //Removes the last 'AND'
+        query = query.slice(0, -4);
+
 
         //Executes the query
         connection.execute(query, params)

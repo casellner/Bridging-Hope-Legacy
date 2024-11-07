@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 { /*
@@ -10,7 +10,10 @@ function ClientList({onSelect}) {
   //Sets the array of clients, firstName, lastName, and error to initial values
   const [clients, setClients] = useState([]);
   const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState(""); 
+  const [lastName, setLastName] = useState("");
+  const [dob, setDOB] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [error, setError] = useState(null);
 
   //Fetches the clients from the database
@@ -18,7 +21,7 @@ function ClientList({onSelect}) {
     try {
       setError(null); //Clears the error
       const { data } = await axios.get("/api/clientSearch", { 
-        params: { firstName, lastName } 
+        params: { firstName, lastName, dob, phone, email } 
       });
       setClients(data.client); //Sets the clients to the data received
     } catch (error) {
@@ -39,7 +42,7 @@ function ClientList({onSelect}) {
     <React.Fragment>
       //Allows the user to enter criteia
       <form onSubmit={handleSearch} className="mb-3">
-        //First name input
+        {/* First name input */}
         <input
           type="text"
           placeholder="First Name"
@@ -47,7 +50,7 @@ function ClientList({onSelect}) {
           onChange={(event) => setFirstName(event.target.value)}
           className="form-control mb-2"
         />
-        //last name input
+        { /*last name input*/ }
         <input
           type="text"
           placeholder="Last Name"
@@ -55,14 +58,40 @@ function ClientList({onSelect}) {
           onChange={(event) => setLastName(event.target.value)}
           className="form-control mb-2"
           />
-          //Search button
-          <button type="submit" className="btn btn-primary">Search</button>
+        { /*Date of Birth input*/ }
+        <input
+          type="date"
+          placeholder="Date of Birth"
+          value={dob}
+          onChange={(event) => setDOB(event.target.value)}
+          className="form-control mb-2"
+        />
+        { /*Phone input*/ }
+        <input
+          type="tel"
+          placeholder="Phone"
+          value={phone}
+          onChange={(event) => setPhone(event.target.value)}
+          className="form-control mb-2"
+        />
+        { /*Email input*/ }
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+          className="form-control mb-2"
+        />
+          { /*Search button */ }
+          <button type="submit" className="btn btn-primary">
+            Search
+          </button>
       </form>
 
-      //Displays an error message if there is an error
+      { /*Displays an error message if there is an error*/ }
       {error && <p className="text-danger">{error}</p>}
 
-      //Rednering the list of clients
+      { /*Rednering the list of clients*/ }
       <ul className="list-group">
         {clients.map((client, index) => (
           <li key={index} className="list-group-item">
