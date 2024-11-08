@@ -13,7 +13,7 @@ import {
 } from '@vis.gl/react-google-maps';
 
 const data = getData()
-  .sort((a, b) => b.position.lat - a.position.lat)
+  /* .sort((a, b) => b.position.lat - a.position.lat) */ // Sort by latitude (this messes up the array, but I am keeping the code here for reference)
   .map((dataItem, index) => ({...dataItem, zIndex: index}));
 
 const Z_INDEX_SELECTED = data.length;
@@ -68,7 +68,6 @@ const ClientMap = () => {
         onClick={onMapClick}
         clickableIcons={false}
         disableDefaultUI>
-        {/* <PoiMarkers pois={locations} /> */}
         {markers.map(({id, zIndex: zIndexDefault, position}) => {
           let zIndex = zIndexDefault;
 
@@ -109,8 +108,9 @@ const ClientMap = () => {
             anchor={selectedMarker}
             pixelOffset={[0, -2]}
             onCloseClick={handleInfowindowCloseClick}>
-            <h2>Marker {selectedId}</h2>
-            <p>Some arbitrary html to be rendered into the InfoWindow.</p>
+            <h2>{markers[Number(selectedId)].name}</h2>
+            <p>selectedID: {selectedId}</p>
+            <p>{markers[Number(selectedId)].description}</p>
           </InfoWindow>
         )}
       </Map>
@@ -144,6 +144,7 @@ const AdvancedMarkerWithRef = (
 type MarkerData = Array<{
   id: string;
   name: string;
+  description: string;
   position: google.maps.LatLngLiteral;
   zIndex: number;
 }>;
@@ -151,26 +152,35 @@ type MarkerData = Array<{
 /* function: getData
    purpose:  This function returns an array of locations where clients can get aid */
 function getData() {
-  const data: MarkerData = [];
-
-  data.push({
-    id: '0',
-    name: 'Cookeville Rescue Mission',
-    position: {lat: 36.126104072519304, lng: -85.50700598196516},
-    zIndex: 0,
-  });
-  data.push({
-    id: '1',
-    name: 'TODO',
-    position: {lat: 36.19121147075565, lng: -85.49167830894544},
-    zIndex: 0,
-  });
-  data.push({
-    id: '2',
-    name: 'TODO',
-    position: {lat: 36.1626903747245, lng: -85.50597237724672},
-    zIndex: 0
-  });
+  const data: MarkerData = [
+    {
+      id: '0',
+      name: 'Cookeville Rescue Mission',
+      description:'Cookeville Rescue Mission offers temporary emergency shelter to anyone who has need of it. ' +
+                  'In addition to Emergency Shelter, we provide a long-term transitional program for men, women, ' +
+                  'and families who are seeking to enrich their lives and break the cycle of homelessness. ' +
+                  'Residents attend Life Recovery Groups to help them overcome the crushing weight of chemical dependence ' +
+                  'and other life controlling habits. ' +
+                  'Families and individuals receive food boxes that are prepared with donations received from local foodbanks, ' +
+                  'and donations from individuals, churches, businesses, and civic groups.',
+      position: {lat: 36.126104072519304, lng: -85.50700598196516},
+      zIndex: 0
+    },
+    {
+      id: '1',
+      name: 'Life Church',
+      description: 'TODO: Add description',
+      position: {lat: 36.19121147075565, lng: -85.49167830894544},
+      zIndex: 0
+    },
+    {
+      id: '2',
+      name: 'Cookeville First Baptist Church',
+      description: 'TODO: Add description',
+      position: {lat: 36.1626903747245, lng: -85.50597237724672},
+      zIndex: 0
+    }
+  ];
 
   return data;
 }
