@@ -40,8 +40,8 @@ function ClientList({onSelect}) {
   return (
     //Allows us to return multiple elements
     <React.Fragment>
-      //Allows the user to enter criteia
-      <form onSubmit={handleSearch} className="mb-3">
+      {/*Allows the user to enter criteia*/}
+      <form onSubmit={handleSubmit} className="mb-3">
         {/* First name input */}
         <input
           type="text"
