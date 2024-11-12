@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState}  from "react";
 import axios from "axios";
 import SearchForm from "./searchResults/SearchForm";
 import SearchInstructions from "./searchResults/SearchInstructions";
@@ -20,7 +20,7 @@ function SearchClient() {
   let left;
   let right;
   
-  async function handleSearchClient() {
+  async function handleSearchClient(searchParams) {
     setInstructionsIsOpen(false);
 
     try {
