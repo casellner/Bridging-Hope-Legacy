@@ -1,5 +1,5 @@
 import React from "react";
-
+import axios from "axios";
 import SearchForm from "./searchResults/SearchForm";
 import SearchInstructions from "./searchResults/SearchInstructions";
 import ClientList from "./searchResults/ClientList";
@@ -14,29 +14,41 @@ import HouseholdAidHistory from "./searchResults/HouseholdAidHistory";
 function SearchClient() {
   const [instructionsIsOpen, setInstructionsIsOpen] = React.useState(true);
   const [clientInfoIsOpen, setClientInfoIsOpen] = React.useState(false);
+  const [clients, setClients] = React.useState([]);
+  const [selectedClient, setSelectedClient] = React.useState(null);
 
   let left;
   let right;
   
-  function handleSearchClient() {
+  async function handleSearchClient() {
     setInstructionsIsOpen(false);
+
+    try {
+      const response = await axios.get("/api/clientSearch", { params: searchParams });
+      setClients(response.data.clients);
+    } catch (error) {
+      console.error("Error fetching clients", error);
+    }
   }
-  function handleSelectClient() {
+
+  function handleSelectClient(client) {
+    setSelectedClient(client);
     setClientInfoIsOpen(true);
   }
   function handleBackToSearch() {
     setClientInfoIsOpen(false);
+    setSelectedClient(null);
   }
 
   if (instructionsIsOpen) {
     left = <SearchForm onSearch={handleSearchClient} />;
     right = <SearchInstructions />;
   } else if (clientInfoIsOpen) {
-    left = <ClientView onBack={handleBackToSearch} /> 
-    right = <HouseholdAidHistory />;
+    left = <ClientView client={selectedClient} onBack={handleBackToSearch} /> 
+    right = <HouseholdAidHistory client={selectedClient}/>;
   } else {
     left = <SearchForm onSearch={handleSearchClient} />;
-    right = <ClientList onSelect={handleSelectClient} />;
+    right = <ClientList clients={clients} onSelect={handleSelectClient} />;
   }
   
   return (

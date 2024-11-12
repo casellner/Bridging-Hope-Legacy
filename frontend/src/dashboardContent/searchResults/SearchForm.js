@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 { /*
     Filename:    SearchForm.js
@@ -7,6 +7,16 @@ import React from 'react';
   */ }
 
 function SearchForm({onSearch}) {
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [DOB, setDOB] = useState("");
+    const [phone, setPhone] = useState("");
+    const [email, setEmail] = useState("");
+
+    const handleSearchClick = () => {
+        onSearch({ firstName, lastName, DOB, phone, email });
+    };
+
     return (
         <React.Fragment>
             {/* Search fields */}
@@ -14,21 +24,21 @@ function SearchForm({onSearch}) {
                 <div className="row mx-3">
                     <div className="col">
                         <label for="txtFirstName" className="form-label mt-2">First name</label>
-                        <input id="txtFirstName" type="text" placeholder="John" className="form-control" />
+                        <input id="txtFirstName" type="text" placeholder="John" className="form-control" value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
                     </div>
                     <div className="col">
                         <label for="txtLastName" className="form-label mt-2">Last name</label>
-                        <input id="txtLastName" type="text" placeholder="Doe" className="form-control" />
+                        <input id="txtLastName" type="text" placeholder="Doe" className="form-control" value={lastName} onChange={(e) => setLastName(e.target.value)}/>
                     </div>
                 </div>
                 <div className="row mx-3">
                     <div className="col">
                         <label for="txtDOB" className="form-label mt-2">Date of Birth</label>
-                        <input id="txtDOB" type="date" className="form-control" />
+                        <input id="txtDOB" type="date" className="form-control" value={DOB} onChange={(e => setDOB(e.target.value))} />
                     </div>
                     <div className="col">
                         <label for="txtPhone" className="form-label mt-2">Phone</label>
-                        <input id="txtPhone" type="tel" placeholder="(555) 123-4567" className="form-control" />
+                        <input id="txtPhone" type="tel" placeholder="(555) 123-4567" className="form-control" value={phone} onChange={(e) => setPhone(e.target.value)}/>
                     </div>
                 </div>
 
@@ -52,10 +62,10 @@ function SearchForm({onSearch}) {
                 <div className="row mb-3 mx-3">
                     <div className="col">
                         <label for="txtEmail" className="form-label mt-2">Email</label>
-                        <input id="txtEmail" type="email" placeholder="jdoe@email.com" className="form-control" />
+                        <input id="txtEmail" type="email" placeholder="jdoe@email.com" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)}/>
                     </div>
                     <div className="col align-self-end">
-                        <button type="button" className="btn btn-success" onClick={onSearch}>Search</button>
+                        <button type="button" className="btn btn-success" onClick={handleSearchClick}>Search</button>
                     </div>
                 </div>
             </form>
