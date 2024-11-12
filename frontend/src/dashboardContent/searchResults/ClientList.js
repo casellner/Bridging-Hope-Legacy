@@ -9,7 +9,7 @@ function ClientList({ clients, onSelect }) {
   return (
     <React.Fragment>
       <ul className="list-group">
-        {clients.map((client, index) => (
+        {clients.map((client) => (
           <li key={client.id} className="list-group-item">
             <div className="row">
               <div className="col-2">
