@@ -1,3 +1,7 @@
+//Filename: ClientMap.tsx
+//Purpose: This file contains the code for the ClientMap component.
+//         It is a map of locations where clients can get aid.
+
 import React, { useEffect, useCallback, useState } from 'react';
 
 //Google Maps imports
