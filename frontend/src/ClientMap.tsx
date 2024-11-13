@@ -21,7 +21,17 @@ const data = getData()
 const Z_INDEX_SELECTED = data.length;
 const Z_INDEX_HOVER = data.length + 1;
 
+let origin = '1 William L Jones Dr, Cookeville, TN 38505';
+let destination = '';
+
 const ClientMap = () => {
+  const [directionsVisible, setDirectionsVisible] = useState(false);
+
+  function handleDirectionsClick(address: string) {
+    destination = address;
+    setDirectionsVisible(true);
+  }
+
   const [markers] = useState(data);
 
   const [hoverId, setHoverId] = useState<string | null>(null);
@@ -82,7 +92,8 @@ const ClientMap = () => {
           }
 
           return (
-            <AdvancedMarkerWithRef
+            <>
+            {directionsVisible ? null : <AdvancedMarkerWithRef
               onMarkerClick={(
                 marker: google.maps.marker.AdvancedMarkerElement
               ) => onMarkerClick(id, marker)}
@@ -101,7 +112,8 @@ const ClientMap = () => {
                 borderColor={selectedId === id ? '#1e89a1' : null}
                 glyphColor={selectedId === id ? '#0f677a' : null}
               />
-            </AdvancedMarkerWithRef>
+            </AdvancedMarkerWithRef>}
+            </>
           );
         })}
 
@@ -111,12 +123,12 @@ const ClientMap = () => {
             pixelOffset={[0, -2]}
             onCloseClick={handleInfowindowCloseClick}>
             <h2>{markers[Number(selectedId)].name}</h2>
-            <p>selectedID: {selectedId}</p>
+            <button type='button' className='btn btn-primary my-2' onClick={() => handleDirectionsClick(markers[Number(selectedId)].address)}>Directions</button>
             <p>{markers[Number(selectedId)].description}</p>
           </InfoWindow>
         )}
 
-        <Directions />
+        { directionsVisible ? <Directions /> : null }
       </Map>
     </APIProvider>
   );
@@ -149,6 +161,7 @@ type MarkerData = Array<{
   id: string;
   name: string;
   description: string;
+  address: string;
   position: google.maps.LatLngLiteral;
   zIndex: number;
 }>;
@@ -167,20 +180,24 @@ function getData() {
                   'and other life controlling habits. ' +
                   'Families and individuals receive food boxes that are prepared with donations received from local foodbanks, ' +
                   'and donations from individuals, churches, businesses, and civic groups.',
+      address: '1331 S Jefferson Ave, Cookeville, TN 38506',
       position: {lat: 36.126104072519304, lng: -85.50700598196516},
       zIndex: 0
     },
     {
       id: '1',
       name: 'Life Church',
-      description: 'TODO: Add description',
+      description:'Life Church is a place you can come to know the real Jesus, find good community,' +
+                  'grow deeper in your faith, and help reach a world in need.',
+      address: '2223 N Washington Ave, Cookeville, TN 38501',
       position: {lat: 36.19121147075565, lng: -85.49167830894544},
       zIndex: 0
     },
     {
       id: '2',
       name: 'Cookeville First Baptist Church',
-      description: 'TODO: Add description',
+      description:'Cookeville First Baptist is made up of a group of believers who want to worship and do life together.',
+      address: '18 S Walnut Ave, Cookeville, TN 38501',
       position: {lat: 36.1626903747245, lng: -85.50597237724672},
       zIndex: 0
     }
@@ -214,8 +231,8 @@ function Directions() {
 
     directionsService
       .route({
-        origin: '1331 S Jefferson Ave, Cookeville, TN 38506',
-        destination: '2223 N Washington Ave, Cookeville, TN 38501',
+        origin: origin,
+        destination: destination,
         travelMode: google.maps.TravelMode.DRIVING,
         provideRouteAlternatives: true
       })
