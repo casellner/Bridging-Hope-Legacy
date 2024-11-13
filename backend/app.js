@@ -32,11 +32,11 @@ function validatePassword(strPassword, strHash){
 function clean(str) {
     return str.replace(/[^0-9a-zA-Z_\-@.\s]/gi, "");
 }   
-app.get('/', () => {
+app.get('/alive', () => {
     console.log("hiya")
 });
 
-app.post("/api/signin", (req, res) => {
+app.post("/api/signin", (req, res) => { 
     console.log("entered sign in function")
     const { username, password } = req.body;
     console.log("received", username, " ", password)
@@ -76,7 +76,7 @@ app.post("/api/signin", (req, res) => {
 });
 
 //BE SURE TO ADD A FOREIGN KEY 'orgID' REFERNCING 'tblOrganization' TO 'tblClient' OR THIS WILL NOT WORK!!
-app.post("/api/register", (req, res) => {
+app.post("/api/register", (req, res) => {  
     console.log("entered register function")
     const { username, password, firstName, lastName, organization } = req.body;
 
@@ -109,25 +109,28 @@ app.post("/api/register", (req, res) => {
                     console.error("Error inserting user", err);
                     res.status(500).json({ message: 'Error registering user' });
                 });
-                query = 'SELECT orgID FROM tblOrganization WHERE orgName = (?)';
-                connection.execute(query, [organization])
-                .then(result => {
-                    const orgID = result[0].orgID; //sets the orgID const
-                    console.log(orgID)
-                    query = 'INSERT INTO tblClient (clientID, firstName, lastName, userID, orgID) VALUES (?,?,?,?,?)';
-                    connection.execute(query, [newClientID, firstName, lastName, newUserID, orgID])
-                        .then(result => {
-                            const userId = result.insertId.toString(); // Convert BigInt to Number
-                            console.log('Client registered successfully');
-                            res.status(201).json({ message: 'User registered successfully', userId });
-                    }).catch(err => {
-                        console.error("Error inserting user", err);
-                        res.status(500).json({ message: 'Error registering user' });
-                    });
-                }).catch(err => {
-                    console.error("Error inserting user", err);
-                    res.status(500).json({ message: 'Error registering user' });
-                });
+                query = 'SELECT orgID FROM tblOrganization WHERE orgName = ?';
+connection.execute(query, [organization])
+    .then(result => {
+        if (result.length === 0) {  // No organization found
+            console.log("Organization not found");
+            return res.status(404).json({ message: "Organization not found" });
+        }
+        const orgID = result[0].orgID;
+        query = 'INSERT INTO tblClient (clientID, firstName, lastName, userID, orgID) VALUES (?,?,?,?,?)';
+        connection.execute(query, [newClientID, firstName, lastName, newUserID, orgID])
+            .then(result => {
+                console.log('Client registered successfully');
+                res.status(201).json({ message: 'User registered successfully', userId: newUserID });
+            }).catch(err => {
+                console.error("Error inserting client in tblClient", err);
+                res.status(500).json({ message: 'Error registering client in tblClient' });
+            });
+    }).catch(err => {
+        console.error("Error finding organization", err);
+        res.status(500).json({ message: 'Error finding organization' });
+    });
+
             }
         }).catch(err => {
             console.error("Error checking for existing user", err);
@@ -141,7 +144,17 @@ app.post("/api/register", (req, res) => {
     });
 });
 
-app.post("/api/forgot-password", (req, res) => {
+/*Added this to database to allow for password reset
+CREATE TABLE tblPasswordReset (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    userID VARCHAR(36) NOT NULL,         -- Assuming userID is a UUID or similar unique identifier
+    resetToken VARCHAR(36) NOT NULL,     -- UUID token for password reset
+    expiresAt TIMESTAMP NULL,            -- Optional expiration date for the reset token
+    FOREIGN KEY (userID) REFERENCES tblUser(userID) ON DELETE CASCADE
+);
+*/
+
+app.post("/api/forgot-password", (req, res) => {   
     const { email } = req.body;
   
     if (!email) {
