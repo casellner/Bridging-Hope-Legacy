@@ -21,16 +21,16 @@ const data = getData()
 const Z_INDEX_SELECTED = data.length;
 const Z_INDEX_HOVER = data.length + 1;
 
-let origin = '1 William L Jones Dr, Cookeville, TN 38505';
-let destination = '';
+/* let origin = '1 William L Jones Dr, Cookeville, TN 38505';
+let destination = ''; */
 
 const ClientMap = () => {
-  const [directionsVisible, setDirectionsVisible] = useState(false);
+  /* const [directionsVisible, setDirectionsVisible] = useState(false);
 
   function handleDirectionsClick(address: string) {
     destination = address;
     setDirectionsVisible(true);
-  }
+  } */
 
   const [markers] = useState(data);
 
@@ -92,8 +92,7 @@ const ClientMap = () => {
           }
 
           return (
-            <>
-            {directionsVisible ? null : <AdvancedMarkerWithRef
+            <AdvancedMarkerWithRef
               onMarkerClick={(
                 marker: google.maps.marker.AdvancedMarkerElement
               ) => onMarkerClick(id, marker)}
@@ -112,8 +111,7 @@ const ClientMap = () => {
                 borderColor={selectedId === id ? '#1e89a1' : null}
                 glyphColor={selectedId === id ? '#0f677a' : null}
               />
-            </AdvancedMarkerWithRef>}
-            </>
+            </AdvancedMarkerWithRef>
           );
         })}
 
@@ -123,12 +121,13 @@ const ClientMap = () => {
             pixelOffset={[0, -2]}
             onCloseClick={handleInfowindowCloseClick}>
             <h2>{markers[Number(selectedId)].name}</h2>
-            <button type='button' className='btn btn-primary my-2' onClick={() => handleDirectionsClick(markers[Number(selectedId)].address)}>Directions</button>
+            {/* <button type='button' className='btn btn-primary my-2' onClick={() => handleDirectionsClick(markers[Number(selectedId)].address)}>Directions</button> */}
+            <a href={`https://google.com/maps/search/${markers[Number(selectedId)].name}`}>See on Google Maps</a>
             <p>{markers[Number(selectedId)].description}</p>
           </InfoWindow>
         )}
 
-        { directionsVisible ? <Directions /> : null }
+        {/* { directionsVisible ? <Directions /> : null } */}
       </Map>
     </APIProvider>
   );
@@ -206,7 +205,7 @@ function getData() {
   return data;
 }
 
-function Directions() {
+/* function Directions() {
   const map = useMap();
   const routesLibrary = useMapsLibrary('routes');
   const [directionsService, setDirectionsService] =
@@ -273,6 +272,6 @@ function Directions() {
       </ul>
     </div>
   );
-}
+} */
 
 export default ClientMap;
