@@ -10,10 +10,11 @@ import axios from 'axios';
 const Register = () => {
   useEffect(() => { // Code to run only on first page load
     window.scrollTo(0, 0); // scroll to top of page
-    const url = 'https://bridginghope.life/api/register'; 
-    //const url = 'http://localhost:4433/api/register';  //uncomment for local testing
-    const navigate = useNavigate();
   }, []);
+
+  const url = 'https://bridginghope.life/api/register'; 
+  //const url = 'http://localhost:4433/api/register';  //uncomment for local testing
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
       username: '',
@@ -83,10 +84,6 @@ const Register = () => {
               <input id="firstName" type="text" placeholder="John" className="form-control" value={formData.firstName} onChange={handleChange} />
               <label htmlFor="lastName" className="form-label mt-2">Last Name</label>
               <input id="lastName" type="text" placeholder="Doe" className="form-control" value={formData.lastName} onChange={handleChange} />
-
-              { /* email */}
-              <label htmlFor="email" className="form-label mt-5">Email</label>
-              <input id="email" type="email" placeholder="jdoe@email.com" className="form-control" />
 
               { /* organization */}
               <label htmlFor="organization" className="form-label mt-5">Choose your organization</label>

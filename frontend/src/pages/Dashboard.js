@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from 'react-router-dom';
-
+import React, { useState, useEffect } from "react";
+import { useLocation, useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
 //imports for content (search client, register client, etc.)
 import SearchClient from '../dashboardContent/SearchClient';
 import RegisterClient from '../dashboardContent/RegisterClient';

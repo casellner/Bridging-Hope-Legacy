@@ -1,7 +1,6 @@
-import React from "react";
-
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
 import BasicInfo from "./registerForm/BasicInfo";
-import Identification from "./registerForm/Identification";
 import Address from "./registerForm/Address";
 
 { /*
@@ -11,9 +10,53 @@ import Address from "./registerForm/Address";
 */ }
 
 function RegisterClient() {
+    const url = 'https://bridginghope.life/api/register_client'; 
+    //const url = 'http://localhost:4433/api/register_client';  //uncomment for local testing
+
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        DOB: '',
+        phone: '',
+        photo: '',
+        addressLine1: '',
+        addressLine2: '',
+        city: '',
+        state: '',
+        zip: ''
+    });
+  
+    const [errors, setErrors] = useState({
+      message: ''
+    });
+  
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+    const handleCloseModal = () => {
+      setShowSuccessModal(false);
+    };
+  
+    const handleChange = (e) => {
+      setFormData({
+        ...formData,
+        [e.target.id]: e.target.value
+      });
+    };
+
+    async function submit() {
+      try {
+        setShowSuccessModal(true); // Show success modal
+        await axios.post(url, formData);
+        } catch (error) {
+        const errorMessage = error.response?.data?.message || 'Error registering user';
+        setErrors({ message: errorMessage });
+        alert("Registration Failed");
+      }
+    };
+
   //constants that determine which form content is displayed (start with basic info)
   const [basicInfoIsOpen, setBasicInfoIsOpen] = React.useState(true);
-  const [identificationIsOpen, setIdentificationIsOpen] = React.useState(false);
   const [AddressIsOpen, setAddressIsOpen] = React.useState(false);
 
   const [progressBarValue, setProgressBarValue] = React.useState(10);
@@ -25,31 +68,27 @@ function RegisterClient() {
     setProgressBarValue(progressBarValue + 45); //first, update the progress bar
     if (basicInfoIsOpen) { //if basic info is open, close it and open identification
       setBasicInfoIsOpen(false);
-      setIdentificationIsOpen(true);
-    } else if (identificationIsOpen) { //if identification is open, close it and open address
-      setIdentificationIsOpen(false);
       setAddressIsOpen(true);
+    } else if(AddressIsOpen){
+      submit();
     }
   }
 
   //function for back buttons
   const handleBack = () => {
     setProgressBarValue(progressBarValue - 45); //first, update the progress bar
-    if (identificationIsOpen) { //if identification is open, close it and open basic info
-      setIdentificationIsOpen(false);
-      setBasicInfoIsOpen(true);
-    } else if (AddressIsOpen) { //if address is open, close it and open identification
+     if (AddressIsOpen) { //if address is open, close it and open identification
       setAddressIsOpen(false);
-      setIdentificationIsOpen(true);
+      setBasicInfoIsOpen(true);
     }
   }
 
   if (basicInfoIsOpen) {
-    formContent = <BasicInfo onClickContinue={handleContinue} />;
-  } else if (identificationIsOpen) {
-    formContent = <Identification onClickBack={handleBack} onClickContinue={handleContinue}/>; 
+    formContent = <BasicInfo onClickContinue={handleContinue} formData={formData} onChange={handleChange} />;
+    //formContent = <BasicInfo onClickContinue={handleContinue} />;
   } else if (AddressIsOpen) {
-    formContent = <Address onClickBack={handleBack}/>;
+    //formContent = <Address onClickBack={handleBack} onClickContinue={handleContinue}/>;
+    formContent = <Address onClickBack={handleBack} onClickContinue={handleContinue} formData={formData} onChange={handleChange} />;
   }
 
   return (
@@ -69,6 +108,26 @@ function RegisterClient() {
           </form>
         </div>
       </div>
+
+      {/* Success Modal */}
+      {showSuccessModal && (
+        <div className="modal show d-block" tabIndex="-1">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Registration Successful</h5>
+                <button type="button" className="btn-close" onClick={handleCloseModal}></button>
+              </div>
+              <div className="modal-body">
+                <p>The client has been registered.</p>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-primary" onClick={handleCloseModal}>Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </React.Fragment>
   );
 }
