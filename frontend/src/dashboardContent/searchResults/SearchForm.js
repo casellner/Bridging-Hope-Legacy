@@ -10,11 +10,10 @@ function SearchForm({onSearch}) {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [DOB, setDOB] = useState("");
-    const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
 
     const handleSearchClick = () => {
-        onSearch({ firstName, lastName, DOB, phone, email });
+        onSearch({ firstName, lastName, DOB, email });
     };
 
     return (
@@ -38,7 +37,7 @@ function SearchForm({onSearch}) {
                     </div>
                     <div className="col">
                         <label for="txtPhone" className="form-label mt-2">Phone</label>
-                        <input id="txtPhone" type="tel" placeholder="(555) 123-4567" className="form-control" value={phone} onChange={(e) => setPhone(e.target.value)}/>
+                        <input id="txtPhone" type="tel" placeholder="(555) 123-4567" className="form-control"/>
                     </div>
                 </div>
 
