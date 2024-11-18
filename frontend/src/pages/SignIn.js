@@ -16,8 +16,8 @@ const SignIn = () => {
 
   const handleLogin = async () => {
     // Construct the API endpoint
-    const url = 'https://bridginghope.life/api/signin';
-    //const url = 'http://localhost:4433/api/signin'; //uncomment for local testing
+   const url = 'https://bridginghope.life/api/signin';
+   // const url = 'http://localhost:4433/api/signin'; //uncomment for local testing
 
     try {
       // Sending the username and password to the server
