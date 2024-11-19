@@ -158,7 +158,7 @@ app.get("/api/clientSearch", (req, res) => {
     } */
 
     //Checks for first name or last name
-    if (!firstName && !lastName && !DOB && !email && !phone) {
+    if (!firstName && !lastName && !DOB && !email) {
         return res.status(400).json({ message: 'At least first name, last name, DOB, email, or phone is required' });
     }
 
@@ -172,20 +172,16 @@ app.get("/api/clientSearch", (req, res) => {
 
         //Creates the quey based on the parameters
         if (firstName) {
-            query += 'firstname = ? AND ';
+            query += 'firstName = ? AND ';
             params.push(firstName);
         }
         if (lastName) {
-            query += 'lastname = ? AND ';
+            query += 'lastName = ? AND ';
             params.push(lastName);
         }
         if (DOB) {
             query += 'DOB = ? AND ';
             params.push(DOB);
-        }
-        if (phone) {
-            query += 'phone = ? AND ';
-            params.push(phone);
         }
         if (email) {
             query += 'email = ? AND ';
