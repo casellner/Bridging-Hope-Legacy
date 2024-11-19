@@ -14,8 +14,8 @@ const SignIn = () => {
 
   const handleLogin = async () => {
     // Construct the API endpoint
-    const url = 'https://bridginghope.life/api/signin';     //need to fix this so we don't have to keep doing this
-    //const url = '';
+    //const url = 'https://bridginghope.life/api/signin';     //need to fix this so we don't have to keep doing this
+    const url = process.env.REACT_APP_URL + '/api/signin';
 
     try {
       // Sending the username and password to the server

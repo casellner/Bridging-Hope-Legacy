@@ -9,8 +9,8 @@ import axios from 'axios';
 
 const Register = () => {
   window.scrollTo(0, 0); // scroll to top of page
-  const url = 'https://bridginghope.life/api/register';  
-  //const url = '';
+  //const url = 'https://bridginghope.life/api/register';  
+  const url = process.env.REACT_APP_URL + '/api/register';
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({

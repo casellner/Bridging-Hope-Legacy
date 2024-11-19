@@ -19,8 +19,8 @@ function SearchClient() {
   let right;
   
   async function handleSearchClient(searchParams) {
-    const url = 'https://bridginghope.life/api/clientSearch';
-    //const url = '';
+    //const url = 'https://bridginghope.life/api/clientSearch';
+    const url = process.env.REACT_APP_URL + '/api/clientSearch';
 
     setInstructionsIsOpen(false);
 
