@@ -8,12 +8,13 @@ import axios from 'axios';
 */ }
 
 const Register = () => {
-    window.scrollTo(0, 0); // scroll to top of page
-    const url = 'https://192.168.99.84:4433/register';  // 'https://bridginghope.life/api/register'
+    //window.scrollTo(0, 0); // scroll to top of page
+    const url = 'http://10.129.168.19:4433/api/register';  // 'https://bridginghope.life/api/register'
     const navigate = useNavigate(); 
 
   const [formData, setFormData] = useState({
       username: '',
+      email: '',
       password: '',
       confirmPassword: '',
       firstName: '',
@@ -67,6 +68,8 @@ const Register = () => {
               { /* username and password */}
               <label htmlFor="username" className="form-label mt-2">Username</label>
               <input id="username" type="text" placeholder="johndoe" className="form-control" value={formData.username} onChange={handleChange} />
+              <label htmlFor="email" className="form-label mt-2">Email</label>
+              <input id="email" type="text" placeholder="jdoe@email.com" className="form-control" value={formData.email} onChange={handleChange} />
               <label htmlFor="password" className="form-label mt-2">Password</label>
               <input id="password" type="password" className="form-control" value={formData.password} onChange={handleChange} />
               <label htmlFor="confirmPassword" className="form-label mt-2">Confirm Password</label>
