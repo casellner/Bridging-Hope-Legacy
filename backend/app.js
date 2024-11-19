@@ -147,15 +147,13 @@ app.get("/api/clientSearch", (req, res) => {
     console.log("entered search function")
 
     //implement session ID later
-    //const { sessionID, firstName, lastName, DOB, email } = req.body;
-    const { firstName, lastName, DOB, email } = req.body;
-    //console.log("received:", sessionID, " ", firstName, " ", lastName)
-    console.log("received:", firstName, " ", lastName, " ", DOB, " ", email)
+    const { sessionID, firstName, lastName, DOB, email } = req.body;
+    console.log("received:", sessionID, " ", firstName, " ", lastName)
 
     //Checks for sessionID
-    /* if (!sessionID) {
+     if (!sessionID) {
         return res.status(400).json({ message: 'SessionID is required' });
-    } */
+    }
 
     //Checks for first name or last name
     if (!firstName && !lastName && !DOB && !email) {

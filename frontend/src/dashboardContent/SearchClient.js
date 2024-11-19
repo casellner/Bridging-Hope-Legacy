@@ -19,8 +19,15 @@ function SearchClient() {
   let right;
   
   async function handleSearchClient(searchParams) {
+    //Retrieve the sessionID
+    const sessionID = sessionStorage.getItem('sessionID');
+
+    if (!sessionID) {
+      alert("SessionID is required, please log in again.");
+      return;
+    }
     //const url = 'https://bridginghope.life/api/clientSearch';
-    const url = process.env.REACT_APP_URL + '/api/clientSearch';
+    const url = process.env.REACT_APP_URL + '/api/clientSearch?sessionID=${sessionID}';
 
     setInstructionsIsOpen(false);
 
