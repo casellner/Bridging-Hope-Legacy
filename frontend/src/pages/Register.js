@@ -15,6 +15,7 @@ const Register = () => {
   const [formData, setFormData] = useState({
       username: '',
       email: '',
+      email: '',
       password: '',
       confirmPassword: '',
       firstName: '',
@@ -68,6 +69,8 @@ const Register = () => {
               { /* username and password */}
               <label htmlFor="username" className="form-label mt-2">Username</label>
               <input id="username" type="text" placeholder="johndoe" className="form-control" value={formData.username} onChange={handleChange} />
+              <label htmlFor="email" className="form-label mt-2">Email</label>
+              <input id="email" type="text" placeholder="jdoe@email.com" className="form-control" value={formData.email} onChange={handleChange} />
               <label htmlFor="email" className="form-label mt-2">Email</label>
               <input id="email" type="text" placeholder="jdoe@email.com" className="form-control" value={formData.email} onChange={handleChange} />
               <label htmlFor="password" className="form-label mt-2">Password</label>

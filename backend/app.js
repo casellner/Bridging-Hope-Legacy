@@ -34,11 +34,11 @@ function validatePassword(strPassword, strHash){
 function clean(str) {
     return str.replace(/[^0-9a-zA-Z_\-@.\s]/gi, "");
 }   
-app.get('/', () => {
+app.get('/alive', () => {
     console.log("hiya")
 });
 
-app.post("/api/signin", (req, res) => {
+app.post("/api/signin", (req, res) => { 
     console.log("entered sign in function")
     const { username, password } = req.body;
     console.log("received", username, " ", password)
@@ -167,7 +167,7 @@ ADD COLUMN otpExpire DATETIME;           -- To store the OTP expiration time
 
 */
 
-app.post("/api/forgot-password", (req, res) => {
+app.post("/api/forgot-password", (req, res) => {   
     const { email } = req.body;
 
     if (!email) {
