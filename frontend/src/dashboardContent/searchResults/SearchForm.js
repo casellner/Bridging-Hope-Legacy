@@ -9,7 +9,6 @@ function SearchForm({ onSearch }) {
     firstName: '',
     lastName: '',
     DOB: '',
-    phone: '',
     email: ''
   });
 
@@ -46,7 +45,7 @@ function SearchForm({ onSearch }) {
           </div>
           <div className="col">
             <label for="phone" className="form-label mt-2">Phone</label>
-            <input id="phone" type="tel" placeholder="(555) 123-4567" className="form-control" value={formData.phone} onChange={handleChange} />
+            <input id="phone" type="tel" placeholder="(555) 123-4567" className="form-control" />
           </div>
         </div>
 

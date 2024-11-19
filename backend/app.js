@@ -147,10 +147,10 @@ app.get("/api/clientSearch", (req, res) => {
     console.log("entered search function")
 
     //implement session ID later
-    //const { sessionID, firstName, lastName, DOB, phone, email } = req.body;
-    const { firstName, lastName, DOB, phone, email } = req.body;
+    //const { sessionID, firstName, lastName, DOB, email } = req.body;
+    const { firstName, lastName, DOB, email } = req.body;
     //console.log("received:", sessionID, " ", firstName, " ", lastName)
-    console.log("received:", firstName, " ", lastName, " ", DOB, " ", phone, " ", email)
+    console.log("received:", firstName, " ", lastName, " ", DOB, " ", email)
 
     //Checks for sessionID
     /* if (!sessionID) {
@@ -159,7 +159,7 @@ app.get("/api/clientSearch", (req, res) => {
 
     //Checks for first name or last name
     if (!firstName && !lastName && !DOB && !email) {
-        return res.status(400).json({ message: 'At least first name, last name, DOB, email, or phone is required' });
+        return res.status(400).json({ message: 'At least first name, last name, DOB, or email is required' });
     }
 
     //Connects to database
