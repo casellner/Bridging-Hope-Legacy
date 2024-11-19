@@ -145,13 +145,17 @@ app.post("/api/register", (req, res) => {
 app.get("/api/clientSearch", (req, res) => {
     //Gets Parameters
     console.log("entered search function")
-    const { sessionID, firstName, lastName, DOB, email, phone } = req.body;
-    console.log("received:", sessionID, " ", firstName, " ", lastName)
+
+    //implement session ID later
+    //const { sessionID, firstName, lastName, DOB, phone, email } = req.body;
+    const { firstName, lastName, DOB, phone, email } = req.body;
+    //console.log("received:", sessionID, " ", firstName, " ", lastName)
+    console.log("received:", firstName, " ", lastName, " ", DOB, " ", phone, " ", email)
 
     //Checks for sessionID
-    if (!sessionID) {
+    /* if (!sessionID) {
         return res.status(400).json({ message: 'SessionID is required' });
-    }
+    } */
 
     //Checks for first name or last name
     if (!firstName && !lastName && !DOB && !email && !phone) {
@@ -163,7 +167,7 @@ app.get("/api/clientSearch", (req, res) => {
     pool.getConnection().then(connection => {
         console.log("connected to database")
         
-        let query = 'SELECT  FROM tblClient WHERE ';
+        let query = 'SELECT * FROM tblClient WHERE ';
         const params = [];
 
         //Creates the quey based on the parameters

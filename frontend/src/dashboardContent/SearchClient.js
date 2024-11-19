@@ -1,15 +1,13 @@
-import React, { useState}  from "react";
+// Filename:    SearchClient.js
+// Description: This component renders the components in /searchResults.
+
+import React, { useState }  from "react";
 import axios from "axios";
 import SearchForm from "./searchResults/SearchForm";
 import SearchInstructions from "./searchResults/SearchInstructions";
 import ClientList from "./searchResults/ClientList";
 import ClientView from "./searchResults/ClientView";
 import HouseholdAidHistory from "./searchResults/HouseholdAidHistory";
-
-{ /*
-  Filename:    SearchClient.js
-  Description: This component renders the components in /searchResults.
-*/ }
 
 function SearchClient() {
   const [instructionsIsOpen, setInstructionsIsOpen] = React.useState(true);
@@ -21,10 +19,15 @@ function SearchClient() {
   let right;
   
   async function handleSearchClient(searchParams) {
+    const url = 'https://bridginghope.life/api/clientSearch';
+    //const url = '';
+
     setInstructionsIsOpen(false);
 
+    console.log("Searching for clients with params", searchParams); //DEBUG
+
     try {
-      const response = await axios.get("/api/clientSearch", { params: searchParams });
+      const response = await axios.get(url, searchParams);
       setClients(response.data.clients);
     } catch (error) {
       console.error("Error fetching clients", error);
