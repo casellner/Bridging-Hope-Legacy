@@ -251,18 +251,20 @@ app.get("/api/clientSearch", (req, res) => {
             params.push(email);
         }
 
-        //Removes the last 'AND'
-        query = query.slice(0, -4);
+	//Removes 'AND '
+	query = query.slice(0, -4);
+	//Add ; to complete query string
+	query += ';';
 
         console.log("Query:", query) //DEBUG
 
         //Executes the query
         connection.execute(query, params)
-            .then(([results]) => {
+            .then(results => {
                 //Client Found
                 if (results.length > 0) {
                     console.log('Client found')
-                    return res.json({ message: 'Client found', client: results });
+                    return res.json({ message: 'Client found', clients: results });
                 } else { //Client not found
                     console.log('Client not found')
                     return res.status(404).json({ message: 'Client not found' });
