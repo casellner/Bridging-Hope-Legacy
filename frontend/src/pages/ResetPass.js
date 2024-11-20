@@ -40,8 +40,8 @@ const ResetPassword = () => {
       setSuccess('Your password has been successfully reset.');
       setError('');
       
-      // Redirect to login page after success
-      setTimeout(() => navigate('/login'), 2000); // Redirect after 2 seconds
+      // Redirect to sign in page after success
+      setTimeout(() => navigate('/signin'), 2000); // Redirect after 2 seconds
     } catch (error) {
       setError(error.message);
       setSuccess('');
