@@ -1,25 +1,25 @@
-import React from "react";
-
+import React, { useState }from "react";
+import { useNavigate, Link } from 'react-router-dom';
 { /*
     Filename:    Address.js
     Description: This component is the third part of registering a client.
 */ }
 
-function Address({onClickBack}) {
+function Address({formData, onChange, onClickBack, onClickContinue}) {
     return (
         <React.Fragment>
-            <label for="txtStreetAddress1" className="form-label mt-2">Street address 1</label>
-            <input id="txtStreetAddress1" type="text" placeholder="123 Cherry Lane" className="form-control" />
-            <label for="txtStreetAddress2" className="form-label mt-2">Street address 2</label>
-            <input id="txtStreetAddress2" type="text" placeholder="Apartment 001" className="form-control" />
+            <label htmlfor="addressLine1" className="form-label mt-2">Street address 1</label>
+            <input id="addressLine1" type="text" placeholder="123 Cherry Lane" className="form-control" value={formData.addressLine1} onChange={ onChange } />
+            <label htmlfor="addressLine2" className="form-label mt-2">Street address 2</label>
+            <input id="addressLine2" type="text" placeholder="Apartment 001" className="form-control" value={formData.addressLine2} onChange={ onChange } />
             <div className="row">
                 <div className="col">
-                    <label for="txtCity" className="form-label mt-2">City</label>
-                    <input id="txtCity" type="text" placeholder="Cookeville" className="form-control" />
+                    <label htmlfor="city" className="form-label mt-2">City</label>
+                    <input id="city" type="text" placeholder="Cookeville" className="form-control" value={formData.city} onChange={ onChange }/>
                 </div>
                 <div className="col">
-                    <label for="txtState" className="form-label mt-2">State</label>
-                    <select id="txtState" className="form-select" aria-label="select state">
+                    <label htmlfor="state" className="form-label mt-2">State</label>
+                    <select id="state" className="form-select" aria-label="select state" value={formData.state} onChange={ onChange }>
                         <option selected className="text-secondary">select</option>
                         <option value="AL">Alabama</option>
                         <option value="AK">Alaska</option>
@@ -75,14 +75,14 @@ function Address({onClickBack}) {
                     </select>
                 </div>
                 <div className="col">
-                <label for="txtZipCode" className="form-label mt-2">Zip</label>
-                <input id="txtZipCode" type="text" placeholder="38501" className="form-control" />
+                <label htmlfor="zip" className="form-label mt-2">Zip</label>
+                <input id="zip" type="text" placeholder="38501" className="form-control" value={formData.zip} onChange={ onChange }/>
                 </div>
             </div>
 
             <div className="d-flex justify-content-between">
                 <button type="button" className="btn btn-warning mt-4" onClick={onClickBack}>Back</button>
-                <button type="button" className="btn btn-success mt-4">Register</button>
+                <button type="button" className="btn btn-success mt-4" onClick={onClickContinue}>Register</button>
             </div>
         </React.Fragment>
     );

@@ -112,10 +112,12 @@ CREATE TABLE tblClient(
     userID VARCHAR(50),
     clientBackupID VARCHAR(50),
     orgID VARCHAR(50),
+    phoneID VARCHAR(50),
     FOREIGN KEY (addressID) REFERENCES tblAddress(addressID),
     FOREIGN KEY (userID) REFERENCES tblUser(userID),
     FOREIGN KEY (orgID) REFERENCES tblOrganization(orgID),
-    FOREIGN KEY (clientBackupID) REFERENCES tblClientBackup(clientBackupID)
+    FOREIGN KEY (clientBackupID) REFERENCES tblClientBackup(clientBackupID),
+    FOREIGN KEY (phoneID) REFERENCES tblPhone(phoneID)
     );
 
 CREATE TABLE tblHouseholds( 

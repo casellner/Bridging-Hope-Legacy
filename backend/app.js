@@ -145,6 +145,65 @@ app.post("/api/register", (req, res) => {
     });
 });
 
+app.post("/api/register_client", (req, res) => {
+    const { firstName, lastName, email, DOB, phone, photo, addressLine1, addressLine2, city, state, zip } = req.body;
+
+    const newClientID = uuidv4();
+    const newAddressID = uuidv4();
+    const newPhoneID = uuidv4();
+
+    let z = parseInt(zip);
+    let dob_r;
+
+    if (DOB == ''){
+        dob_r = null;
+    }else{
+        dob_r = DOB;
+    }
+
+    pool.getConnection().then(connection => {
+        let query = 'INSERT INTO tblAddress (addressID, addressLine1, addressLine2, city, state, zip) VALUES (?,?,?,?,?,?)';
+        connection.execute(query, [newAddressID, addressLine1, addressLine2, city, state, z])
+        .then(result => { 
+            //const addressID = result.insertId.toString(); // Convert BigInt to Number
+            console.log('Address created successfully'); 
+            //res.status(201).json({ message: 'Volunteer registered successfully', addressID });
+            const areaCode =  parseInt(phone.slice(0,3));
+            const number = parseInt(phone.slice(3,10));
+            query = 'INSERT INTO tblPhone (phoneID, areaCode, number) VALUES (?,?,?)';
+            connection.execute(query, [newPhoneID, areaCode, number])
+            .then(result => { 
+                //const clientID = result.insertId.toString(); // Convert BigInt to Number
+                console.log('Phone created successfully'); 
+                //res.status(201).json({ message: 'Client registered successfully', clientID });
+           
+                query = 'INSERT INTO tblClient (clientID, firstName, lastName, email, DOB, photo, addressID, phoneID) VALUES (?,?,?,?,?,?,?,?)';
+                connection.execute(query, [newClientID, firstName, lastName, email, dob_r, photo, newAddressID, newPhoneID])
+                .then(result => { 
+                    //const clientID = result.insertId.toString(); // Convert BigInt to Number
+                    console.log('Client registered successfully'); 
+                    //res.status(201).json({ message: 'Client registered successfully', clientID });
+                }).catch(err => {
+                    console.error('Error registering client', err);
+                    res.status(500).json({ message: 'Error registering client' });
+                });
+            }).catch(err => {
+                console.error('Error creating phone object', err);
+                res.status(500).json({ message: 'Error creating phone object' });
+            });   
+        }).catch(err => {
+            console.error('Error creating address object', err);
+            res.status(500).json({ message: 'Error creating address object' });
+        }).finally(() => {
+            connection.release();
+        });
+    }).catch(err => {
+        console.error("Error connecting to the database", err);
+        res.status(500).json({ message: 'Error connecting to the database' });
+    });
+});
+
 app.listen(port, () => {
   console.log(`Express listening at http://0.0.0.0:${port}`);
 });
+
