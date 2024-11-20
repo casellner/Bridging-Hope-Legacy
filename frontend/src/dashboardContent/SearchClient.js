@@ -19,22 +19,26 @@ function SearchClient() {
   let right;
   
   async function handleSearchClient(searchParams) {
+    //implement session ID later
     //Retrieve the sessionID
-    const sessionID = sessionStorage.getItem('sessionID');
+    //const sessionID = sessionStorage.getItem('sessionID');
 
-    if (!sessionID) {
-      alert("SessionID is required, please log in again.");
-      return;
-    }
+    //if (!sessionID) {
+    //  alert("SessionID is required, please log in again.");
+    //  return;
+    //}
     //const url = 'https://bridginghope.life/api/clientSearch';
-    const url = process.env.REACT_APP_URL + '/api/clientSearch?sessionID=${sessionID}';
+    //const url = process.env.REACT_APP_URL + '/api/clientSearch?sessionID=${sessionID}';
+    const url = process.env.REACT_APP_URL + '/api/clientSearch';
 
     setInstructionsIsOpen(false);
 
     console.log("Searching for clients with params", searchParams); //DEBUG
 
     try {
-      const response = await axios.get(url, searchParams);
+      const response = await axios.get(url, {
+        params: searchParams
+      });
       setClients(response.data.clients);
     } catch (error) {
       console.error("Error fetching clients", error);

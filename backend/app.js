@@ -145,15 +145,18 @@ app.post("/api/register", (req, res) => {
 app.get("/api/clientSearch", (req, res) => {
     //Gets Parameters
     console.log("entered search function")
+    console.log(req.query); //DEBUG
 
     //implement session ID later
-    const { sessionID, firstName, lastName, DOB, email } = req.body;
-    console.log("received:", sessionID, " ", firstName, " ", lastName)
+    //const { sessionID, firstName, lastName, DOB, email } = req.body;
+    const { firstName, lastName, DOB, email } = req.query;
+    //console.log("received:", sessionID, " ", firstName, " ", lastName)
+    console.log("received:", firstName, " ", lastName, " ", DOB, " ", email)
 
     //Checks for sessionID
-     if (!sessionID) {
-        return res.status(400).json({ message: 'SessionID is required' });
-    }
+    //if (!sessionID) {
+    //    return res.status(400).json({ message: 'SessionID is required' });
+    //}
 
     //Checks for first name or last name
     if (!firstName && !lastName && !DOB && !email) {
@@ -189,6 +192,7 @@ app.get("/api/clientSearch", (req, res) => {
         //Removes the last 'AND'
         query = query.slice(0, -4);
 
+        console.log("Query:", query) //DEBUG
 
         //Executes the query
         connection.execute(query, params)
