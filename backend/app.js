@@ -166,7 +166,10 @@ ADD COLUMN otp VARCHAR(6),               -- To store the OTP
 ADD COLUMN otpExpire DATETIME;           -- To store the OTP expiration time
 
 */
-
+// All the information for the password reset email: 
+// bridginghopereset@gmail.com
+// password: C@pstone24
+// It is also connected to my phone #, once the next group fully takes over we can change it to someone else
 app.post("/api/forgot-password", (req, res) => {   
     const { email } = req.body;
 
@@ -189,8 +192,8 @@ app.post("/api/forgot-password", (req, res) => {
                             const transporter = nodemailer.createTransport({
                                 service: 'Gmail',
                                 auth: {
-                                    user: 'grownnate1207@gmail.com',    //My email that I dont use anymore
-                                    pass: 'tkku wzwt pxog ezbr',        //app password
+                                    user: 'bridginghopereset@gmail.com',    	//bridging hope email I made only for reset
+                                    pass: 'knku hjrb xpmr rmbs',       	 	//app password
                                 },
                             });
 
