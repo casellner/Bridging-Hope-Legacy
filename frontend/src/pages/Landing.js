@@ -47,7 +47,7 @@ const Landing = () => {
               <h1 className="text-white mt-4">Building Non-Profit Connections</h1>
               <h4 className="mt-3 mx-4 text-white">Our application has the features to help you better serve your mission</h4>
               <p className="mt-4 mx-5 text-white"><i className="bi bi-heart-fill me-2 text-info"></i>Manage volunteer credentials and availability</p>
-              <p className="mt-2 mx-5 text-white"><i className="bi bi-heart-fill me-2 text-info"></i>Resource and assett tracking</p>
+              <p className="mt-2 mx-5 text-white"><i className="bi bi-heart-fill me-2 text-info"></i>Resource and asset tracking</p>
               <p className="mt-2 mx-5 text-white"><i className="bi bi-heart-fill me-2 text-info"></i>Visibility into client needs and services</p>
               <p className="mt-2 mx-5 text-white"><i className="bi bi-heart-fill me-2 text-info"></i>Centrally communicate with other area non-profits</p>
               <p className="mt-2 mx-5 text-white"><i className="bi bi-heart-fill me-2 text-info"></i>Advanced analytics for resource planning</p>
