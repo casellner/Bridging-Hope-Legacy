@@ -203,6 +203,87 @@ app.post("/api/register_client", (req, res) => {
     });
 });
 
+app.post("/api/create_organization", (req, res) => {
+    const { orgName, orgType, email, phone, orgLogo, addressLine1, addressLine2, city, state, zip, services } = req.body;
+    
+    const newOrgID = uuidv4();
+    const newAddressID = uuidv4();
+    const newPhoneID = uuidv4();
+
+    let z = parseInt(zip);
+
+    pool.getConnection().then(connection => {
+        let query = 'INSERT INTO tblAddress (addressID, addressLine1, addressLine2, city, state, zip) VALUES (?,?,?,?,?,?)';
+        connection.execute(query, [newAddressID, addressLine1, addressLine2, city, state, z])
+        .then(result => { 
+            //const addressID = result.insertId.toString(); // Convert BigInt to Number
+            console.log('Address created successfully'); 
+            //res.status(201).json({ message: 'Volunteer registered successfully', addressID });
+            const areaCode =  parseInt(phone.slice(0,3));
+            const number = parseInt(phone.slice(3,10));
+            query = 'INSERT INTO tblPhone (phoneID, areaCode, number) VALUES (?,?,?)';
+            connection.execute(query, [newPhoneID, areaCode, number])
+            .then(result => { 
+                //const clientID = result.insertId.toString(); // Convert BigInt to Number
+                console.log('Phone created successfully'); 
+                //res.status(201).json({ message: 'Client registered successfully', clientID });
+           
+                query = 'SELECT orgTypeID FROM tblOrgType WHERE name = ?';
+                connection.execute(query, [orgType])
+                .then(result => { 
+                    //const clientID = result.insertId.toString(); // Convert BigInt to Number
+                    console.log('fetched org type id'); 
+                    const orgTypeID = result[0].orgTypeID; 
+                    //res.status(201).json({ message: 'Client registered successfully', clientID });
+
+                    query = 'INSERT INTO tblOrganization (orgID, orgName, email, orgLogo, addressID, phoneID, orgTypeID) VALUES (?,?,?,?,?,?,?)';
+                    connection.execute(query, [newOrgID, orgName, email, orgLogo, newAddressID, newPhoneID, orgTypeID])
+                    .then(result => { 
+                    //const clientID = result.insertId.toString(); // Convert BigInt to Number
+                    console.log('Successfully created organization'); 
+                    //res.status(201).json({ message: 'Client registered successfully', clientID });
+                    var newServiceID;
+                    for(var service in services){
+                        newServiceID = uuidv4();
+                        if (services[service]){
+                            query = 'INSERT INTO tblService (serviceID, serviceName, orgID) values (?,?,?)';
+                            connection.execute(query, [newServiceID, service, newOrgID])
+                            .then(result =>{
+                                console.log('Successfully added services'); 
+                            }).catch(err => {
+                                console.error('Error adding services', err);
+                                res.status(500).json({ message: 'Error adding services' });
+                            });
+                        console.log(service);
+                        console.log(services[service]);
+                        }
+                    };
+
+                    }).catch(err => {
+                        console.error('Error creating organzation', err);
+                        res.status(500).json({ message: 'Error creating organzation' });
+                }).catch(err => {
+                    console.error('Error fetching org type ID', err);
+                    res.status(500).json({ message: 'Error fetching org type ID' });
+                });
+            }).catch(err => {
+                console.error('Error creating phone object', err);
+                res.status(500).json({ message: 'Error creating phone object' });
+            });   
+        }).catch(err => {
+            console.error('Error creating address object', err);
+            res.status(500).json({ message: 'Error creating address object' });
+        }).finally(() => {
+            connection.release();
+        });
+    }).catch(err => {
+        console.error("Error connecting to the database", err);
+        res.status(500).json({ message: 'Error connecting to the database' });
+    });
+});
+});
+
+
 app.listen(port, () => {
   console.log(`Express listening at http://0.0.0.0:${port}`);
 });

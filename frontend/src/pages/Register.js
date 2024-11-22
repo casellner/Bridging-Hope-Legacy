@@ -12,8 +12,8 @@ const Register = () => {
     window.scrollTo(0, 0); // scroll to top of page
   }, []);
 
-  const url = 'https://bridginghope.life/api/register'; 
-  //const url = 'http://localhost:4433/api/register';  //uncomment for local testing
+  //const url = 'https://bridginghope.life/api/register'; 
+  const url = 'http://localhost:4433/api/register';  //uncomment for local testing
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
