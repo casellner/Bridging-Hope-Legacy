@@ -203,6 +203,87 @@ app.post("/api/register_client", (req, res) => {
     });
 });
 
+//API for Client Search by first name or last name
+app.get("/api/clientSearch", (req, res) => {
+    //Gets Parameters
+    console.log("entered search function")
+    console.log(req.query); //DEBUG
+
+    //implement session ID later
+    //const { sessionID, firstName, lastName, DOB, email } = req.body;
+    const { firstName, lastName, DOB, email } = req.query;
+    //console.log("received:", sessionID, " ", firstName, " ", lastName)
+    console.log("received:", firstName, " ", lastName, " ", DOB, " ", email)
+
+    //Checks for sessionID
+    //if (!sessionID) {
+    //    return res.status(400).json({ message: 'SessionID is required' });
+    //}
+
+    //Checks for first name or last name
+    if (!firstName && !lastName && !DOB && !email) {
+        return res.status(400).json({ message: 'At least first name, last name, DOB, or email is required' });
+    }
+
+    //Connects to database
+    console.log("attempting to connect to database")
+    pool.getConnection().then(connection => {
+        console.log("connected to database")
+        
+        let query = 'SELECT * FROM tblClient WHERE ';
+        const params = [];
+
+        //Creates the quey based on the parameters
+        if (firstName) {
+            query += 'firstName = ? AND ';
+            params.push(firstName);
+        }
+        if (lastName) {
+            query += 'lastName = ? AND ';
+            params.push(lastName);
+        }
+        if (DOB) {
+            query += 'DOB = ? AND ';
+            params.push(DOB);
+        }
+        if (email) {
+            query += 'email = ? AND ';
+            params.push(email);
+        }
+
+	//Removes 'AND '
+	query = query.slice(0, -4);
+	//Add ; to complete query string
+	query += ';';
+
+        console.log("Query:", query) //DEBUG
+
+        //Executes the query
+        connection.execute(query, params)
+            .then(results => {
+                //Client Found
+                if (results.length > 0) {
+                    console.log('Client found')
+                    return res.json({ message: 'Client found', clients: results });
+                } else { //Client not found
+                    console.log('Client not found')
+                    return res.status(404).json({ message: 'Client not found' });
+                }
+            })
+            .catch(err => {
+                console.error("Error retrieving client", err);
+                return res.status(500).json({ message: 'Error retrieving client' });
+            })
+            .finally(() => {
+                connection.release();
+            });
+    })
+    .catch(err => {
+        console.error("Error connecting to the database", err);
+        return res.status(500).json({ message: 'Error connecting to the database' });
+    });
+});
+
 app.post("/api/create_organization", (req, res) => {
     const { orgName, orgType, email, phone, orgLogo, addressLine1, addressLine2, city, state, zip, services } = req.body;
     
@@ -282,7 +363,6 @@ app.post("/api/create_organization", (req, res) => {
     });
 });
 });
-
 
 app.listen(port, () => {
   console.log(`Express listening at http://0.0.0.0:${port}`);
