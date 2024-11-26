@@ -47,7 +47,7 @@ const Landing = () => {
               <h1 className="text-white mt-4">Building Non-Profit Connections</h1>
               <h4 className="mt-3 mx-4 text-white">Our application has the features to help you better serve your mission</h4>
               <p className="mt-4 mx-5 text-white"><i className="bi bi-heart-fill me-2 text-info"></i>Manage volunteer credentials and availability</p>
-              <p className="mt-2 mx-5 text-white"><i className="bi bi-heart-fill me-2 text-info"></i>Resource and assett tracking</p>
+              <p className="mt-2 mx-5 text-white"><i className="bi bi-heart-fill me-2 text-info"></i>Resource and asset tracking</p>
               <p className="mt-2 mx-5 text-white"><i className="bi bi-heart-fill me-2 text-info"></i>Visibility into client needs and services</p>
               <p className="mt-2 mx-5 text-white"><i className="bi bi-heart-fill me-2 text-info"></i>Centrally communicate with other area non-profits</p>
               <p className="mt-2 mx-5 text-white"><i className="bi bi-heart-fill me-2 text-info"></i>Advanced analytics for resource planning</p>
@@ -123,7 +123,7 @@ const Landing = () => {
 
         {/* Developed and maintained with love */}
         <div className="col-12 row mb-5 justify-content-center">
-          <p className="text-primary text-center">Developed and maintained with<i className="bi bi-heart-fill ms-2 me-2 text-info"></i>by Business Information Technology and Computer Science students at Tennessee Technological University</p>
+          <p className="text-center">Developed and maintained with<i className="bi bi-heart-fill ms-2 me-2 text-info"></i>by Business Information Technology and Computer Science students at Tennessee Technological University</p>
         </div>
 
         {/* footer */}

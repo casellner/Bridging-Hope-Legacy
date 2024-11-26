@@ -30,25 +30,20 @@ function validatePassword(strPassword, strHash){
     return bcrypt.compareSync(strPassword, strHash);
 }
   
-  //delete unwanted characters
+//delete unwanted characters
 function clean(str) {
     return str.replace(/[^0-9a-zA-Z_\-@.\s]/gi, "");
-}   
-app.get('/alive', () => {
-    console.log("hiya")
-});
+}
 
-app.post("/api/signin", (req, res) => { 
-    console.log("entered sign in function")
+app.post("/api/signin", (req, res) => {
     const { username, password } = req.body;
-    console.log("received", username, " ", password)
 
     if (!username || !password) {
         return res.status(400).json({ message: 'Username and password are required' });
     }
-    console.log("attempting to connect to database")
+
     pool.getConnection().then(connection => {
-        console.log("connected to database")
+        //query that checks to see if user exits
         let query = 'SELECT userID, password FROM tblUser WHERE username = ?';
         connection.execute(query, [username])
         .then(results => {
@@ -58,26 +53,26 @@ app.post("/api/signin", (req, res) => {
                     console.log('Logged in successfully')
                     res.json({ message: 'Logged in successfully', userId: user.UserID });
                 } else {
-                    console.log('Invalid credentials')
-                    res.status(401).json({ message: 'Invalid credentials' });
+                    console.log('Incorrect password')
+                    res.status(401).json({ message: 'Incorrect password' });
                 }
             } else {
-                console.log('User not found')
-                res.status(404).json({ message: 'User not found' });
+                console.log('User does not exist')
+                res.status(404).json({ message: 'User does not exist' });
             }
         }).catch(err => {
-            console.error("Error retrieving user", err);
-            res.status(500).json({ status: "error", message: "Error retrieving user" });
+            console.error("User does not exist", err);
+            res.status(500).json({ status: "error", message: "User does not exist" });
         }).finally(() => {
             connection.release();
         });
+        
     }).catch(err => {
         console.error("Error connecting to the database", err);
         res.status(500).json({ status: "error", message: "Error connecting to the database" });
     });
 });
 
-//BE SURE TO ADD A FOREIGN KEY 'orgID' REFERNCING 'tblOrganization' TO 'tblClient' OR THIS WILL NOT WORK!!
 app.post("/api/register", (req, res) => {
     const { username, email, password, firstName, lastName, organization } = req.body;
 
@@ -145,11 +140,229 @@ app.post("/api/register", (req, res) => {
         }).finally(() => {
             connection.release();
         });
-
     }).catch(err => {
         console.error("Error connecting to the database", err);
         res.status(500).json({ message: 'Error connecting to the database' });
     });
+});
+
+app.post("/api/register_client", (req, res) => {
+    const { firstName, lastName, email, DOB, phone, photo, addressLine1, addressLine2, city, state, zip } = req.body;
+
+    const newClientID = uuidv4();
+    const newAddressID = uuidv4();
+    const newPhoneID = uuidv4();
+
+    let z = parseInt(zip);
+    let dob_r;
+
+    if (DOB == ''){
+        dob_r = null;
+    }else{
+        dob_r = DOB;
+    }
+
+    pool.getConnection().then(connection => {
+        let query = 'INSERT INTO tblAddress (addressID, addressLine1, addressLine2, city, state, zip) VALUES (?,?,?,?,?,?)';
+        connection.execute(query, [newAddressID, addressLine1, addressLine2, city, state, z])
+        .then(result => { 
+            //const addressID = result.insertId.toString(); // Convert BigInt to Number
+            console.log('Address created successfully'); 
+            //res.status(201).json({ message: 'Volunteer registered successfully', addressID });
+            const areaCode =  parseInt(phone.slice(0,3));
+            const number = parseInt(phone.slice(3,10));
+            query = 'INSERT INTO tblPhone (phoneID, areaCode, number) VALUES (?,?,?)';
+            connection.execute(query, [newPhoneID, areaCode, number])
+            .then(result => { 
+                //const clientID = result.insertId.toString(); // Convert BigInt to Number
+                console.log('Phone created successfully'); 
+                //res.status(201).json({ message: 'Client registered successfully', clientID });
+           
+                query = 'INSERT INTO tblClient (clientID, firstName, lastName, email, DOB, photo, addressID, phoneID) VALUES (?,?,?,?,?,?,?,?)';
+                connection.execute(query, [newClientID, firstName, lastName, email, dob_r, photo, newAddressID, newPhoneID])
+                .then(result => { 
+                    //const clientID = result.insertId.toString(); // Convert BigInt to Number
+                    console.log('Client registered successfully'); 
+                    //res.status(201).json({ message: 'Client registered successfully', clientID });
+                }).catch(err => {
+                    console.error('Error registering client', err);
+                    res.status(500).json({ message: 'Error registering client' });
+                });
+            }).catch(err => {
+                console.error('Error creating phone object', err);
+                res.status(500).json({ message: 'Error creating phone object' });
+            });   
+        }).catch(err => {
+            console.error('Error creating address object', err);
+            res.status(500).json({ message: 'Error creating address object' });
+        }).finally(() => {
+            connection.release();
+        });
+    }).catch(err => {
+        console.error("Error connecting to the database", err);
+        res.status(500).json({ message: 'Error connecting to the database' });
+    });
+});
+
+//API for Client Search by first name or last name
+app.get("/api/clientSearch", (req, res) => {
+    //Gets Parameters
+    console.log("entered search function")
+    console.log(req.query); //DEBUG
+
+    //implement session ID later
+    //const { sessionID, firstName, lastName, DOB, email } = req.body;
+    const { firstName, lastName, DOB, email } = req.query;
+    //console.log("received:", sessionID, " ", firstName, " ", lastName)
+    console.log("received:", firstName, " ", lastName, " ", DOB, " ", email)
+
+    //Checks for sessionID
+    //if (!sessionID) {
+    //    return res.status(400).json({ message: 'SessionID is required' });
+    //}
+
+    //Checks for first name or last name
+    if (!firstName && !lastName && !DOB && !email) {
+        return res.status(400).json({ message: 'At least first name, last name, DOB, or email is required' });
+    }
+
+    //Connects to database
+    console.log("attempting to connect to database")
+    pool.getConnection().then(connection => {
+        console.log("connected to database")
+        
+        let query = 'SELECT * FROM tblClient WHERE ';
+        const params = [];
+
+        //Creates the quey based on the parameters
+        if (firstName) {
+            query += 'firstName = ? AND ';
+            params.push(firstName);
+        }
+        if (lastName) {
+            query += 'lastName = ? AND ';
+            params.push(lastName);
+        }
+        if (DOB) {
+            query += 'DOB = ? AND ';
+            params.push(DOB);
+        }
+        if (email) {
+            query += 'email = ? AND ';
+            params.push(email);
+        }
+
+	//Removes 'AND '
+	query = query.slice(0, -4);
+	//Add ; to complete query string
+	query += ';';
+
+        console.log("Query:", query) //DEBUG
+
+        //Executes the query
+        connection.execute(query, params)
+            .then(results => {
+                //Client Found
+                if (results.length > 0) {
+                    console.log('Client found')
+                    return res.json({ message: 'Client found', clients: results });
+                } else { //Client not found
+                    console.log('Client not found')
+                    return res.status(404).json({ message: 'Client not found' });
+                }
+            })
+            .catch(err => {
+                console.error("Error retrieving client", err);
+                return res.status(500).json({ message: 'Error retrieving client' });
+            })
+            .finally(() => {
+                connection.release();
+            });
+    })
+    .catch(err => {
+        console.error("Error connecting to the database", err);
+        return res.status(500).json({ message: 'Error connecting to the database' });
+    });
+});
+
+app.post("/api/create_organization", (req, res) => {
+    const { orgName, orgType, email, phone, orgLogo, addressLine1, addressLine2, city, state, zip, services } = req.body;
+    
+    const newOrgID = uuidv4();
+    const newAddressID = uuidv4();
+    const newPhoneID = uuidv4();
+
+    let z = parseInt(zip);
+
+    pool.getConnection().then(connection => {
+        let query = 'INSERT INTO tblAddress (addressID, addressLine1, addressLine2, city, state, zip) VALUES (?,?,?,?,?,?)';
+        connection.execute(query, [newAddressID, addressLine1, addressLine2, city, state, z])
+        .then(result => { 
+            //const addressID = result.insertId.toString(); // Convert BigInt to Number
+            console.log('Address created successfully'); 
+            //res.status(201).json({ message: 'Volunteer registered successfully', addressID });
+            const areaCode =  parseInt(phone.slice(0,3));
+            const number = parseInt(phone.slice(3,10));
+            query = 'INSERT INTO tblPhone (phoneID, areaCode, number) VALUES (?,?,?)';
+            connection.execute(query, [newPhoneID, areaCode, number])
+            .then(result => { 
+                //const clientID = result.insertId.toString(); // Convert BigInt to Number
+                console.log('Phone created successfully'); 
+                //res.status(201).json({ message: 'Client registered successfully', clientID });
+           
+                query = 'SELECT orgTypeID FROM tblOrgType WHERE name = ?';
+                connection.execute(query, [orgType])
+                .then(result => { 
+                    //const clientID = result.insertId.toString(); // Convert BigInt to Number
+                    console.log('fetched org type id'); 
+                    const orgTypeID = result[0].orgTypeID; 
+                    //res.status(201).json({ message: 'Client registered successfully', clientID });
+
+                    query = 'INSERT INTO tblOrganization (orgID, orgName, email, orgLogo, addressID, phoneID, orgTypeID) VALUES (?,?,?,?,?,?,?)';
+                    connection.execute(query, [newOrgID, orgName, email, orgLogo, newAddressID, newPhoneID, orgTypeID])
+                    .then(result => { 
+                    //const clientID = result.insertId.toString(); // Convert BigInt to Number
+                    console.log('Successfully created organization'); 
+                    //res.status(201).json({ message: 'Client registered successfully', clientID });
+                    var newServiceID;
+                    for(var service in services){
+                        newServiceID = uuidv4();
+                        if (services[service]){
+                            query = 'INSERT INTO tblService (serviceID, serviceName, orgID) values (?,?,?)';
+                            connection.execute(query, [newServiceID, service, newOrgID])
+                            .then(result =>{
+                                console.log('Successfully added services'); 
+                            }).catch(err => {
+                                console.error('Error adding services', err);
+                                res.status(500).json({ message: 'Error adding services' });
+                            });
+                        console.log(service);
+                        console.log(services[service]);
+                        }
+                    };
+
+                    }).catch(err => {
+                        console.error('Error creating organzation', err);
+                        res.status(500).json({ message: 'Error creating organzation' });
+                }).catch(err => {
+                    console.error('Error fetching org type ID', err);
+                    res.status(500).json({ message: 'Error fetching org type ID' });
+                });
+            }).catch(err => {
+                console.error('Error creating phone object', err);
+                res.status(500).json({ message: 'Error creating phone object' });
+            });   
+        }).catch(err => {
+            console.error('Error creating address object', err);
+            res.status(500).json({ message: 'Error creating address object' });
+        }).finally(() => {
+            connection.release();
+        });
+    }).catch(err => {
+        console.error("Error connecting to the database", err);
+        res.status(500).json({ message: 'Error connecting to the database' });
+    });
+});
 });
 
 /*Added this to database to allow for password reset
@@ -301,3 +514,4 @@ app.post("/api/reset-password", (req, res) => {
 app.listen(port, () => {
   console.log(`Express listening at http://0.0.0.0:${port}`);
 });
+

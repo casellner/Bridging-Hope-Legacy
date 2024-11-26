@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from 'react-router-dom';
 
 { /*
@@ -7,14 +7,18 @@ import { Link } from 'react-router-dom';
 */ }
 
 const SignIn = () => {
-  window.scrollTo(0, 0); // scroll to top of page
+  useEffect(() => { // Code to run only on first page load
+    window.scrollTo(0, 0); // scroll to top of page
+  }, []);
   
   const [username, SetUsername] = React.useState('');
   const [password, SetPassword] = React.useState('');
 
   const handleLogin = async () => {
     // Construct the API endpoint
-    const url = 'http://192.168.99.87:4433/api/signin';     // 'https://bridginghope.life/api/signin';
+
+  const url = 'https://bridginghope.life/api/signin';
+   // const url = 'http://localhost:4433/api/signin'; //uncomment for local testing
 
     try {
       // Sending the username and password to the server

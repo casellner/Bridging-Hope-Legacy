@@ -1,42 +1,68 @@
-import React from "react";
+// Filename:    SearchClient.js
+// Description: This component renders the components in /searchResults.
 
+import React, { useState }  from "react";
+import axios from "axios";
 import SearchForm from "./searchResults/SearchForm";
 import SearchInstructions from "./searchResults/SearchInstructions";
 import ClientList from "./searchResults/ClientList";
 import ClientView from "./searchResults/ClientView";
 import HouseholdAidHistory from "./searchResults/HouseholdAidHistory";
 
-{ /*
-  Filename:    SearchClient.js
-  Description: This component renders the components in /searchResults.
-*/ }
-
 function SearchClient() {
   const [instructionsIsOpen, setInstructionsIsOpen] = React.useState(true);
   const [clientInfoIsOpen, setClientInfoIsOpen] = React.useState(false);
+  const [clients, setClients] = React.useState([]);
+  const [selectedClient, setSelectedClient] = React.useState(null);
 
   let left;
   let right;
   
-  function handleSearchClient() {
+  async function handleSearchClient(searchParams) {
+    //implement session ID later
+    //Retrieve the sessionID
+    //const sessionID = sessionStorage.getItem('sessionID');
+
+    //if (!sessionID) {
+    //  alert("SessionID is required, please log in again.");
+    //  return;
+    //}
+    const url = 'https://bridginghope.life/api/clientSearch';
+    //const url = process.env.REACT_APP_URL + '/api/clientSearch?sessionID=${sessionID}';
+    //const url = 'http://localhost:4433/api/clientSearch';
+
     setInstructionsIsOpen(false);
+
+    console.log("Searching for clients with params", searchParams); //DEBUG
+
+    try {
+      const response = await axios.get(url, {
+        params: searchParams
+      });
+      setClients(response.data.clients);
+    } catch (error) {
+      console.error("Error fetching clients", error);
+    }
   }
-  function handleSelectClient() {
+
+  function handleSelectClient(client) {
+    setSelectedClient(client);
     setClientInfoIsOpen(true);
   }
   function handleBackToSearch() {
     setClientInfoIsOpen(false);
+    setSelectedClient(null);
   }
 
   if (instructionsIsOpen) {
     left = <SearchForm onSearch={handleSearchClient} />;
     right = <SearchInstructions />;
   } else if (clientInfoIsOpen) {
-    left = <ClientView onBack={handleBackToSearch} /> 
-    right = <HouseholdAidHistory />;
+    left = <ClientView client={selectedClient} onBack={handleBackToSearch} /> 
+    right = <HouseholdAidHistory client={selectedClient}/>;
   } else {
     left = <SearchForm onSearch={handleSearchClient} />;
-    right = <ClientList onSelect={handleSelectClient} />;
+    right = <ClientList clients={clients} onSelect={handleSelectClient} />;
   }
   
   return (
