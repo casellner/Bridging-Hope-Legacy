@@ -16,7 +16,8 @@ const SignIn = () => {
 
   const handleLogin = async () => {
     // Construct the API endpoint
-   const url = 'https://bridginghope.life/api/signin';
+
+  const url = 'https://bridginghope.life/api/signin';
    // const url = 'http://localhost:4433/api/signin'; //uncomment for local testing
 
     try {
@@ -82,7 +83,7 @@ const SignIn = () => {
               <Link to="/register" type="button" className="btn btn-secondary col-12 mt-2">Register</Link>
               <hr />
               <div className="col-12 d-flex justify-content-center align-items-center mb-4">
-                <a href="" className="text-center col-12">Forgot Password</a>
+              <Link to="/forgotpassword" href="" className="text-center col-12">Forgot Password</Link>
               </div>
               <div className="col-12 d-flex justify-content-center align-items-center mb-3">
                 <Link to="/" href="" className="text-center col-12">Go back to home</Link>
