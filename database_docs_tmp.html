@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>database_tables.md</title>
+    <title>database_docs.md</title>
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
     
 <style>
@@ -366,177 +366,23 @@ code {
 </head>
 
 <body>
-    <p>CREATE TABLE tblAddress(<br>
-addressID VARCHAR(50) NOT NULL PRIMARY KEY,<br>
-addressLine1 VARCHAR(50),<br>
-addressLine2 VARCHAR(50),<br>
-city VARCHAR(20),<br>
-state CHAR(2),<br>
-zip INTEGER<br>
-);</p>
-<p>CREATE TABLE tblPhone(<br>
-phoneID VARCHAR(50) NOT NULL PRIMARY KEY,<br>
-areaCode INTEGER,<br>
-number INTEGER,<br>
-isActive BOOLEAN,<br>
-isSafe BOOLEAN<br>
-);</p>
-<p>CREATE TABLE tblSession(<br>
-sessionID VARCHAR(50) NOT NULL PRIMARY KEY,<br>
-startDatetime DATETIME,<br>
-lastActivityDatetime DATETIME,<br>
-userAgent VARCHAR(250)<br>
-);</p>
-<p>CREATE TABLE tblHouseholdMembers(<br>
-familyID VARCHAR(50) NOT NULL PRIMARY KEY,<br>
-familyName VARCHAR(60),<br>
-familySize INTEGER<br>
-);</p>
-<p>CREATE TABLE tblUser(<br>
-userID VARCHAR(50) NOT NULL PRIMARY KEY,<br>
-email VARCHAR(75),<br>
-username VARCHAR(50),<br>
-password VARCHAR(250),<br>
-sessionID VARCHAR(50),<br>
-otp VARCHAR(6),<br>
-otpExpire DATETIME,<br>
-FOREIGN KEY (sessionID) REFERENCES tblSession(sessionID)<br>
-);</p>
-<p>CREATE TABLE tblPasswordReset (<br>
-id INT AUTO_INCREMENT PRIMARY KEY,<br>
-userID VARCHAR(36) NOT NULL,<br>
-resetToken VARCHAR(36) NOT NULL,<br>
-expiresAt TIMESTAMP NULL,<br>
-FOREIGN KEY (userID) REFERENCES tblUser(userID) ON DELETE CASCADE<br>
-);</p>
-<p>CREATE TABLE tblPrivileges (<br>
-privilegeID VARCHAR(50) NOT NULL PRIMARY KEY,<br>
-privilege VARCHAR(50),<br>
-description VARCHAR(400)<br>
-);</p>
-<p>CREATE TABLE tblRole(<br>
-roleID VARCHAR(50) NOT NULL PRIMARY KEY,<br>
-roleName VARCHAR(50),<br>
-privilegeID VARCHAR(50),<br>
-FOREIGN KEY (privilegeID) REFERENCES tblPrivileges(privilegeID)<br>
-);</p>
-<p>CREATE TABLE tblDay(<br>
-dayID VARCHAR(50) NOT NULL PRIMARY KEY,<br>
-dayName VARCHAR(9),<br>
-startTime TIME,<br>
-endTime TIME<br>
-);</p>
-<p>CREATE TABLE tblAvailability (<br>
-availabilityID VARCHAR(50) NOT NULL PRIMARY KEY,<br>
-dayID VARCHAR(50),<br>
-FOREIGN KEY (dayID) REFERENCES tblDay(dayID)<br>
-);</p>
-<p>CREATE TABLE tblVolunteer(<br>
-volunteerID VARCHAR(50) NOT NULL PRIMARY KEY,<br>
-userID VARCHAR(50),<br>
-firstName VARCHAR(50),<br>
-lastName VARCHAR(60),<br>
-FOREIGN KEY (userId) REFERENCES tblUser(userID)<br>
-);</p>
-<p>CREATE TABLE tblOrgType(<br>
-orgTypeID VARCHAR(50) NOT NULL PRIMARY KEY,<br>
-name VARCHAR(20),<br>
-description VARCHAR(200)<br>
-);</p>
-<p>CREATE TABLE tblOrganization(<br>
-orgID VARCHAR(50) NOT NULL PRIMARY KEY,<br>
-orgName VARCHAR(20),<br>
-addressID VARCHAR(50),<br>
-orgTypeID VARCHAR(50),<br>
-phoneID VARCHAR(50),<br>
-email VARCHAR(75),<br>
-orgLogo BLOB,<br>
-FOREIGN KEY (addressID) REFERENCES tblAddress(addressID),<br>
-FOREIGN KEY (orgTypeID) REFERENCES tblOrgType(orgTypeID),<br>
-FOREIGN KEY (phoneID) REFERENCES tblPhone(phoneID)<br>
-);</p>
-<p>CREATE TABLE tblClientBackup(<br>
-clientBackupID VARCHAR(50) NOT NULL PRIMARY KEY,<br>
-firstName VARCHAR(50),<br>
-lastName VARCHAR(60),<br>
-DOB DATE,<br>
-photo BLOB,<br>
-addressID VARCHAR(50),<br>
-userID VARCHAR(50),<br>
-dateChanged DATE<br>
-);</p>
-<p>CREATE TABLE tblClient(<br>
-clientID VARCHAR(50) NOT NULL PRIMARY KEY,<br>
-firstName VARCHAR(50),<br>
-lastName VARCHAR(60),<br>
-DOB DATE,<br>
-photo BLOB,<br>
-addressID VARCHAR(50),<br>
-email VARCHAR(75),<br>
-userID VARCHAR(50),<br>
-clientBackupID VARCHAR(50),<br>
-orgID VARCHAR(50),<br>
-phoneID VARCHAR(50),<br>
-FOREIGN KEY (addressID) REFERENCES tblAddress(addressID),<br>
-FOREIGN KEY (userID) REFERENCES tblUser(userID),<br>
-FOREIGN KEY (orgID) REFERENCES tblOrganization(orgID),<br>
-FOREIGN KEY (clientBackupID) REFERENCES tblClientBackup(clientBackupID),<br>
-FOREIGN KEY (phoneID) REFERENCES tblPhone(phoneID)<br>
-);</p>
-<p>CREATE TABLE tblHouseholds(<br>
-clientID VARCHAR(50),<br>
-familyID VARCHAR(50),<br>
-FOREIGN KEY (clientID) REFERENCES tblClient(clientID),<br>
-FOREIGN KEY (familyID) REFERENCES tblHouseholdMembers(familyID)<br>
-);</p>
-<p>CREATE TABLE tblVolunteerOrgList(<br>
-orgID VARCHAR(50),<br>
-volunteerID VARCHAR(50),<br>
-isActive BOOLEAN,<br>
-FOREIGN KEY (orgID) REFERENCES tblOrganization(orgID),<br>
-FOREIGN KEY (volunteerID) REFERENCES tblVolunteer(volunteerID)<br>
-);</p>
-<p>CREATE TABLE tblClientOrgList(<br>
-orgID VARCHAR(50),<br>
-clientID VARCHAR(50),<br>
-isActive BOOLEAN,<br>
-FOREIGN KEY (orgID) REFERENCES tblOrganization(orgID),<br>
-FOREIGN KEY (clientID) REFERENCES tblClient(clientID)<br>
-);</p>
-<p>CREATE TABLE tblServiceType(<br>
-serviceTypeID VARCHAR(50) NOT NULL PRIMARY KEY,<br>
-name VARCHAR(30),<br>
-description VARCHAR(200)<br>
-);</p>
-<p>CREATE TABLE tblService(<br>
-serviceID VARCHAR(50) NOT NULL PRIMARY KEY,<br>
-serviceName VARCHAR(30),<br>
-serviceTypeID VARCHAR(50),<br>
-orgID VARCHAR(50),<br>
-description VARCHAR(200),<br>
-availabilityID VARCHAR(50),<br>
-FOREIGN KEY (serviceTypeID) REFERENCES tblServiceType(serviceTypeID),<br>
-FOREIGN KEY (orgID) REFERENCES tblOrganization(orgID),<br>
-FOREIGN KEY (availabilityID) REFERENCES tblAvailability(availabilityID)<br>
-);</p>
-<p>CREATE TABLE tblVisit(<br>
-visitID VARCHAR(50) NOT NULL PRIMARY KEY,<br>
-date DATE,<br>
-clientID VARCHAR(50),<br>
-serviceID VARCHAR(50),<br>
-notes VARCHAR(500),<br>
-FOREIGN KEY (clientID) REFERENCES tblClient(clientID),<br>
-FOREIGN KEY (serviceID) REFERENCES tblService(serviceID)<br>
-);</p>
-<p>CREATE TABLE tblOrgRoles(<br>
-orgRoleID VARCHAR(50) NOT NULL PRIMARY KEY,<br>
-orgID VARCHAR(50),<br>
-roleID VARCHAR(50),<br>
-userID VARCHAR(50),<br>
-FOREIGN KEY (orgID) REFERENCES tblOrganization(orgID),<br>
-FOREIGN KEY (roleID) REFERENCES tblRole(roleID),<br>
-FOREIGN KEY (userID) REFERENCES tblUser(userID)<br>
-);</p>
+    <h1 id="database-documentation">Database Documentation</h1>
+<p>The database schema can be found at <a href="https://lucid.app/lucidchart/d6e8ad50-e158-44c6-a246-61125727b8e2/edit?viewport_loc=-2854%2C426%2C2242%2C1277%2C0_0&amp;invitationId=inv_55b0ee6d-4c57-44c6-9d7c-7d82ad58eb26">this link.</a></p>
+<h1 id="core-tables">Core Tables</h1>
+<p>Our main tables consist of tblClient, tblUser, tblVolunteer, and tblOrganization</p>
+<p>-User is a base class used by clients and volunteers for logging in and viewing their respective data<br>
+-Volunteers are a classs of user that are assigned to one or more organizations, and are able to register new<br>
+clients at those organzations, and log visits<br>
+-Clients are a class of users that are able to login and view their data. They are the people visiting the organizations to receive aid<br>
+-Organzations are the groups Volunteers are registered to, and the places clients visit</p>
+<h1 id="linking-voulnteers-and-clients-to-an-organization">Linking Voulnteers and Clients to an Organization</h1>
+<p>Volunteers and clients are linked to an Organization through the tblVolunteerOrgList, and tblClientOrgList tables, respectively. This allows them to be easily regisered to multiple organizations, and unlinked easily by just removing the values.</p>
+<h1 id="data-tables">Data Tables</h1>
+<p>The phone, address, visit, service, and availability tables all contain data that is important to their respective tables.</p>
+<h1 id="session-information">Session Information</h1>
+<p>The data for user session is contained within the tblSession table, which is linked to the user. It is used to validat a session so users dont need to log back in, and autolog out users after a certain period of time.</p>
+<h1 id="password-reset">Password Reset</h1>
+<p>Password reset data is stored in tblPasswordReset, which is used to generate a token linked to a userID that expires after a certain amount of time</p>
 
 </body>
 
