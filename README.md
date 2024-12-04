@@ -62,6 +62,12 @@ A information management system for non-profits, starting in the Putnam County, 
 
 - For more commands and information, see the [frontend README](frontend/README.md)
 
+#### Google Maps
+
+Note: Once we have the create organization functionality, we will not have to manually add locations to the map
+
+See the [react-google-maps](https://visgl.github.io/react-google-maps/) documentation for more help and examples
+
 ### Backend
 
 #### To test backend on local machine:
