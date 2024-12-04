@@ -1,10 +1,8 @@
+// Filename:    SignIn.js
+// Description: This page is the sign in for volunteers and admins.
+
 import React, { useEffect } from "react";
 import { Link } from 'react-router-dom';
-
-{ /*
-  Filename:    SignIn.js
-  Description: This page is the sign in for volunteers and admins.
-*/ }
 
 const SignIn = () => {
   useEffect(() => { // Code to run only on first page load
