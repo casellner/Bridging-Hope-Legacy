@@ -40,6 +40,7 @@ function SearchClient() {
         params: searchParams
       });
       setClients(response.data.clients);
+      console.log("Clients found:", response.data.clients); //DEBUG
     } catch (error) {
       console.error("Error fetching clients", error);
     }
