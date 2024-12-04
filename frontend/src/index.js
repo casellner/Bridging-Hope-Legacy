@@ -8,6 +8,8 @@ import Landing from './pages/Landing';
 import NoPage from './pages/NoPage';
 import Register from './pages/Register';
 import SignIn from './pages/SignIn';
+import ForgotPassword from './pages/ForgotPass';
+import ResetPassword from './pages/ResetPass';
 import FAQ from './pages/FAQ';
 import ClientHelp from './pages/ClientHelp';
 
@@ -20,6 +22,8 @@ const App = () => {
           <Route path="/" element={<Landing />} />
           <Route path="/register" element={<Register />} />
           <Route path="/signin" element={<SignIn />} />
+          <Route path="/forgotpassword" element={<ForgotPassword />} />
+          <Route path="/resetpassword" element={<ResetPassword />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/clienthelp" element={<ClientHelp />} />

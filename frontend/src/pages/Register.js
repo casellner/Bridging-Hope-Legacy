@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -8,12 +8,19 @@ import axios from 'axios';
 */ }
 
 const Register = () => {
+  useEffect(() => { // Code to run only on first page load
     window.scrollTo(0, 0); // scroll to top of page
-    const url = 'https://bridginghope.life/api/register';  
-    const navigate = useNavigate();
+  }, []);
+
+  //const url = 'https://bridginghope.life/api/register'; 
+  const url = 'http://localhost:4433/api/register';  //uncomment for local testing
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
       username: '',
+      email: '',
+
+      email: '',
       password: '',
       confirmPassword: '',
       firstName: '',
@@ -37,22 +44,22 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
-        setErrors({ message: 'Passwords do not match' });
-        return;
+      setErrors({ message: 'Passwords do not match' });
+      return;
     }
     try {
-        await axios.post(url, formData);
-        setShowSuccessModal(true); // Show success modal
+      await axios.post(url, formData);
+      setShowSuccessModal(true); // Show success modal
     } catch (error) {
-        const errorMessage = error.response?.data?.message || 'Error registering user';
-        setErrors({ message: errorMessage });
-        alert("Registration Failed");
+      const errorMessage = error.response?.data?.message || 'Error registering user';
+      setErrors({ message: errorMessage });
+      alert("Registration Failed");
     }
   };
 
   const handleCloseModal = () => {
-      setShowSuccessModal(false);
-      navigate('/dashboard'); // Redirect to dashboard
+    setShowSuccessModal(false);
+    navigate('/dashboard'); // Redirect to dashboard
   };
 
   return (
@@ -64,9 +71,13 @@ const Register = () => {
               <img src="images/BridgingHopeWord.svg" className="img-fluid" alt="logo" style={{ maxWidth: "50%" }} />
             </div>
             <form className="mt-5" onSubmit={handleSubmit}> { /* these columns could be adjusted for different screen sizes */}
-              { /* username and password */}
+              { /* username, email, and password */}
               <label htmlFor="username" className="form-label mt-2">Username</label>
               <input id="username" type="text" placeholder="johndoe" className="form-control" value={formData.username} onChange={handleChange} />
+              <label htmlFor="email" className="form-label mt-2">Email</label>
+              <input id="email" type="text" placeholder="jdoe@email.com" className="form-control" value={formData.email} onChange={handleChange} />
+              <label htmlFor="email" className="form-label mt-2">Email</label>
+              <input id="email" type="text" placeholder="jdoe@email.com" className="form-control" value={formData.email} onChange={handleChange} />
               <label htmlFor="password" className="form-label mt-2">Password</label>
               <input id="password" type="password" className="form-control" value={formData.password} onChange={handleChange} />
               <label htmlFor="confirmPassword" className="form-label mt-2">Confirm Password</label>

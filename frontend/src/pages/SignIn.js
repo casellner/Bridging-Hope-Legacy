@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from 'react-router-dom';
 
 { /*
@@ -7,14 +7,18 @@ import { Link } from 'react-router-dom';
 */ }
 
 const SignIn = () => {
-  window.scrollTo(0, 0); // scroll to top of page
+  useEffect(() => { // Code to run only on first page load
+    window.scrollTo(0, 0); // scroll to top of page
+  }, []);
   
   const [username, SetUsername] = React.useState('');
   const [password, SetPassword] = React.useState('');
 
   const handleLogin = async () => {
     // Construct the API endpoint
-    const url = 'https://bridginghope.life/api/signin';     //need to fix this so we don't have to keep doing this
+
+  const url = 'https://bridginghope.life/api/signin';
+   // const url = 'http://localhost:4433/api/signin'; //uncomment for local testing
 
     try {
       // Sending the username and password to the server
@@ -79,7 +83,7 @@ const SignIn = () => {
               <Link to="/register" type="button" className="btn btn-secondary col-12 mt-2">Register</Link>
               <hr />
               <div className="col-12 d-flex justify-content-center align-items-center mb-4">
-                <a href="" className="text-center col-12">Forgot Password</a>
+              <Link to="/forgotpassword" href="" className="text-center col-12">Forgot Password</Link>
               </div>
               <div className="col-12 d-flex justify-content-center align-items-center mb-3">
                 <Link to="/" href="" className="text-center col-12">Go back to home</Link>
