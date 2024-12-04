@@ -18,7 +18,7 @@ const locations: Poi[] = [
 
 const ClientMap = () => {
   return(
-    <APIProvider apiKey={'AIzaSyCMhIQ8SSNqECfLiNC2kyXZiV_z9wghRgw'} onLoad={() => console.log('Maps API has loaded.')}>
+    <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY} onLoad={() => console.log('Maps API has loaded.')}>
       <Map
         defaultZoom={12}
         defaultCenter={{lat: 36.162839, lng: -85.5016423}}
