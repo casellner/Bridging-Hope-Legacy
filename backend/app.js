@@ -6,6 +6,9 @@ const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
 const port = 4433;
 
+//allow for environment variables
+require('dotenv').config();
+
 const intSalt = 10;
 const mariadb = require("mariadb");
 
