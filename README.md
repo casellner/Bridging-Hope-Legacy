@@ -85,6 +85,29 @@ See the [react-google-maps](https://visgl.github.io/react-google-maps/) document
     - If done right, you should get the message "Express listening at http://0.0.0.0:8000" in your console
     - Also, console messages will show up here as well
 
+### Database
+You must download [MariaDB](https://mariadb.org/download) to test the database on your machine.
+See [database_tables.md](database_tables.md) for the commands to set up the database on your machine.
+Also, [This site](https://www.mariadbtutorial.com/mariadb-basics/) is a good cheat sheet for MariaDB commands.
+
+### .env Files
+A .env file is basically a file to store sensitive infromation such as passwords or API keys. Currently, the Bridging Hope project has two .env files, on in the frontend directory and one in the backend directory. You will have to manually create the files on your machine since they are not pushed to GitHub for security reasons. Note: the .env files are not in any sub-directories - they are on the same level as the package.json files.
+
+The .env file in the backend directory should look like:
+```
+#change this to the password you made when setting up MariaDB
+DATABASE_PASSWORD=myPassword
+```
+
+The .env file in the frontend directory should look like:
+```
+# change this to your local IP address and database port when testing on your local machine
+REACT_APP_URL=http://192.1.2.3:4433
+
+# Google maps API key
+REACT_APP_GOOGLE_MAPS_API_KEY=insertKeyHere
+```
+
 ## Contributors
 
 - [Taha Aktan](https://github.com/qweaksy)

@@ -1,3 +1,5 @@
+CREATE DATABASE bridginghope;
+
 CREATE TABLE tblAddress(
     addressID VARCHAR(50) NOT NULL PRIMARY KEY,
     addressLine1 VARCHAR(50),
