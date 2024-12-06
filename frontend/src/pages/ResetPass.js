@@ -21,7 +21,7 @@ const ResetPassword = () => {
       return;
     }
 
-    const url = 'http://192.168.99.87:4433/api/reset-password';
+    const url = process.env.REACT_APP_API_URL + '/api/reset-password';
 
     try {
       const response = await fetch(url, {

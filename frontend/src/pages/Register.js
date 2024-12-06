@@ -28,9 +28,7 @@ const Register = () => {
     fetchOrganizations();
   }, []);
 
-
-  const url = 'https://bridginghope.life/api/register'; 
-  //const url = 'http://localhost:4433/api/register';  //uncomment for local testing
+  const url = process.env.REACT_APP_API_URL + '/api/register';
 
   const navigate = useNavigate();
 
