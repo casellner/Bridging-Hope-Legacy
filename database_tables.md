@@ -1,3 +1,5 @@
+CREATE DATABASE bridginghope;
+
 CREATE TABLE tblAddress(
     addressID VARCHAR(50) NOT NULL PRIMARY KEY,
     addressLine1 VARCHAR(50),
@@ -34,8 +36,18 @@ CREATE TABLE tblUser(
     username VARCHAR(50),
     password VARCHAR(250),
     sessionID VARCHAR(50),
+    otp VARCHAR(6),
+    otpExpire DATETIME,
     FOREIGN KEY (sessionID) REFERENCES tblSession(sessionID)
     );
+
+CREATE TABLE tblPasswordReset (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    userID VARCHAR(36) NOT NULL,
+    resetToken VARCHAR(36) NOT NULL,
+    expiresAt TIMESTAMP NULL,
+    FOREIGN KEY (userID) REFERENCES tblUser(userID) ON DELETE CASCADE
+);
 
 CREATE TABLE tblPrivileges (
     privilegeID VARCHAR(50) NOT NULL PRIMARY KEY,
