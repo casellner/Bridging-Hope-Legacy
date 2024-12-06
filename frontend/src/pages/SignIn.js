@@ -1,10 +1,8 @@
+// Filename:    SignIn.js
+// Description: This page is the sign in for volunteers and admins.
+
 import React, { useEffect } from "react";
 import { Link } from 'react-router-dom';
-
-{ /*
-  Filename:    SignIn.js
-  Description: This page is the sign in for volunteers and admins.
-*/ }
 
 const SignIn = () => {
   useEffect(() => { // Code to run only on first page load
@@ -17,8 +15,9 @@ const SignIn = () => {
   const handleLogin = async () => {
     // Construct the API endpoint
 
-  const url = 'https://bridginghope.life/api/signin';
-   // const url = 'http://localhost:4433/api/signin'; //uncomment for local testing
+    //const url = 'https://bridginghope.life/api/signin';
+    //const url = 'http://localhost:4433/api/signin';
+    const url = process.env.REACT_APP_URL + '/api/signin';
 
     try {
       // Sending the username and password to the server

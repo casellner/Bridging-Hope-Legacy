@@ -1,9 +1,7 @@
-import React from "react";
+// Filename:    ClientList.js
+// Description: This component renders a list of users returned after searching.
 
-{ /*
-  Filename:    ClientList.js
-  Description: This component renders a list of users returned after searching.
-*/ }
+import React from "react";
 
 function ClientList({ clients, onSelect }) {
   return (

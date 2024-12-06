@@ -81,7 +81,7 @@ See the [react-google-maps](https://visgl.github.io/react-google-maps/) document
 - In CMD or VSCode console change directory to the .\backend\ file
 - Make sure all dependencies are installed 
     - ```npm install```
-- Run ```node app.js```
+- Run ```node --env-file=.env app.js```
     - If done right, you should get the message "Express listening at http://0.0.0.0:8000" in your console
     - Also, console messages will show up here as well
 
