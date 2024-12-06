@@ -12,7 +12,7 @@ const mariadb = require("mariadb");
 const pool = mariadb.createPool({
 	host: "localhost",
 	user: "root",
-	password: "toor",
+	password: "123",
 	connectionLimit: 10,
 	database: "BridgingHope",
 	port: 3306
@@ -298,6 +298,7 @@ app.get("/api/clientSearch", (req, res) => {
         return res.status(500).json({ message: 'Error connecting to the database' });
     });
 });
+
 
 /* Function: Create Organzation
 
