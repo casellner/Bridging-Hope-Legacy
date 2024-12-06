@@ -30,11 +30,14 @@ function validatePassword(strPassword, strHash){
     return bcrypt.compareSync(strPassword, strHash);
 }
   
-//delete unwanted characters
 function clean(str) {
     return str.replace(/[^0-9a-zA-Z_\-@.\s]/gi, "");
 }
 
+/* Function: Sign In
+
+-Takes a username and password form the user
+-Validates the username and password */ 
 app.post("/api/signin", (req, res) => {
     const { username, password } = req.body;
 
@@ -43,7 +46,7 @@ app.post("/api/signin", (req, res) => {
     }
 
     pool.getConnection().then(connection => {
-        //query that checks to see if user exits
+        //this query gets the username and hshed password from the database
         let query = 'SELECT userID, password FROM tblUser WHERE username = ?';
         connection.execute(query, [username])
         .then(results => {
@@ -66,13 +69,20 @@ app.post("/api/signin", (req, res) => {
         }).finally(() => {
             connection.release();
         });
-        
     }).catch(err => {
         console.error("Error connecting to the database", err);
         res.status(500).json({ status: "error", message: "Error connecting to the database" });
     });
 });
 
+/* Function: Register
+
+-Takes all user data on the register form
+-Checks to see if the given username already exists
+-Inserts the new data into the user table
+-Gets the orgID of the organization the volunteer is linking to
+-Inserts the new data into the volunteer table
+-Links the new volunteer to their organzation */ 
 app.post("/api/register", (req, res) => {
     const { username, email, password, firstName, lastName, organization } = req.body;
 
@@ -82,7 +92,7 @@ app.post("/api/register", (req, res) => {
     }
 
     pool.getConnection().then(connection => {
-        //Checks to see if username already exists
+        //This query checks to see if username already exists
         let query = 'SELECT username, email FROM tblUser WHERE username = ?';
         connection.execute(query, [username])
         .then(results => {
@@ -94,7 +104,7 @@ app.post("/api/register", (req, res) => {
                 const newUserID = uuidv4(); //creates a new uuid for the user
                 const newVolunteerID = uuidv4(); //creates a new uuid for the volunteer
                 
-                //this query is for inserting a new user into table
+                //This query inserts a new user into the user table
                 query = 'INSERT INTO tblUser (userID, username, email, password) VALUES (?, ?, ?, ?)';
                 connection.execute(query, [newUserID, username, email, hashedPassword])
                 .then(result => {
@@ -105,26 +115,25 @@ app.post("/api/register", (req, res) => {
                 });
                 
                 //nested set of queries for linking organization and a new volunteer
+                //This query gets the orgID for the organization the user selected
                 query = 'SELECT orgID FROM tblOrganization WHERE orgName = (?)';
                 connection.execute(query, [organization])
                 .then(result => {
                     const orgID = result[0].orgID; //sets the orgID const based on what organization the user selected
-                    //creates the new volunteer based on the info the user entered
+                    //This query creates the new volunteer based on the info the user entered
                     query = 'INSERT INTO tblVolunteer (volunteerID, firstName, lastName, userID) VALUES (?,?,?,?)';
                     connection.execute(query, [newVolunteerID, firstName, lastName, newUserID])
                         .then(result => {
-                            const volunteerID = result.insertId.toString(); // Convert BigInt to Number
                             console.log('Volunteer registered successfully');
-                            res.status(201).json({ message: 'Volunteer registered successfully', volunteerID });
-                                //this query linked the volunteer to their selected orgnization
-                                query = 'INSERT INTO tblVolunteerOrgList (volunteerID, orgID, isActive) VALUES (?,?,?)';
-                                connection.execute(query, [newVolunteerID, orgID, true])
-                                .then(result => { 
-                                    console.log('volunteer linked successfully');
-                                }).catch(err => {
-                                    console.error("Error linking volunteer", err);
-                                    res.status(500).json({ message: 'Error linking volunteer' });
-                                });
+                            //this query linked the volunteer to their selected orgnization
+                            query = 'INSERT INTO tblVolunteerOrgList (volunteerID, orgID, isActive) VALUES (?,?,?)';
+                            connection.execute(query, [newVolunteerID, orgID, true])
+                            .then(result => { 
+                                console.log('volunteer linked successfully');
+                            }).catch(err => {
+                                console.error("Error linking volunteer", err);
+                                res.status(500).json({ message: 'Error linking volunteer' });
+                            });
                         }).catch(err => {
                             console.error("Error registering volunteer", err);
                             res.status(500).json({ message: 'Error registering volunteer' });
@@ -146,6 +155,12 @@ app.post("/api/register", (req, res) => {
     });
 });
 
+/* Function: Register Client
+
+-Takes all client data from the register form
+-Creates a new entry in the address table
+-Creates a new entry in the phone table
+-Creates a new entry in the client table*/ 
 app.post("/api/register_client", (req, res) => {
     const { firstName, lastName, email, DOB, phone, photo, addressLine1, addressLine2, city, state, zip } = req.body;
 
@@ -153,9 +168,11 @@ app.post("/api/register_client", (req, res) => {
     const newAddressID = uuidv4();
     const newPhoneID = uuidv4();
 
-    let z = parseInt(zip);
+    let z = parseInt(zip); //turns the zip code from a string into an integer
     let dob_r;
 
+    //sets dob_r to be null if a date of birth was not specified
+    //there is likely a better way of doing this!
     if (DOB == ''){
         dob_r = null;
     }else{
@@ -163,27 +180,24 @@ app.post("/api/register_client", (req, res) => {
     }
 
     pool.getConnection().then(connection => {
+        //This query creates the new address object based on the info the user entered 
         let query = 'INSERT INTO tblAddress (addressID, addressLine1, addressLine2, city, state, zip) VALUES (?,?,?,?,?,?)';
         connection.execute(query, [newAddressID, addressLine1, addressLine2, city, state, z])
-        .then(result => { 
-            //const addressID = result.insertId.toString(); // Convert BigInt to Number
-            console.log('Address created successfully'); 
-            //res.status(201).json({ message: 'Volunteer registered successfully', addressID });
+        .then(result => {
+            console.log('Address created successfully');
+            //slices the area code and number into seperate variables and turns them into integers
             const areaCode =  parseInt(phone.slice(0,3));
             const number = parseInt(phone.slice(3,10));
+            //This query creates a new phone object based on the info the user entered
             query = 'INSERT INTO tblPhone (phoneID, areaCode, number) VALUES (?,?,?)';
             connection.execute(query, [newPhoneID, areaCode, number])
-            .then(result => { 
-                //const clientID = result.insertId.toString(); // Convert BigInt to Number
-                console.log('Phone created successfully'); 
-                //res.status(201).json({ message: 'Client registered successfully', clientID });
-           
+            .then(result => {
+                console.log('Phone created successfully');
+                //This query creates the new client based on the info the user entered
                 query = 'INSERT INTO tblClient (clientID, firstName, lastName, email, DOB, photo, addressID, phoneID) VALUES (?,?,?,?,?,?,?,?)';
                 connection.execute(query, [newClientID, firstName, lastName, email, dob_r, photo, newAddressID, newPhoneID])
-                .then(result => { 
-                    //const clientID = result.insertId.toString(); // Convert BigInt to Number
-                    console.log('Client registered successfully'); 
-                    //res.status(201).json({ message: 'Client registered successfully', clientID });
+                .then(result => {
+                    console.log('Client registered successfully');
                 }).catch(err => {
                     console.error('Error registering client', err);
                     res.status(500).json({ message: 'Error registering client' });
@@ -285,6 +299,15 @@ app.get("/api/clientSearch", (req, res) => {
     });
 });
 
+
+/* Function: Create Organzation
+
+-Takes all org data from the data entered in the form
+-Creates a new address entry for the organization
+-Creates a new phone entry for the organization
+-Sets the organization type
+-Creates the new organization
+-Sets the services the org has based on the array provided to the function*/ 
 app.post("/api/create_organization", (req, res) => {
     const { orgName, orgType, email, phone, orgLogo, addressLine1, addressLine2, city, state, zip, services } = req.body;
     
@@ -292,55 +315,50 @@ app.post("/api/create_organization", (req, res) => {
     const newAddressID = uuidv4();
     const newPhoneID = uuidv4();
 
-    let z = parseInt(zip);
+    let z = parseInt(zip); //converts the zip code string to an integer
 
     pool.getConnection().then(connection => {
+        //This query creates a new address object based on the info the user entered 
         let query = 'INSERT INTO tblAddress (addressID, addressLine1, addressLine2, city, state, zip) VALUES (?,?,?,?,?,?)';
         connection.execute(query, [newAddressID, addressLine1, addressLine2, city, state, z])
-        .then(result => { 
-            //const addressID = result.insertId.toString(); // Convert BigInt to Number
+        .then(result => {
             console.log('Address created successfully'); 
-            //res.status(201).json({ message: 'Volunteer registered successfully', addressID });
+            //slices the area code and number into seperate variables and turns them into integers
             const areaCode =  parseInt(phone.slice(0,3));
             const number = parseInt(phone.slice(3,10));
+            //This query creates a new phone object based on the info the user entered 
             query = 'INSERT INTO tblPhone (phoneID, areaCode, number) VALUES (?,?,?)';
             connection.execute(query, [newPhoneID, areaCode, number])
-            .then(result => { 
-                //const clientID = result.insertId.toString(); // Convert BigInt to Number
-                console.log('Phone created successfully'); 
-                //res.status(201).json({ message: 'Client registered successfully', clientID });
-           
+            .then(result => {
+                console.log('Phone created successfully');
+                //This query gets the ID or the orgType entered by the user to set in the next query
                 query = 'SELECT orgTypeID FROM tblOrgType WHERE name = ?';
                 connection.execute(query, [orgType])
-                .then(result => { 
-                    //const clientID = result.insertId.toString(); // Convert BigInt to Number
-                    console.log('fetched org type id'); 
-                    const orgTypeID = result[0].orgTypeID; 
-                    //res.status(201).json({ message: 'Client registered successfully', clientID });
-
+                .then(result => {
+                    console.log('Fetched orgTypeID');
+                    const orgTypeID = result[0].orgTypeID;
+                    //This query creates the new organization based on the data the user entered
                     query = 'INSERT INTO tblOrganization (orgID, orgName, email, orgLogo, addressID, phoneID, orgTypeID) VALUES (?,?,?,?,?,?,?)';
                     connection.execute(query, [newOrgID, orgName, email, orgLogo, newAddressID, newPhoneID, orgTypeID])
-                    .then(result => { 
-                    //const clientID = result.insertId.toString(); // Convert BigInt to Number
-                    console.log('Successfully created organization'); 
-                    //res.status(201).json({ message: 'Client registered successfully', clientID });
-                    var newServiceID;
-                    for(var service in services){
-                        newServiceID = uuidv4();
-                        if (services[service]){
-                            query = 'INSERT INTO tblService (serviceID, serviceName, orgID) values (?,?,?)';
-                            connection.execute(query, [newServiceID, service, newOrgID])
-                            .then(result =>{
-                                console.log('Successfully added services'); 
-                            }).catch(err => {
-                                console.error('Error adding services', err);
-                                res.status(500).json({ message: 'Error adding services' });
-                            });
-                        console.log(service);
-                        console.log(services[service]);
-                        }
-                    };
-
+                    .then(result => {
+                        console.log('Successfully created organization');
+                        
+                        var newServiceID; //creates a new variable for storing the UUIDs
+                        //iterates through the services array, adding the new services to the table, linked to the orgID
+                        for(var service in services){
+                            newServiceID = uuidv4();
+                            if (services[service]){
+                                //This query adds the new services to the service table, linking them to the orgID
+                                query = 'INSERT INTO tblService (serviceID, serviceName, orgID) values (?,?,?)';
+                                connection.execute(query, [newServiceID, service, newOrgID])
+                                .then(result =>{
+                                    console.log('Successfully added services'); 
+                                }).catch(err => {
+                                    console.error('Error adding services', err);
+                                    res.status(500).json({ message: 'Error adding services' });
+                                });
+                            }
+                        };
                     }).catch(err => {
                         console.error('Error creating organzation', err);
                         res.status(500).json({ message: 'Error creating organzation' });
