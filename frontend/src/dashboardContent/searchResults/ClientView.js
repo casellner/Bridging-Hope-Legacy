@@ -1,14 +1,13 @@
+// Filename:    ClientView.js
+// Description: This component renders the details of a specific client.
+
 import React from "react";
 
+//import defaultprofilePic from "./images/defaultProfilePic.avif";
 import profilePic1 from "./../../ExampleProfile1.jpg";
 import profilePic2 from "./../../ExampleProfile2.jpg";
 
-{ /*
-  Filename:    ClientView.js
-  Description: This component renders the details of a specific client.
-*/ }
-
-function ClientView({ onBack }) {
+function ClientView({ client, onBack }) {
   const [serviceType, setServiceType] = React.useState("0");
   
   let amountInput;
@@ -44,43 +43,52 @@ function ClientView({ onBack }) {
     amountInput = <p>error</p>;
   }
 
+  let profilePic;
+
+  if (client.photo == null) {
+    profilePic = "./images/defaultProfilePic.avif";
+  } else {
+    profilePic = client.photo;
+  }
+
   return (
     <React.Fragment>
       {/* Profile picture */}
       <div className="d-flex justify-content-center py-1 bg-info">
-        <img src={profilePic1} alt="profile picture" style={{width:"128px", height:"128px", 'object-fit': "cover"}} className="rounded-circle" />
+        <img src={profilePic} alt="profile picture" style={{width:"128px", height:"128px", 'object-fit': "cover"}} className="rounded-circle" />
       </div>
 
       {/* Client information */}
+      {/* Currently, only the name and date of birth are displayed dynamically. The other fields need some work. */}
       <div className="row">
         <div className="col-5">
           <div className="row">
             <h2 className="col-6 fs-6">Name</h2>
-            <p className="col-6">John Doe</p>
+            <p className="col-6">{client.firstName} {client.lastName}</p>
 
             <h2 className="col-6 fs-6">Phone</h2>
-            <p className="col-6">(555)-456-7890</p>
+            <p className="col-6">1234567890</p>
 
             <h2 className="col-6 fs-6">DOB</h2>
-            <p className="col-6">01/01/2000</p>
+            <p className="col-6">{client.DOB}</p>
           </div>
         </div>
         <div className="col-7">
           <div className="row">
             <h2 className="col-6 fs-6">Street address 1</h2>
-            <p className="col-6">123 Main St.</p>
+            <p className="col-6">123 Cherry Lane</p>
 
             <h2 className="col-6 fs-6">Street address 2</h2>
-            <p className="col-6">Apt. 1</p>
+            <p className="col-6">Apt 100</p>
 
             <h2 className="col-6 fs-6">City</h2>
-            <p className="col-6">Springfield</p>
+            <p className="col-6">Cookeville</p>
 
             <h2 className="col-6 fs-6">State</h2>
-            <p className="col-6">IL</p>
+            <p className="col-6">Tennessee</p>
 
             <h2 className="col-6 fs-6">Zip</h2>
-            <p className="col-6">62701</p>
+            <p className="col-6">38500</p>
           </div>
         </div>
       </div>

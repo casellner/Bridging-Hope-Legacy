@@ -6,13 +6,16 @@ const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
 const port = 4433;
 
+//allow for environment variables
+require('dotenv').config();
+
 const intSalt = 10;
 const mariadb = require("mariadb");
 
 const pool = mariadb.createPool({
 	host: "localhost",
 	user: "root",
-	password: "123",
+	password: process.env.DATABASE_PASSWORD,
 	connectionLimit: 10,
 	database: "BridgingHope",
 	port: 3306
