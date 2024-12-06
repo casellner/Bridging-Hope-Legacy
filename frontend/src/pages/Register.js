@@ -28,12 +28,29 @@ const Register = () => {
     fetchOrganizations();
   }, []);
 
+  useEffect(() => { //Code that gets the list of organizations from the backend to ppopulate the organization field
+    const fetchOrganizations = async () => {
+      try {
+        const response = await axios.get('https://bridginghope.life/api/get_org_names');
+        //const response = await axios.get('http://localhost:4433/api/get_org_names'); //uncomment for local testing
+        setOrganizations(response.data);
+      } catch (err) {
+        console.error('Error fetching organizations:', err);
+      }
+    };
+
+    fetchOrganizations();
+  }, []);
+
   const url = 'https://bridginghope.life/api/register'; 
   //const url = 'http://localhost:4433/api/register';  //uncomment for local testing
+
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
       username: '',
+      email: '',
+
       email: '',
       password: '',
       confirmPassword: '',
@@ -88,6 +105,8 @@ const Register = () => {
               { /* username, email, and password */}
               <label htmlFor="username" className="form-label mt-2">Username</label>
               <input id="username" type="text" placeholder="johndoe" className="form-control" value={formData.username} onChange={handleChange} />
+              <label htmlFor="email" className="form-label mt-2">Email</label>
+              <input id="email" type="text" placeholder="jdoe@email.com" className="form-control" value={formData.email} onChange={handleChange} />
               <label htmlFor="email" className="form-label mt-2">Email</label>
               <input id="email" type="text" placeholder="jdoe@email.com" className="form-control" value={formData.email} onChange={handleChange} />
               <label htmlFor="password" className="form-label mt-2">Password</label>
