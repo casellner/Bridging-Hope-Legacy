@@ -6,7 +6,7 @@ const ForgotPassword = () => {
   const navigate = useNavigate(); // Initialize navigate hook
 
   const handlePasswordReset = async () => {
-    const url = 'http://192.168.99.87:4433/api/forgot-password';
+    const url = process.env.REACT_APP_API_URL + '/api/forgot-password';
 
     try { 
       const response = await fetch(url, {

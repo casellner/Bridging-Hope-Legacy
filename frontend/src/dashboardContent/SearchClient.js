@@ -27,7 +27,7 @@ function SearchClient() {
     //  alert("SessionID is required, please log in again.");
     //  return;
     //}
-    //const url = 'https://bridginghope.life/api/clientSearch';
+
     //const url = process.env.REACT_APP_URL + '/api/clientSearch?sessionID=${sessionID}';
     const url = process.env.REACT_APP_URL + '/api/clientSearch';
 

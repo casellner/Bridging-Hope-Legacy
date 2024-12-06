@@ -10,8 +10,7 @@ import Address from "./registerForm/Address";
 */ }
 
 function RegisterClient() {
-    const url = 'https://bridginghope.life/api/register_client'; 
-    //const url = 'http://localhost:4433/api/register_client';  //uncomment for local testing
+    const url = process.env.REACT_APP_API_URL + '/api/register_client';
 
     const [formData, setFormData] = useState({
         firstName: '',

@@ -14,10 +14,7 @@ const SignIn = () => {
 
   const handleLogin = async () => {
     // Construct the API endpoint
-
-    //const url = 'https://bridginghope.life/api/signin';
-    //const url = 'http://localhost:4433/api/signin';
-    const url = process.env.REACT_APP_URL + '/api/signin';
+    const url = process.env.REACT_APP_API_URL + '/api/signin';
 
     try {
       // Sending the username and password to the server
