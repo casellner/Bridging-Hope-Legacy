@@ -10,8 +10,7 @@ import Address from "./registerForm/Address";
 */ }
 
 function RegisterClient() {
-    const url = 'https://bridginghope.life/api/register_client'; 
-    //const url = 'http://localhost:4433/api/register_client';  //uncomment for local testing
+    const url = process.env.REACT_APP_API_URL + '/api/register_client';
 
     const [formData, setFormData] = useState({
         firstName: '',
@@ -38,17 +37,28 @@ function RegisterClient() {
     };
   
     const handleChange = (e) => {
+      /*if (e.target.id == 'photo') {
+        let file = e.target.value
+        const photoBlob = new Blob([file], { type: file.type });
+        setFormData({
+          ...formData,
+          [e.target.id]: photoBlob
+        });
+        console.log("ehllo")
+        return;
+      }*/
       setFormData({
         ...formData,
         [e.target.id]: e.target.value
       });
+      console.log(formData);
     };
 
     async function submit() {
       try {
         setShowSuccessModal(true); // Show success modal
         await axios.post(url, formData);
-        } catch (error) {
+      } catch (error) {
         const errorMessage = error.response?.data?.message || 'Error registering user';
         setErrors({ message: errorMessage });
         alert("Registration Failed");

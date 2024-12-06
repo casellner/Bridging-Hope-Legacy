@@ -8,18 +8,32 @@ import axios from 'axios';
 */ }
 
 const Register = () => {
+  const [organizations, setOrganizations] = useState([]);
+
   useEffect(() => { // Code to run only on first page load
     window.scrollTo(0, 0); // scroll to top of page
   }, []);
 
-  //const url = 'https://bridginghope.life/api/register'; 
-  const url = 'http://localhost:4433/api/register';  //uncomment for local testing
+  useEffect(() => { //Code that gets the list of organizations from the backend to ppopulate the organization field
+    const fetchOrganizations = async () => {
+      try {
+        const response = await axios.get('https://bridginghope.life/api/get_org_names');
+        //const response = await axios.get('http://localhost:4433/api/get_org_names'); //uncomment for local testing
+        setOrganizations(response.data);
+      } catch (err) {
+        console.error('Error fetching organizations:', err);
+      }
+    };
+
+    fetchOrganizations();
+  }, []);
+
+  const url = process.env.REACT_APP_API_URL + '/api/register';
+
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
       username: '',
-      email: '',
-
       email: '',
       password: '',
       confirmPassword: '',
@@ -76,8 +90,6 @@ const Register = () => {
               <input id="username" type="text" placeholder="johndoe" className="form-control" value={formData.username} onChange={handleChange} />
               <label htmlFor="email" className="form-label mt-2">Email</label>
               <input id="email" type="text" placeholder="jdoe@email.com" className="form-control" value={formData.email} onChange={handleChange} />
-              <label htmlFor="email" className="form-label mt-2">Email</label>
-              <input id="email" type="text" placeholder="jdoe@email.com" className="form-control" value={formData.email} onChange={handleChange} />
               <label htmlFor="password" className="form-label mt-2">Password</label>
               <input id="password" type="password" className="form-control" value={formData.password} onChange={handleChange} />
               <label htmlFor="confirmPassword" className="form-label mt-2">Confirm Password</label>
@@ -92,9 +104,14 @@ const Register = () => {
               { /* organization */}
               <label htmlFor="organization" className="form-label mt-5">Choose your organization</label>
               <select id="organization" className="form-select" value={formData.organization} onChange={handleChange}>
-                <option value="" className="text-secondary">Select</option>
-                <option value="Organization XYZ">Organization XYZ</option>
-                <option value="Organization ABC">Organization ABC</option>
+              <option value="" className="text-secondary">
+                Select
+              </option>
+                {organizations.map((org) => ( //populates the organization field with values from the organizations map
+                  <option value={org.orgName}>
+                    {org.orgName}
+                  </option>
+                ))}
               </select>
 
               {errors.message && <div className="alert alert-danger" role="alert">{errors.message}</div>}

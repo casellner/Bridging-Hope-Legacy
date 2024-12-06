@@ -17,6 +17,7 @@ function BasicInfo({ formData, onChange, onClickContinue }) {
     }
   }
 
+
   return (
     <React.Fragment>
       { /* first and last name */}

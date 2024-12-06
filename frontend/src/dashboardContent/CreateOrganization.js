@@ -9,8 +9,7 @@ import exampleLogo from './../ExampleLogo.png';
 */ }
 
 function CreateOrganization() {
-  const url = 'https://bridginghope.life/api/register'; 
-  //const url = 'http://localhost:4433/api/create_organization';  //uncomment for local testing
+  const url = process.env.REACT_APP_API_URL + '/api/create_organization';
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
