@@ -59,6 +59,7 @@ function ClientView({ client, onBack }) {
       </div>
 
       {/* Client information */}
+      {/* Currently, only the name and date of birth are displayed dynamically. The other fields need some work. */}
       <div className="row">
         <div className="col-5">
           <div className="row">
@@ -66,7 +67,7 @@ function ClientView({ client, onBack }) {
             <p className="col-6">{client.firstName} {client.lastName}</p>
 
             <h2 className="col-6 fs-6">Phone</h2>
-            <p className="col-6"></p>
+            <p className="col-6">1234567890</p>
 
             <h2 className="col-6 fs-6">DOB</h2>
             <p className="col-6">{client.DOB}</p>
@@ -75,19 +76,19 @@ function ClientView({ client, onBack }) {
         <div className="col-7">
           <div className="row">
             <h2 className="col-6 fs-6">Street address 1</h2>
-            <p className="col-6"></p>
+            <p className="col-6">123 Cherry Lane</p>
 
             <h2 className="col-6 fs-6">Street address 2</h2>
-            <p className="col-6"></p>
+            <p className="col-6">Apt 100</p>
 
             <h2 className="col-6 fs-6">City</h2>
-            <p className="col-6"></p>
+            <p className="col-6">Cookeville</p>
 
             <h2 className="col-6 fs-6">State</h2>
-            <p className="col-6"></p>
+            <p className="col-6">Tennessee</p>
 
             <h2 className="col-6 fs-6">Zip</h2>
-            <p className="col-6"></p>
+            <p className="col-6">38500</p>
           </div>
         </div>
       </div>
