@@ -75,6 +75,29 @@ app.post("/api/signin", (req, res) => {
     });
 });
 
+/* Function: Get Organization Names
+
+-Gets a list of the organization names
+-Sends that data to the frontend as a json object */ 
+app.get('/api/get_org_names', (req, res) => {
+    pool.getConnection().then(connection =>{
+        //This query gets a list of every orgName 
+        let query = 'SELECT orgName FROM tblOrganization';
+        connection.execute(query)
+        .then(results => {
+            res.json(results);
+        }).catch(err => {
+            console.error(err);
+            return res.status(500).send('Error fetching organizations');
+        }).finally(() => {
+            connection.release();
+        });
+    }).catch(err => {
+        console.error("Error connecting to the database", err);
+        res.status(500).json({ status: "error", message: "Error connecting to the database" });
+    });
+});
+
 /* Function: Register
 
 -Takes all user data on the register form

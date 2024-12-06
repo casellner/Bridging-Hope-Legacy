@@ -38,17 +38,28 @@ function RegisterClient() {
     };
   
     const handleChange = (e) => {
+      /*if (e.target.id == 'photo') {
+        let file = e.target.value
+        const photoBlob = new Blob([file], { type: file.type });
+        setFormData({
+          ...formData,
+          [e.target.id]: photoBlob
+        });
+        console.log("ehllo")
+        return;
+      }*/
       setFormData({
         ...formData,
         [e.target.id]: e.target.value
       });
+      console.log(formData);
     };
 
     async function submit() {
       try {
         setShowSuccessModal(true); // Show success modal
         await axios.post(url, formData);
-        } catch (error) {
+      } catch (error) {
         const errorMessage = error.response?.data?.message || 'Error registering user';
         setErrors({ message: errorMessage });
         alert("Registration Failed");
